@@ -1,7 +1,7 @@
 package com.bordify.board.infrastructure.persistence;
 
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
-import com.bordify.users.infrastructure.persistence.UserEntity;
+import com.bordify.user.infrastructure.persistence.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -2,8 +2,8 @@ package com.bordify.board.infrastructure.mapper;
 
 import com.bordify.board.domain.Board;
 import com.bordify.board.infrastructure.persistence.BoardEntity;
-import com.bordify.users.domain.User;
-import com.bordify.users.infrastructure.mapper.UserMapper;
+import com.bordify.user.domain.User;
+import com.bordify.user.infrastructure.mapper.UserMapper;
 
 public class BoardMapper {
 

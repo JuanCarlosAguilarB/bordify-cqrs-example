@@ -1,6 +1,6 @@
 package com.bordify.auth.domain;
 
-import com.bordify.users.domain.User;
+import com.bordify.user.domain.User;
 
 public interface AuthServices {
 

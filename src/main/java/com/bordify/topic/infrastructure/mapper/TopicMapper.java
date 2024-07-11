@@ -6,7 +6,6 @@ import com.bordify.color.domain.Color;
 import com.bordify.color.infrastructure.mapper.ColorMapper;
 import com.bordify.topic.domain.Topic;
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
-import com.bordify.users.infrastructure.persistence.UserEntity;
 
 public class TopicMapper {
 

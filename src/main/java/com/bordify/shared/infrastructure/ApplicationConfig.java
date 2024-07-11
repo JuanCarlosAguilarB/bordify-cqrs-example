@@ -1,6 +1,6 @@
 package com.bordify.shared.infrastructure;
 
-import com.bordify.users.infrastructure.ports.out.UserRepository;
+import com.bordify.user.infrastructure.ports.out.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
