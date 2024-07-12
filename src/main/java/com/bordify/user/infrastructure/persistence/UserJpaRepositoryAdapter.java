@@ -69,4 +69,9 @@ public class UserJpaRepositoryAdapter implements UserRepository {
         return pageResult;
     }
 
+    @Override
+    public void delete(UUID id) {
+        userJpaRepository.deleteById(id);
+    }
+
 }

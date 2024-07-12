@@ -61,4 +61,6 @@ public interface UserRepository {
     public Optional<User> findById(UUID userId);
 
     PageResult<User> findAll(PaginationRequest pagination);
+
+    void delete(UUID id);
 }
