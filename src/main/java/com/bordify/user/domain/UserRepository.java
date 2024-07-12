@@ -1,5 +1,8 @@
 package com.bordify.user.domain;
 
+import com.bordify.shared.domain.PageResult;
+import com.bordify.shared.domain.PaginationRequest;
+
 import java.util.Optional;
 import java.util.UUID;
 
@@ -57,4 +60,5 @@ public interface UserRepository {
      */
     public Optional<User> findById(UUID userId);
 
+    PageResult<User> findAll(PaginationRequest pagination);
 }

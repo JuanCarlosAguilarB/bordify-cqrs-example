@@ -1,8 +1,13 @@
 package com.bordify.user.infrastructure.persistence;
 
+import com.bordify.shared.domain.PageResult;
+import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.user.domain.User;
 import com.bordify.user.domain.UserRepository;
 import com.bordify.user.infrastructure.mapper.UserMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -49,6 +54,19 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     public Optional<User> findById(UUID userId) {
         Optional<UserEntity> userSearched = userJpaRepository.findById(userId);
         return userSearched.map(UserMapper::toDomain);
+    }
+
+    @Override
+    public PageResult<User> findAll(PaginationRequest pageable) {
+
+        Pageable pageableResult = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize()); // page 0, size 20
+        Page<UserEntity> page = userJpaRepository.findAll(pageableResult);
+
+        PageResult<User> pageResult  = new PageResult<User>(
+                page.getContent().stream().map(UserMapper::toDomain).toList(),
+                page.getNumber(), page.getSize(), page.getTotalElements());
+
+        return pageResult;
     }
 
 }
