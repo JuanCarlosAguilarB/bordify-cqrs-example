@@ -1,7 +1,6 @@
 package com.bordify.persistence;
-import com.bordify.users.domain.User;
-import com.bordify.users.infrastructure.persistence.UserEntity;
-import com.bordify.users.infrastructure.persistence.UserJpaRepository;
+import com.bordify.user.infrastructure.persistence.UserEntity;
+import com.bordify.user.infrastructure.persistence.UserJpaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
 
-import static com.bordify.users.domain.UserModelTestService.createValidUserEntity;
+import static com.bordify.user.domain.UserModelTestService.createValidUserEntity;
 
 @DataJpaTest
 public class UserRepositoryShould {

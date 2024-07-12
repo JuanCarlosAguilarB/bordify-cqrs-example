@@ -1,8 +1,8 @@
 package com.bordify.auth.infrastructure.security;
 
-import com.bordify.users.application.find.UserFinder;
-import com.bordify.users.domain.User;
-import com.bordify.users.domain.UserNotFoundException;
+import com.bordify.user.application.find.UserFinder;
+import com.bordify.user.domain.User;
+import com.bordify.user.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

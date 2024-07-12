@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.bordify.auth.domain.Auth;
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.users.domain.User;
+import com.bordify.user.domain.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
