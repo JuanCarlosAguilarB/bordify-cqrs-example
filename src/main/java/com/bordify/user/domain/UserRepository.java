@@ -1,6 +1,7 @@
 package com.bordify.user.domain;
 
 import java.util.Optional;
+import java.util.UUID;
 
 
 /**
@@ -46,5 +47,14 @@ public interface UserRepository {
      * @param user The user entity to be saved.
      */
     public void save(User user);
+
+
+    /**
+     * Retrive an user
+     *
+     * @param userId
+     * @return
+     */
+    public Optional<User> findById(UUID userId);
 
 }

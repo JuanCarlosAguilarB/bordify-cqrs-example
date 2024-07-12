@@ -6,6 +6,7 @@ import com.bordify.user.infrastructure.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class UserJpaRepositoryAdapter implements UserRepository {
@@ -42,6 +43,12 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     public void save(User user) {
         UserEntity userEntity = UserMapper.toEntity(user);
         userJpaRepository.save(userEntity);
+    }
+
+    @Override
+    public Optional<User> findById(UUID userId) {
+        Optional<UserEntity> userSearched = userJpaRepository.findById(userId);
+        return userSearched.map(UserMapper::toDomain);
     }
 
 }
