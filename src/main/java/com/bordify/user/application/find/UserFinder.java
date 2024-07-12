@@ -1,6 +1,8 @@
 package com.bordify.user.application.find;
 
 
+import com.bordify.shared.domain.PageResult;
+import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.user.domain.User;
 import com.bordify.user.domain.UserNotFoundException;
 import com.bordify.user.domain.UserRepository;
@@ -26,6 +28,12 @@ public class UserFinder {
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
+    }
+
+    public PageResult<User> getall(PaginationRequest pagination) {
+
+        return userRepository.findAll(pagination);
+
     }
 
 //    public User findUserById(UUID id) {
