@@ -7,6 +7,7 @@ import com.bordify.boards.infrastructure.persistence.models.BoardModelTestServic
 import com.bordify.color.infrastructure.persistence.ColorEntity;
 import com.bordify.color.infrastructure.persistence.ColorJpaRepository;
 import com.bordify.persistence.models.*;
+import com.bordify.task.domain.TaskListDTO;
 import com.bordify.task.infrastructure.persistence.Task;
 import com.bordify.task.infrastructure.persistence.TaskRepository;
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
