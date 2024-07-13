@@ -13,6 +13,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.UUID;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -39,9 +41,10 @@ public class UserPutControllerShould {
                 .phoneNumber("1234567890")
                 .build();
 
+        UUID userId = UUID.randomUUID();
 
         MvcResult result = mockMvc.perform(
-                MockMvcRequestBuilders.post("/v1/users/")
+                MockMvcRequestBuilders.put("/v1/users/{userId}/",userId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestUserBody))
                         .accept(MediaType.APPLICATION_JSON)
