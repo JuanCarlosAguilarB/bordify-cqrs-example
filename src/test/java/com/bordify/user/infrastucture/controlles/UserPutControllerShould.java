@@ -30,9 +30,9 @@ public class UserPutControllerShould extends TestCaseController {
                 uri,
                 user,
                 201,
-                objectMapper.writeValueAsString((expectedResponse))
+                objectMapper.writeValueAsString((expectedResponse)),
+                false
         );
-
 
     }
 
@@ -48,7 +48,8 @@ public class UserPutControllerShould extends TestCaseController {
                 HttpMethod.PUT,
                 uri,
                 user,
-                409 // status().isConflict()
+                409, // status().isConflict()
+                false
         );
 
         response.andExpect(jsonPath(
