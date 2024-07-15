@@ -1,6 +1,10 @@
 package com.bordify.shared.infrastucture.controlles;
 
 
+import com.bordify.auth.domain.Auth;
+import com.bordify.auth.domain.AuthenticationToken;
+import com.bordify.auth.infrastructure.controllers.AuthPostController;
+import com.bordify.user.domain.SecurityService;
 import com.bordify.user.domain.User;
 import com.bordify.user.domain.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,12 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.util.UUID;
 
 import static com.bordify.user.domain.UserFactory.createRandomUser;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -37,14 +42,72 @@ abstract public class TestCaseController {
     @Autowired
     private  UserRepository repository;
 
-    private String userRegistered;
-    private final UUID userId = UUID.randomUUID();
+    @Autowired
+    private AuthPostController authPostController;
+
+    @Autowired
+    private SecurityService securityService;
+
+    private Boolean userWasPersisted = false;
+
+    private final User user = createRandomUser();
+
+    public User user(){
+        return user;
+    }
 
     public  User createRandomPersistentUser() {
-        User user = createRandomUser();
-        repository.save(user);
-        return user;
 
+        if (!userWasPersisted){
+
+            String oldPassword = user.getPassword();
+
+            user.setPassword(securityService.encode(oldPassword));
+            repository.save(user);
+
+            // recovery raw password
+            user.setPassword(oldPassword);
+            userWasPersisted = true;
+        }
+
+        return user;
+    }
+
+    private String token() throws Exception {
+
+        User user = createRandomPersistentUser();
+
+        Auth authenticateBody = Auth.builder()
+                .password(user.getPassword())
+                .userName(user.getUsername())
+                .build();
+
+        ResponseEntity<?> authentication = authPostController.authenticateUser(authenticateBody);
+
+        AuthenticationToken authToken = (AuthenticationToken) authentication.getBody();
+
+        return authToken.getToken();
+    }
+
+
+    private MockHttpServletRequestBuilder mockRequest(
+             HttpMethod method,
+             String url,
+             Object body,
+             boolean needsAuthentication
+    ) throws Exception{
+
+        MockHttpServletRequestBuilder requestResult =  MockMvcRequestBuilders.request(method, url)
+                .contentType(APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(body))
+                .accept(APPLICATION_JSON)
+                .characterEncoding("utf-8");
+
+        if(needsAuthentication){
+            requestResult.header("Authorization", "Bearer " + token());
+        }
+
+        return requestResult;
     }
 
     public ResultActions assertRequestWithBody (
@@ -52,62 +115,48 @@ abstract public class TestCaseController {
             String url,
             Object body,
             int expectedStatusCode,
-            String expectedResponse
+            String expectedResponse,
+            boolean needsAuthentication
     ) throws Exception {
 
         ResultMatcher bodyEspexted = expectedResponse.isEmpty() ? content().string("") : content().json(expectedResponse);
 
-        return mockMvc.perform(
-                MockMvcRequestBuilders.request(method, url)
-                        .contentType(APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(body))
-                        .accept(APPLICATION_JSON)
-                        .characterEncoding("utf-8")
-                )
+        return mockMvc.perform(mockRequest(method, url, body, needsAuthentication))
                 .andExpect(status().is(expectedStatusCode))
                 .andExpect(bodyEspexted);
 //                .andReturn();
-
     }
 
     public ResultActions assertRequestWithBody (
             HttpMethod method,
             String url,
             Object body,
-            int expectedStatusCode
+            int expectedStatusCode,
+            boolean needsAuthentication
     ) throws Exception {
 
 
-        return mockMvc.perform(
-                        MockMvcRequestBuilders.request(method, url)
-                                .contentType(APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(body))
-                                .accept(APPLICATION_JSON)
-                                .characterEncoding("utf-8")
-                )
+        return mockMvc.perform(mockRequest(method, url, body, needsAuthentication))
                 .andExpect(status().is(expectedStatusCode));
 //                .andReturn();
 
     }
 
 
-    public void assertRequest (
+    public MvcResult assertRequest (
             HttpMethod method, String url,
             int expectedStatusCode,
-            String expectedResponse
+            String expectedResponse,
+            boolean needsAuthentication
     ) throws Exception {
 
         ResultMatcher bodyEspexted = expectedResponse.isEmpty() ? content().string("") : content().json(expectedResponse);
 
-        mockMvc.perform(
-                        MockMvcRequestBuilders.request(method, url)
-                                .contentType(APPLICATION_JSON)
-                                .accept(APPLICATION_JSON)
-                                .characterEncoding("utf-8")
-                )
+        return mockMvc.perform(mockRequest(method, url, null, needsAuthentication))
                 .andExpect(status().is(expectedStatusCode))
                 .andExpect(bodyEspexted)
                 .andReturn();
 
     }
+
 }
