@@ -1,6 +1,6 @@
 package com.bordify.task_item.domain;
 
-import lombok.*;
+import lombok.Data;
 
 import java.util.UUID;
 

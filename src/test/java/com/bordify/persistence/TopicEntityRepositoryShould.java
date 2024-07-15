@@ -2,13 +2,13 @@ package com.bordify.persistence;
 
 import com.bordify.board.infrastructure.persistence.BoardEntity;
 import com.bordify.board.infrastructure.persistence.BoardJpaRepository;
-import com.bordify.color.infrastructure.persistence.ColorEntity;
-import com.bordify.topic.domain.TopicListDTO;
-import com.bordify.topic.infrastructure.persistence.TopicEntity;
 import com.bordify.boards.infrastructure.persistence.models.BoardModelTestService;
+import com.bordify.color.infrastructure.persistence.ColorEntity;
+import com.bordify.color.infrastructure.persistence.ColorJpaRepository;
 import com.bordify.persistence.models.ColorModelTestService;
 import com.bordify.persistence.models.TopicModelTestService;
-import com.bordify.color.infrastructure.persistence.ColorJpaRepository;
+import com.bordify.topic.domain.TopicListDTO;
+import com.bordify.topic.infrastructure.persistence.TopicEntity;
 import com.bordify.topic.infrastructure.persistence.TopicJpaRepository;
 import com.bordify.user.domain.UserModelTestService;
 import com.bordify.user.infrastructure.persistence.UserEntity;

@@ -1,7 +1,7 @@
 package com.bordify.board.domain;
 
-import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.shared.domain.PageResult;
+import com.bordify.shared.domain.PaginationRequest;
 
 import java.util.Optional;
 import java.util.UUID;

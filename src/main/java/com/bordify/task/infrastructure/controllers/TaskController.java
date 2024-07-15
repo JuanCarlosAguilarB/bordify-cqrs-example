@@ -1,12 +1,12 @@
 package com.bordify.task.infrastructure.controllers;
 
-import com.bordify.task.domain.TaskListDTO;
 import com.bordify.shared.domain.EntityNotFound;
+import com.bordify.task.application.TaskService;
+import com.bordify.task.domain.TaskListDTO;
 import com.bordify.task.infrastructure.persistence.Task;
+import com.bordify.task.infrastructure.persistence.TaskRepository;
 import com.bordify.task_item.infrastructure.persistence.TaskItem;
 import com.bordify.task_item.infrastructure.persistence.TaskItemRepository;
-import com.bordify.task.infrastructure.persistence.TaskRepository;
-import com.bordify.task.application.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;

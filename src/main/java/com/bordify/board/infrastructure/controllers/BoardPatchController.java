@@ -1,7 +1,6 @@
 package com.bordify.board.infrastructure.controllers;
 
 import com.bordify.board.application.update.BoardUpdater;
-import com.bordify.board.infrastructure.persistence.BoardEntity;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

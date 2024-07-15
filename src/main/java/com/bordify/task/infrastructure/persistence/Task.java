@@ -3,7 +3,10 @@ package com.bordify.task.infrastructure.persistence;
 import com.bordify.task_item.infrastructure.persistence.TaskItem;
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;

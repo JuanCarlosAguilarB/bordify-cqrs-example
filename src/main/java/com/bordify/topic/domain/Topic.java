@@ -2,7 +2,10 @@ package com.bordify.topic.domain;
 
 import com.bordify.board.domain.Board;
 import com.bordify.color.domain.Color;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 

@@ -1,11 +1,11 @@
 package com.bordify.task.application;
 
-import com.bordify.task.domain.TaskListDTO;
 import com.bordify.shared.domain.EntityNotFound;
+import com.bordify.task.domain.TaskListDTO;
 import com.bordify.task.infrastructure.persistence.Task;
+import com.bordify.task.infrastructure.persistence.TaskRepository;
 import com.bordify.task_item.infrastructure.persistence.TaskItem;
 import com.bordify.task_item.infrastructure.persistence.TaskItemRepository;
-import com.bordify.task.infrastructure.persistence.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

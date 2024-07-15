@@ -1,8 +1,8 @@
 package com.bordify.task_item.infrastructure.controllers;
 
+import com.bordify.task_item.application.TaskItemService;
 import com.bordify.task_item.domain.TaskItemsRequest;
 import com.bordify.task_item.infrastructure.persistence.TaskItem;
-import com.bordify.task_item.application.TaskItemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

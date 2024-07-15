@@ -1,6 +1,10 @@
 package com.bordify.user.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+
 import java.time.LocalTime;
 import java.util.UUID;
 
