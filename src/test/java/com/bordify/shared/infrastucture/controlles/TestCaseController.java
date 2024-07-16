@@ -159,4 +159,27 @@ abstract public class TestCaseController {
 
     }
 
+    public MvcResult assertRequest (HttpMethod method, String url, int expectedStatusCode, boolean needsAuthentication) throws Exception {
+
+        return mockMvc.perform(mockRequest(method, url, null, needsAuthentication))
+                .andExpect(status().is(expectedStatusCode))
+                .andReturn();
+
+    }
+
+    public String buildUrl (String uri, String value) {
+
+        int startIndex = uri.indexOf("{");
+        if (startIndex == -1) {
+            return uri;
+        }
+
+        int endIndex = uri.indexOf("}", startIndex);
+        if (endIndex == -1) {
+            return uri;
+        }
+
+        return uri.substring(0, startIndex) + value + uri.substring(endIndex + 1);
+    }
+
 }
