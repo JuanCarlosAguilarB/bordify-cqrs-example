@@ -143,7 +143,7 @@ abstract public class TestCaseController {
     }
 
 
-    public MvcResult assertRequest (
+    public ResultActions assertRequest (
             HttpMethod method, String url,
             int expectedStatusCode,
             String expectedResponse,
@@ -154,17 +154,13 @@ abstract public class TestCaseController {
 
         return mockMvc.perform(mockRequest(method, url, null, needsAuthentication))
                 .andExpect(status().is(expectedStatusCode))
-                .andExpect(bodyEspexted)
-                .andReturn();
-
+                .andExpect(bodyEspexted);
     }
 
-    public MvcResult assertRequest (HttpMethod method, String url, int expectedStatusCode, boolean needsAuthentication) throws Exception {
+    public ResultActions assertRequest (HttpMethod method, String url, int expectedStatusCode, boolean needsAuthentication) throws Exception {
 
         return mockMvc.perform(mockRequest(method, url, null, needsAuthentication))
-                .andExpect(status().is(expectedStatusCode))
-                .andReturn();
-
+                .andExpect(status().is(expectedStatusCode));
     }
 
     public String buildUrl (String uri, String value) {
