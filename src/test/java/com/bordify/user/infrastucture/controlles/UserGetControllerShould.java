@@ -43,7 +43,7 @@ public class UserGetControllerShould extends TestCaseController {
             .andExpect(jsonPath("$.lastName").value(this.user().getLastName()))
 //            .andExpect(jsonPath("$.isVerified").value(this.user().getIsVerified()))
             .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
-            .andExpect(jsonPath("$.created").value(this.user().getCreated()))
+            .andExpect(jsonPath("$.created").value(this.user().getCreated().toString()))
             .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()));
 
     }
@@ -58,7 +58,7 @@ public class UserGetControllerShould extends TestCaseController {
 
         result
             .andDo(print())
-            .andExpect(jsonPath("$.userName").exists())
+            .andExpect(jsonPath("$.username").exists())
             .andExpect(jsonPath("$.email").exists())
             .andExpect(jsonPath("$.password").doesNotExist())
             .andExpect(jsonPath("$.isVerified").doesNotExist());
@@ -87,7 +87,7 @@ public class UserGetControllerShould extends TestCaseController {
                 .andExpect(jsonPath("$.lastName").value(this.user().getLastName()))
 //            .andExpect(jsonPath("$.isVerified").value(this.user().getIsVerified()))
                 .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
-                .andExpect(jsonPath("$.created").value(this.user().getCreated()))
+                .andExpect(jsonPath("$.created", Matchers.equalTo(this.user().getCreated().toString())))
                 .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()));
 
     }
