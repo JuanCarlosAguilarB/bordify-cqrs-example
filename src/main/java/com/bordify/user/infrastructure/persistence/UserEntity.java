@@ -29,7 +29,7 @@ public class UserEntity {
      * Unique identifier for the User. It is automatically generated and uses UUID as the ID type.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+//    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     /**
