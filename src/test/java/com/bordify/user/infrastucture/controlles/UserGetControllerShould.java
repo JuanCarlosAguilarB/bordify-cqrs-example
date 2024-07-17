@@ -3,17 +3,14 @@ package com.bordify.user.infrastucture.controlles;
 import com.bordify.shared.infrastucture.controlles.TestCaseController;
 import com.bordify.user.domain.User;
 import com.bordify.user.domain.UserRepository;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static com.bordify.user.domain.UserFactory.createRandomUser;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 public class UserGetControllerShould extends TestCaseController {
@@ -43,8 +40,9 @@ public class UserGetControllerShould extends TestCaseController {
             .andExpect(jsonPath("$.lastName").value(this.user().getLastName()))
 //            .andExpect(jsonPath("$.isVerified").value(this.user().getIsVerified()))
             .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
-            .andExpect(jsonPath("$.created").value(this.user().getCreated().toString()))
-            .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()));
+//            .andExpect(jsonPath("$.created").value(this.user().getCreated().toString()))
+//            .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()))
+        ;
 
     }
 
@@ -61,8 +59,9 @@ public class UserGetControllerShould extends TestCaseController {
             .andExpect(jsonPath("$.username").exists())
             .andExpect(jsonPath("$.email").exists())
             .andExpect(jsonPath("$.password").doesNotExist())
-            .andExpect(jsonPath("$.isVerified").doesNotExist());
-
+            .andExpect(jsonPath("$.isVerified").doesNotExist())
+            .andExpect(jsonPath("$.created").doesNotExist())
+            .andExpect(jsonPath("$.lastLogin").doesNotExist());
     }
 
     @Test
@@ -87,10 +86,9 @@ public class UserGetControllerShould extends TestCaseController {
                 .andExpect(jsonPath("$.lastName").value(this.user().getLastName()))
 //            .andExpect(jsonPath("$.isVerified").value(this.user().getIsVerified()))
                 .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
-                .andExpect(jsonPath("$.created", Matchers.equalTo(this.user().getCreated().toString())))
-                .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()));
+//                .andExpect(jsonPath("$.created", Matchers.equalTo(this.user().getCreated().toString())))
+//                .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()))
+                ;
 
     }
-
-
 }
