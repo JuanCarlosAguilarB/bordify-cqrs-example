@@ -8,6 +8,7 @@ import com.bordify.user.domain.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +24,21 @@ public class UserGetController {
 
     @Operation(summary = "Get information of the user", description = "Get a user", tags = { "User" })
     @GetMapping(value = "/v1/users/me/")
-    public User getUser(Authentication authentication) {
+    public ResponseEntity<UserResponse> getUser(Authentication authentication) {
 
-        String userame = authentication.getName();
+        String userName = authentication.getName();
+        User user = userServices.findUserByUsername(userName);
 
-        User user = userServices.findUserByUsername(userame);
+        UserResponse userResponse = UserResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .phoneNumber(user.getPhoneNumber())
+                .build();
 
-        return user;
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(userResponse);
 
     }
 
