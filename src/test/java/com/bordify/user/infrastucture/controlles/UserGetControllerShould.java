@@ -91,4 +91,17 @@ public class UserGetControllerShould extends TestCaseController {
                 ;
 
     }
+
+    @Test
+    public void shouldDontReturnInformationByUserDontAuthenticate() throws Exception {
+
+        // we make sure we have at least one user
+        User userRegistered = createRandomPersistentUser();
+
+        String url = "/v1/users/me/";
+        ResultActions result = assertRequest(HttpMethod.GET, url, 401, false);
+
+
+    }
+
 }
