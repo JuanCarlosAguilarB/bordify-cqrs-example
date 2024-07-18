@@ -27,8 +27,11 @@ public class PageResult<T> {
         return this.content;
     }
 
+    // we do this because we want that the pagination start from index 0, but for our clients
+    // our pagination start from 1 --> page = 1
+    // so at this point, to pageNumber we alredy this chagen, so we mumst need to do this
     public int getPageNumber() {
-        return this.pageNumber;
+        return this.pageNumber + 1;
     }
 
     public int getPageSize() {
