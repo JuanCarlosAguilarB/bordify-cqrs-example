@@ -44,8 +44,10 @@ public class UserGetController {
 
     @Operation(summary = "Get all users", description = "Get all users", tags = { "User" })
     @GetMapping(value = "/v1/users/")
-    public ResponseEntity<PageResult<User>> retriveUsers(@RequestParam PaginationRequest pagination){
+    public ResponseEntity<PageResult<User>> retriveUsers(@RequestParam(defaultValue = "1") int pageNumber,
+                                                         @RequestParam(defaultValue = "10") int pageSize) {
 
+        PaginationRequest pagination = new PaginationRequest(pageNumber, pageSize);
         PageResult<User> userList = userServices.getall(pagination);
 
         return ResponseEntity.ok(userList);
