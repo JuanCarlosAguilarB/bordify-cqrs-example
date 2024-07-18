@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static com.bordify.user.domain.UserFactory.createRandomUser;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,7 +46,6 @@ public class UserGetControllerShould extends TestCaseController {
         ;
 
     }
-
 
 
     @Test
@@ -93,15 +93,54 @@ public class UserGetControllerShould extends TestCaseController {
     }
 
     @Test
-    public void shouldDontReturnInformationByUserDontAuthenticate() throws Exception {
+    public void shouldReturnListOfUsers() throws Exception {
 
-        // we make sure we have at least one user
+        int numberMaxUsersCreated = (int) ((Math.random() * (15 - 1)) + 1);
+
+        for (int i = 0; i<=numberMaxUsersCreated; i++){
+            repository.save(createRandomUser());
+        }
+        System.out.println("Users created: " + numberMaxUsersCreated);
+
         User userRegistered = createRandomPersistentUser();
 
-        String url = "/v1/users/me/";
-        ResultActions result = assertRequest(HttpMethod.GET, url, 401, false);
+        String url = "/v1/users/";
+        ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
 
+        result
+            .andExpect(jsonPath("$.content", hasSize(numberMaxUsersCreated))) // Validate content size
+            .andExpect(jsonPath("$.totalElements").value(numberMaxUsersCreated)) // Validate total elements
+            // Ensure userRegistered is not in the list
+            .andExpect(jsonPath("$.content[*].username", not(hasItem(userRegistered.getUsername()))));
+    }
 
+    @Test
+    public void shouldReturnListOfUsersWithPaginationSpecified() throws Exception {
+
+        int numberMaxUsersCreated = (int) ((Math.random() * (15 - 1)) + 1);
+
+        for (int i = 0; i<=numberMaxUsersCreated; i++){
+            repository.save(createRandomUser());
+        }
+        System.out.println("Users created: " + numberMaxUsersCreated);
+
+        User userRegistered = createRandomPersistentUser();
+
+        String url = "/v1/users/";
+        ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
+
+        result
+                .andExpect(jsonPath("$.content", hasSize(numberMaxUsersCreated))) // Validate content size
+                .andExpect(jsonPath("$.totalElements").value(numberMaxUsersCreated)) // Validate total elements
+                // Ensure userRegistered is not in the list
+                .andExpect(jsonPath("$.content[*].username", not(hasItem(userRegistered.getUsername()))));
     }
 
 }
+
+
+
+
+
+
+
