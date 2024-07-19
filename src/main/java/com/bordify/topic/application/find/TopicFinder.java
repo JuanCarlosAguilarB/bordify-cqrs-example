@@ -1,7 +1,7 @@
 package com.bordify.topic.application.find;
 
-import com.bordify.task.application.TaskService;
 import com.bordify.shared.domain.PaginationRequest;
+import com.bordify.task.application.TaskService;
 import com.bordify.topic.domain.TopicListDTO;
 import com.bordify.topic.domain.TopicRepository;
 import lombok.AllArgsConstructor;

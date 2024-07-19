@@ -1,7 +1,9 @@
 package com.bordify.board.domain;
 
 import com.bordify.user.domain.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.UUID;
 

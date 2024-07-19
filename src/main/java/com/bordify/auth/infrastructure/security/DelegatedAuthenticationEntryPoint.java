@@ -39,10 +39,11 @@ public class DelegatedAuthenticationEntryPoint implements AuthenticationEntryPoi
             HttpServletRequest request,
             HttpServletResponse response,
             AuthenticationException authException) throws IOException, ServletException {
-
 //        resolver.resolveException(request, response, null, authException);
 
-        ApiResponseHelper.sendErrorResponse(response, HttpStatus.BAD_REQUEST, "Bad Request", authException.getMessage());
+        ApiResponseHelper.sendErrorResponse(response, HttpStatus.UNAUTHORIZED, authException.getMessage(), authException.getMessage());
 
     }
+
+
 }

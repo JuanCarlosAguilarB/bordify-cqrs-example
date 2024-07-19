@@ -2,7 +2,6 @@ package com.bordify.color.application.find;
 
 import com.bordify.color.domain.Color;
 import com.bordify.color.domain.ColorRepository;
-
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
 import lombok.AllArgsConstructor;

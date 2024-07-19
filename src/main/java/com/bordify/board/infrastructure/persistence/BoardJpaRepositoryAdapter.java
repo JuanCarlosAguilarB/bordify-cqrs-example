@@ -1,11 +1,11 @@
 package com.bordify.board.infrastructure.persistence;
 
-import com.bordify.board.infrastructure.mapper.BoardMapper;
 import com.bordify.board.domain.Board;
 import com.bordify.board.domain.BoardListDTO;
 import com.bordify.board.domain.BoardRepository;
-import com.bordify.shared.domain.PaginationRequest;
+import com.bordify.board.infrastructure.mapper.BoardMapper;
 import com.bordify.shared.domain.PageResult;
+import com.bordify.shared.domain.PaginationRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

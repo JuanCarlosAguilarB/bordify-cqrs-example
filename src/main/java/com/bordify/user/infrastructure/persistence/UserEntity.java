@@ -1,6 +1,9 @@
 package com.bordify.user.infrastructure.persistence;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalTime;
@@ -29,7 +32,7 @@ public class UserEntity {
      * Unique identifier for the User. It is automatically generated and uses UUID as the ID type.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+//    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     /**

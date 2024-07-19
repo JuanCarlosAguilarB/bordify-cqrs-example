@@ -1,6 +1,9 @@
 package com.bordify.color.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Builder

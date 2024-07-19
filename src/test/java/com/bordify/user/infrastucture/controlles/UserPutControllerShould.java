@@ -1,93 +1,62 @@
 package com.bordify.user.infrastucture.controlles;
 
 
-import com.bordify.user.infrastructure.controllers.RequestUserBody;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bordify.shared.infrastucture.controlles.TestCaseController;
+import com.bordify.user.domain.User;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.http.HttpMethod;
+import org.springframework.test.web.servlet.ResultActions;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import java.util.Map;
+
+import static com.bordify.user.domain.UserFactory.createRandomUser;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@SpringBootTest()
-@AutoConfigureMockMvc
-public class UserPutControllerShould {
 
-    @Autowired
-    private MockMvc mockMvc;
+public class UserPutControllerShould extends TestCaseController {
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     public void shouldCreateUser() throws Exception {
 
-        RequestUserBody requestUserBody = RequestUserBody.builder()
-                .username("testuser")
-                .email("testuser@example.com")
-                .password("testpassword")
-                .firstName("Test")
-                .lastName("User")
-                .phoneNumber("1234567890")
-                .build();
+        User user = createRandomUser();
 
+        String uri = String.format("/v1/users/%s/", user.getId());
+        Map<String,String> expectedResponse = Map.of("message", "User created");
 
-        MvcResult result = mockMvc.perform(
-                MockMvcRequestBuilders.post("/v1/users/")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestUserBody))
-                        .accept(MediaType.APPLICATION_JSON)
-                        .characterEncoding("utf-8")
-        )
-        .andExpect(status().isCreated()) // we only will test your status code
-        .andReturn();
+        assertRequestWithBody(
+                HttpMethod.PUT,
+                uri,
+                user,
+                201,
+                objectMapper.writeValueAsString((expectedResponse)),
+                false
+        );
 
     }
 
     @Test
     public void shouldNotCreateUserByDuplicatedEmail() throws Exception {
 
-        RequestUserBody requestUserBody = RequestUserBody.builder()
-                .username("testuser")
-                .email("testuser@example.com")
-                .password("testpassword")
-                .firstName("Test")
-                .lastName("User")
-                .phoneNumber("1234567890")
-                .build();
+        User user = createRandomPersistentUser();
 
+        String uri = String.format("/v1/users/%s/", user.getId());
+        Map<String,String> expectedResponse = Map.of("message", "User created");
 
-        MvcResult result = mockMvc.perform(
-                MockMvcRequestBuilders.post("/v1/users/")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestUserBody))
-                        .accept(MediaType.APPLICATION_JSON)
-                        .characterEncoding("utf-8")
-        )
-                .andExpect(status().isCreated()) // we only will test your status code
-                .andReturn();
+        ResultActions response = assertRequestWithBody(
+                HttpMethod.PUT,
+                uri,
+                user,
+                409, // status().isConflict()
+                false
+        );
 
-        mockMvc.perform(
-                MockMvcRequestBuilders.post("/v1/users/")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestUserBody))
-                        .accept(MediaType.APPLICATION_JSON)
-                        .characterEncoding("utf-8")
-        )
-                .andExpect(status().isConflict())
-
-                .andExpect(jsonPath("$.message",
-                        CoreMatchers.containsString(requestUserBody.getEmail())
-                ))
-                .andReturn();
+        response.andExpect(jsonPath(
+                "$.message",
+                CoreMatchers.containsString(user.getEmail())
+                )
+        );
 
     }
 }
