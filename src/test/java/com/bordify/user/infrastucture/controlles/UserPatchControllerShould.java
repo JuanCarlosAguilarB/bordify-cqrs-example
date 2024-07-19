@@ -2,13 +2,14 @@ package com.bordify.user.infrastucture.controlles;
 
 import com.bordify.shared.infrastucture.controlles.TestCaseController;
 import com.bordify.user.domain.User;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 
 import java.time.LocalTime;
 import java.util.Map;
 import java.util.UUID;
+
+import static com.bordify.shared.domain.FactoryValues.generateRandomAlphanumeric;
 
 public class UserPatchControllerShould  extends TestCaseController {
 
@@ -34,7 +35,9 @@ public class UserPatchControllerShould  extends TestCaseController {
     @Test
     public void shouldUpdateUsername() throws Exception {
         User userToUpdate = createRandomPersistentUser();
-        Map<String, String> data = Map.of("username",userToUpdate.getUsername());
+
+        Map<String, String> data = Map.of("username",generateRandomAlphanumeric(10));
+
         assertRequestWithBody(
                 HttpMethod.PATCH,
                 url,
@@ -46,8 +49,22 @@ public class UserPatchControllerShould  extends TestCaseController {
     }
     @Test
     public void shouldUpdatePassword() throws Exception {
+        User userToUpdate = createRandomPersistentUser();
 
+        Map<String, String> data = Map.of("password",generateRandomAlphanumeric(10));
+
+        assertRequestWithBody(
+                HttpMethod.PATCH,
+                url,
+                data,
+                200,
+                true
+        );
+
+//        TODO: verify that we can do login
     }
+
+    //TODO: end this test
     @Test
     public void shouldUpdateEmail() throws Exception {
 
