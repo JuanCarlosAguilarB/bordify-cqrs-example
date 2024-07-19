@@ -47,7 +47,7 @@ public class UserRepositoryShould {
 
         Optional<UserEntity> user = userRepository.findByUsername(userTest.getUsername());
 
-        Assertions.assertEquals(userTest, user);
+        Assertions.assertEquals(Optional.of(userTest), user);
     }
 
 
