@@ -2,6 +2,7 @@ package com.bordify.auth.infrastructure.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserAuthInformationFinder;
 import com.bordify.auth.domain.Auth;
@@ -69,6 +70,28 @@ public class AuthServicesAdapter implements AuthServices {
         */
 
     }
+//    /**
+//     * Validates whether the provided JWT token is valid for the given user details.
+//     *
+//     * @param token The JWT token to validate.
+//     * @param username The usename  against which to validate the token.
+//     * @return True if the token is valid for the given user details, false otherwise.
+//     */
+    @Override
+    public Boolean isValidToken(String token, String username) {
+        try {
+            DecodedJWT decodedJWT = JWT.decode(token);
+
+            LocalDate now = LocalDate.now();
+
+            return !decodedJWT.getExpiresAt().before(java.sql.Date.valueOf(now)) ||
+                    decodedJWT.getSubject().equals(username);
+
+        } catch (JWTDecodeException exception) {
+            return false;
+        }
+    }
+
 
     /**
      * Generates a JWT access token with the specified expiration and username.
