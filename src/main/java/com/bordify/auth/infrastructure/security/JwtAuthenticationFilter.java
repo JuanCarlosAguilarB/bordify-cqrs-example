@@ -3,6 +3,9 @@ package com.bordify.auth.infrastructure.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.bordify.auth.domain.AuthServices;
+import com.bordify.auth.domain.AuthenticationToken;
+import com.bordify.auth.domain.UserAuthInformation;
 import com.bordify.shared.infrastructure.controllers.GetTokenFromRequest;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -22,6 +25,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  * Filter class responsible for JWT authentication.
@@ -33,6 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
     private final UserDetailsService userDetailsService;
+    private final AuthServices authServices;
     private final GetTokenFromRequest getTokenFromRequest;
 
     /**
@@ -49,7 +54,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String token = getTokenFromRequest.getToken(request);
-        final String username;
 
         if (token == null) {
 //            ApiResponseHelper.sendErrorResponse(response, HttpStatus.BAD_REQUEST, "Bad Request", "El token no puede ser nulo");
@@ -57,9 +61,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
 
         }
-        username = getUsernameFromToken(token);
 
-        if (username == null) {
+        UserAuthInformation userAuthInformation = authServices.decode(AuthenticationToken.builder().token(token).build());
+
+        final String username = userAuthInformation.getUsername();
+        final UUID userId = userAuthInformation.getUserId();
+
+        if (username == null || userId == null) {
             ApiResponseHelper.sendErrorResponse(response, HttpStatus.BAD_REQUEST, "Bad Request", "El token is not valid");
             return;
         }
