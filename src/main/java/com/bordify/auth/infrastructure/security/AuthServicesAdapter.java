@@ -10,9 +10,6 @@ import com.bordify.auth.domain.UserAuthInformation;
 import com.bordify.shared.domain.CreadentialsNotValidException;
 import com.bordify.user.domain.SecurityService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -51,15 +48,6 @@ public class AuthServicesAdapter implements AuthServices {
 
     }
 
-    @Override
-    public void authenticate(Auth auth) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        auth.getUserName(),
-                        auth.getPassword()
-                )
-        );
-    }
 
     @Override
     public void ensureCredentialsAreValid(Auth auth) {
