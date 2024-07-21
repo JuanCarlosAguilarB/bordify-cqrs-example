@@ -1,10 +1,10 @@
 package com.bordify.auth.infrastructure.controllers;
 
+import com.bordify.auth.application.find.UserAuthInformationFinder;
 import com.bordify.auth.domain.Auth;
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.user.application.find.UserFinder;
-import com.bordify.user.domain.User;
+import com.bordify.auth.domain.UserAuthInformation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class AuthPostController {
 
-    private final UserFinder userFinder;
+    private final UserAuthInformationFinder userFinder;
     private final AuthServices authServices;
+
 
     /**
      * Authenticates a user and returns a JWT token.
@@ -33,12 +34,28 @@ public class AuthPostController {
 
         String username = loginRequest.getUserName();
 
-        authServices.authenticate(loginRequest);
+        authServices.ensureCredentialsAreValid(loginRequest);
 
-        User user = userFinder.findUserByUsername(username);
+        UserAuthInformation user = userFinder.findUserByUsername(username);
+
         AuthenticationToken  authenticationToken = authServices.createToken(user);
 
         return ResponseEntity.ok(authenticationToken);
     }
+
+
+//    // authentication is responsible for verifying that the credentials
+//    // provided by the user (username and password) are valid.
+//    // If the credentials are valid, the user is authenticated and a JWT token is returned.
+//    // else, an error message is returned by the authentication manager.
+//    public void authenticate(Auth auth) {
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        auth.getUserName(),
+//                        auth.getPassword()
+//                )
+//        );
+//    }
+
 
 }
