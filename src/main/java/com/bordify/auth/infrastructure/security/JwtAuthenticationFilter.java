@@ -3,6 +3,7 @@ package com.bordify.auth.infrastructure.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.bordify.shared.infrastructure.controllers.GetTokenFromRequest;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,6 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
     private final UserDetailsService userDetailsService;
+    private final GetTokenFromRequest getTokenFromRequest;
 
     /**
      * Performs the JWT token validation and sets the authentication context if valid.
@@ -46,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        final String token = getTokenFromRequest(request);
+        final String token = getTokenFromRequest.getToken(request);
         final String username;
 
         if (token == null) {
