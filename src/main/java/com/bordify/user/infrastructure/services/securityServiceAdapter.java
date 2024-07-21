@@ -17,4 +17,9 @@ public class securityServiceAdapter implements SecurityService {
     public String encode(String textToEncode) {
         return passwordEncoder.encode(textToEncode);
     }
+
+    @Override
+    public Boolean matches(String textToEncode, String encodedText) {
+        return passwordEncoder.matches(textToEncode, encodedText);
+    }
 }
