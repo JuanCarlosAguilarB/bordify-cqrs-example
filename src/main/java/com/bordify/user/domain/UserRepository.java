@@ -12,13 +12,6 @@ import java.util.UUID;
  */
 public interface UserRepository {
 
-    /**
-     * Checks if a user exists with the given email.
-     *
-     * @param email The email address of the user.
-     * @return True if a user exists with the given email, false otherwise.
-     */
-    public boolean existsByEmail(String email);
 
     /**
      * Checks if a user exists with the given username.
@@ -27,7 +20,6 @@ public interface UserRepository {
      * @return True if a user exists with the given username, false otherwise.
      */
     public boolean existsByUsername(String username);
-
     /**
      * Retrieves a user by their username.
      *
@@ -35,14 +27,6 @@ public interface UserRepository {
      * @return The user with the specified username, or null if not found.
      */
     public Optional<User> findByUsername(String username);
-
-    /**
-     * Retrieves a user by their email address.
-     *
-     * @param email The email address of the user.
-     * @return The user with the specified email address, or null if not found.
-     */
-    public Optional<User> findByEmail(String email);
 
     /**
      * Saves a user entity to the database.
