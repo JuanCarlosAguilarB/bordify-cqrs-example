@@ -1,10 +1,7 @@
 package com.bordify.auth.infrastructure.controllers;
 
-import com.bordify.auth.application.find.UserAuthInformationFinder;
+import com.bordify.auth.application.authenticate.UserAuthenticator;
 import com.bordify.auth.domain.Auth;
-import com.bordify.auth.domain.AuthServices;
-import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.auth.domain.UserAuthInformation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -18,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class AuthPostController {
 
-    private final UserAuthInformationFinder userFinder;
-    private final AuthServices authServices;
-
+    private final UserAuthenticator userAuthenticator;
 
     /**
      * Authenticates a user and returns a JWT token.
@@ -32,15 +27,8 @@ public class AuthPostController {
     @PostMapping("/v1/login/")
     public ResponseEntity<?> authenticateUser(@RequestBody Auth loginRequest) {
 
-        String username = loginRequest.getUserName();
+        return ResponseEntity.ok(userAuthenticator.authenticate(loginRequest));
 
-        authServices.ensureCredentialsAreValid(loginRequest);
-
-        UserAuthInformation user = userFinder.findUserByUsername(username);
-
-        AuthenticationToken  authenticationToken = authServices.createToken(user);
-
-        return ResponseEntity.ok(authenticationToken);
     }
 
 
@@ -56,6 +44,5 @@ public class AuthPostController {
 //                )
 //        );
 //    }
-
 
 }
