@@ -71,7 +71,7 @@ public class TaskItemService {
     /**
      * Creates a new task item.
      *
-     * @param taskItem The task item to create.
+     * @param taskItem The task item to createToken.
      */
     public void create(TaskItem taskItem) {
         taskItemRepository.save(taskItem);

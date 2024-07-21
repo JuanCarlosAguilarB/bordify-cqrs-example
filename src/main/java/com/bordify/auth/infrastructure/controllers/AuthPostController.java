@@ -36,7 +36,7 @@ public class AuthPostController {
         authServices.authenticate(loginRequest);
 
         User user = userFinder.findUserByUsername(username);
-        AuthenticationToken  authenticationToken = authServices.create(user);
+        AuthenticationToken  authenticationToken = authServices.createToken(user);
 
         return ResponseEntity.ok(authenticationToken);
     }

@@ -27,7 +27,7 @@ public class AuthServicesAdapter implements AuthServices {
 
 
     @Override
-    public AuthenticationToken create(User user) {
+    public AuthenticationToken createToken(User user) {
 
         String accessToken = getAccessToken(user.getUsername());
         String refreshToken = getRefreshToken(user.getUsername());

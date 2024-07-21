@@ -27,7 +27,7 @@ public class TopicPutController {
     private final BoardFinder  boardFinder;
     private final ColorFinder  colorFinder;
     /**
-     * Update or create a topicEntity.
+     * Update or createToken a topicEntity.
      *
      * @param id           The ID of the topicEntity to update.
      * @param topicRequest The request body containing information to update the topicEntity.

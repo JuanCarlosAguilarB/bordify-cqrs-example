@@ -108,7 +108,7 @@ public class UserGetControllerShould extends TestCaseController {
         ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
 
         result
-            // we have numberMaxUsersCreated + 1 users, bewcause we create an user
+            // we have numberMaxUsersCreated + 1 users, bewcause we createToken an user
             .andExpect(jsonPath("$.content", hasSize(numberMaxUsersCreated+1))) // Validate content size
             .andExpect(jsonPath("$.totalElements").value(numberMaxUsersCreated+1)) // Validate total elements
             // Ensure userRegistered is not in the list --> this maybe will be able to a feature
@@ -134,7 +134,7 @@ public class UserGetControllerShould extends TestCaseController {
         String url = "/v1/users/?pageSize="+pageSize;
         ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
 
-        // we have numberMaxUsersCreated + 1 users, bewcause we create an user
+        // we have numberMaxUsersCreated + 1 users, bewcause we createToken an user
         int numberUsersExpected = Math.min(numberMaxUsersCreated+1, pageSize);
 
         result

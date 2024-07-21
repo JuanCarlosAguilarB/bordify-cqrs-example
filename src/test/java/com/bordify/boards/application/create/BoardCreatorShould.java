@@ -17,7 +17,7 @@ public class BoardCreatorShould {
     private final BoardCreator boardCreator = new BoardCreator(boardRepository);
     /*
      * This test case verifies that a board can be created with a valid name.
-     * It creates a mock repository and uses the BoardCreator class to create a board with the name "My Board".
+     * It creates a mock repository and uses the BoardCreator class to createToken a board with the name "My Board".
      * It then asserts that the created board has the expected name.
      */
     @DisplayName("Create a valid board")
@@ -33,7 +33,7 @@ public class BoardCreatorShould {
 //        var mockRepository = new MockBoardRepository();
 //        var boardCreator = new BoardCreator(mockRepository);
 //        var createBoardCommand = new CreateBoardCommand("My Board");
-//        var board = boardCreator.create(createBoardCommand);
+//        var board = boardCreator.createToken(createBoardCommand);
 //
 //        assertEquals("My Board", board.getName());
 

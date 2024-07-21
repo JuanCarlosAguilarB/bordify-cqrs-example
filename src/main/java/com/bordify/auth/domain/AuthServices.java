@@ -4,6 +4,6 @@ import com.bordify.user.domain.User;
 
 public interface AuthServices {
 
-    public AuthenticationToken create(User user);
+    public AuthenticationToken createToken(User user);
     public void authenticate(Auth auth);
 }

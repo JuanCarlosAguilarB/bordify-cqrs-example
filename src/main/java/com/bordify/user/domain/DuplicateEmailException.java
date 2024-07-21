@@ -2,7 +2,7 @@ package com.bordify.user.domain;
 
 
 /**
- * Exception thrown when attempting to create a user with an email or username that already exists.
+ * Exception thrown when attempting to createToken a user with an email or username that already exists.
  */
 public class DuplicateEmailException extends RuntimeException {
 
