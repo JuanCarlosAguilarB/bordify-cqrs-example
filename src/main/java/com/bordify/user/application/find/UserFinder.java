@@ -8,6 +8,8 @@ import com.bordify.user.domain.UserNotFoundException;
 import com.bordify.user.domain.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserFinder {
 
@@ -36,9 +38,9 @@ public class UserFinder {
 
     }
 
-//    public User findUserById(UUID id) {
-//        return userRepository.findById(id)
-//                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
-//    }
+    public User findUserById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+    }
 
 }
