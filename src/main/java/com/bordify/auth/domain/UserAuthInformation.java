@@ -13,10 +13,10 @@ import java.util.UUID;
 public class UserAuthInformation {
 
     private UUID        userId;
+    private String      email;
     private String      username;
     private String      password;
     private Boolean     isVerified;
     private LocalTime   created;
     private LocalTime   lastLogin;
-
 }
