@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.bordify.auth.domain.Auth;
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.AuthenticationToken;
+import com.bordify.auth.domain.UserAuthInformation;
 import com.bordify.user.domain.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +28,7 @@ public class AuthServicesAdapter implements AuthServices {
 
 
     @Override
-    public AuthenticationToken createToken(User user) {
+    public AuthenticationToken createToken(UserAuthInformation user) {
 
         String accessToken = getAccessToken(user.getUsername());
         String refreshToken = getRefreshToken(user.getUsername());
