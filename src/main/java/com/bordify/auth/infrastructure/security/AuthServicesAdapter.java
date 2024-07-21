@@ -2,6 +2,7 @@ package com.bordify.auth.infrastructure.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserAuthInformationFinder;
 import com.bordify.auth.domain.Auth;
 import com.bordify.auth.domain.AuthServices;
@@ -48,7 +49,6 @@ public class AuthServicesAdapter implements AuthServices {
 
     }
 
-
     @Override
     public void ensureCredentialsAreValid(Auth auth) {
 
@@ -87,4 +87,9 @@ public class AuthServicesAdapter implements AuthServices {
                 .sign(algorithm);
     }
 
+    @Override
+    public UserAuthInformation decode(AuthenticationToken token) {
+        DecodedJWT decodedJWT = JWT.decode(token.getToken());
+        return userFinder.findUserByUsername(decodedJWT.getSubject());
+    }
 }
