@@ -9,7 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static com.bordify.user.domain.UserFactory.createRandomUser;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

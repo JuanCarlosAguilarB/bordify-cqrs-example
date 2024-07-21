@@ -5,9 +5,7 @@ import com.bordify.user.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 
-import java.time.LocalTime;
 import java.util.Map;
-import java.util.UUID;
 
 import static com.bordify.shared.domain.FactoryValues.generateRandomAlphanumeric;
 
