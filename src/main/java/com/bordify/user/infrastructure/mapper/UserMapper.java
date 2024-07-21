@@ -11,14 +11,9 @@ public class UserMapper {
         return User.builder()
                 .id(userEntity.getId())
                 .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .email(userEntity.getEmail())
                 .firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName())
-                .isVerified(userEntity.getIsVerified())
                 .phoneNumber(userEntity.getPhoneNumber())
-                .created(userEntity.getCreated())
-                .lastLogin(userEntity.getLastLogin())
                 .build();
     }
 
@@ -27,14 +22,9 @@ public class UserMapper {
         return UserEntity.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .password(user.getPassword())
-                .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .isVerified(user.getIsVerified())
                 .phoneNumber(user.getPhoneNumber())
-                .created(user.getCreated())
-                .lastLogin(user.getLastLogin())
                 .build();
     }
 
