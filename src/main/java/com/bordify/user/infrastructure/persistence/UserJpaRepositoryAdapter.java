@@ -22,10 +22,6 @@ public class UserJpaRepositoryAdapter implements UserRepository {
         this.userJpaRepository = userJpaRepository;
     }
 
-    @Override
-    public boolean existsByEmail(String email) {
-        return userJpaRepository.existsByEmail(email);
-    }
 
     @Override
     public boolean existsByUsername(String userName) {
@@ -35,12 +31,6 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     @Override
     public Optional<User> findByUsername(String username) {
         return userJpaRepository.findByUsername(username)
-                .map(UserMapper::toDomain);
-    }
-
-    @Override
-    public Optional<User> findByEmail(String email) {
-        return userJpaRepository.findByEmail(email)
                 .map(UserMapper::toDomain);
     }
 
