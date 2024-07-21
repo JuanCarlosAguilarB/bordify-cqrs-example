@@ -1,7 +1,7 @@
 package com.bordify.auth.infrastructure.security;
 
-import com.bordify.user.application.find.UserFinder;
-import com.bordify.user.domain.User;
+import com.bordify.auth.application.find.UserAuthInformationFinder;
+import com.bordify.auth.domain.UserAuthInformation;
 import com.bordify.user.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ import java.util.Collections;
 public class AuthBeen {
 
     private final PasswordEncoder passwordEncoder;
-    private final UserFinder userFinder;
+    private final UserAuthInformationFinder userFinder;
 
     /**
      * Configures an AuthenticationManager bean for managing authentication.
@@ -59,7 +59,7 @@ public class AuthBeen {
             @Override
             public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
 
-                User user = userFinder.findUserByUsername(username);
+                UserAuthInformation user = userFinder.findUserByUsername(username);
 
                 if (user == null) {
                     throw new UserNotFoundException("User not found with username: " + username);
