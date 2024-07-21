@@ -2,6 +2,7 @@ package com.bordify.configuration.infrastructure;
 
 
 import com.bordify.auth.domain.TokenException;
+import com.bordify.shared.domain.CreadentialsNotValidException;
 import com.bordify.shared.domain.EntityNotFound;
 import com.bordify.shared.domain.InvalidRequestArgumentException;
 import com.bordify.shared.domain.ResourceNotCreatedException;
@@ -28,6 +29,24 @@ public class GlobalExceptionHandler  {
 //        return new ErrorResponse(true, ex.getMessage());
 //    }
 //
+
+    /**
+     * Handles BadCredentialsException.
+     *
+     * @param ex The BadCredentialsException object.
+     * @return ApiExceptionResponse containing details of the exception.
+     */
+    @ExceptionHandler(CreadentialsNotValidException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public ApiExceptionResponse handleBadCredentialsException(CreadentialsNotValidException ex) {
+        return new ApiExceptionResponse.ApiExceptionResponseBuilder()
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .error(HttpStatus.UNAUTHORIZED.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
+
 
     /**
      * Handles Throwable exceptions.
