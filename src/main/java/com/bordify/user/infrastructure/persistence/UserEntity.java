@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
-import java.time.LocalTime;
 import java.util.UUID;
 
 /**
@@ -32,24 +31,7 @@ public class UserEntity {
      * Unique identifier for the User. It is automatically generated and uses UUID as the ID type.
      */
     @Id
-//    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    /**
-     * Username of the user. This field must be unique.
-     */
-    @Column(unique = true)
-    private String username;
-
-    /**
-     * Password of the user.
-     */
-    private String password;
-
-    /**
-     * Email address of the user.
-     */
-    private String email;
 
     /**
      * First name of the user.
@@ -62,25 +44,16 @@ public class UserEntity {
     private String lastName;
 
     /**
-     * Flag indicating whether the user is verified or not.
-     */
-    private Boolean isVerified = false;
-
-    /**
      * Phone number of the user.
      */
     @Column(name = "phone_number")
     private String phoneNumber;
 
     /**
-     * Time when the user was created.
+     * Username of the user. This field must be unique.
      */
-    private LocalTime created;
+    @Column(unique = true)
+    private String username;
 
-    /**
-     * Time of the last login of the user.
-     */
-    @Column(name = "last_login")
-    private LocalTime lastLogin;
 
 }
