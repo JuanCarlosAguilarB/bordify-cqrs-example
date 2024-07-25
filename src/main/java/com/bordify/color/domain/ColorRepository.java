@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public interface ColorRepository {
 
-    public PageResult<Color> findAll(PaginationRequest  paginationRequest);
+    public PageResult<Color> findAll(PaginationRequest paginationRequest);
 
     public Optional<Color> findById(int id);
 

@@ -1,15 +1,15 @@
 name: Build CI/CD flow  # Name of the workflow
 
 on: # When to run the workflow
-    push:   # Run the workflow on push
-        branches:
-            - master
-    pull_request:   # Run the workflow on pull request
-        branches:
-            - master
+  push: # Run the workflow on push
+    branches:
+      - master
+  pull_request: # Run the workflow on pull request
+    branches:
+      - master
 
 jobs: # List of jobs
-  build:  # Job name, it can be any name
+  build: # Job name, it can be any name
 
     runs-on: ubuntu-latest # where the job will run
 
@@ -20,7 +20,7 @@ jobs: # List of jobs
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "💡 The ${{ github.sha }} commit has been checked out."
       - run: echo "💡 The ${{ github.actor }} actor is running the workflow."
-      - run : echo "💡The ${{ github.ref }} ref is being used."
+      - run: echo "💡The ${{ github.ref }} ref is being used."
 
       - run: | # Run multiple commands
           echo "💡 The ${{ github.repository }} repository has been cloned to the runner."

@@ -13,7 +13,7 @@ public class UserDeleteControllerShould extends TestCaseController {
         User user = createRandomPersistentUser();
         String uri = buildUrl("/v1/users/{id}/", user.getId().toString());
 
-        assertRequest( HttpMethod.DELETE, uri, 200, true);
+        assertRequest(HttpMethod.DELETE, uri, 200, true);
 
     }
 

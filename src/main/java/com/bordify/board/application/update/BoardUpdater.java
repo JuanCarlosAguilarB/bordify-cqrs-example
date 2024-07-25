@@ -22,10 +22,10 @@ public class BoardUpdater {
      * Updates an existing board.
      *
      * @param boardId The ID of the board to update.
-     * @param board The updated board entity.
+     * @param board   The updated board entity.
      * @throws EntityNotFound if the board to update does not exist.
      */
-    public void update(UUID boardId, Map<String,Object> board) {
+    public void update(UUID boardId, Map<String, Object> board) {
 
         Optional<Board> existingBoard = boardRepository.findById(boardId);
 
@@ -33,15 +33,15 @@ public class BoardUpdater {
             throw new EntityNotFound("Board with id " + boardId + " does not exist.");
         }
 
-            board.forEach((key, value) -> {
-                Field field = ReflectionUtils.findField(Board.class, key);
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, existingBoard.get(), value);
-            });
+        board.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(Board.class, key);
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, existingBoard.get(), value);
+        });
 
-            boardRepository.save(existingBoard.get());
+        boardRepository.save(existingBoard.get());
 
-        }
+    }
 
 
 }

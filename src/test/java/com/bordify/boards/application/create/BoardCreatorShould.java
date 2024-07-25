@@ -15,6 +15,7 @@ public class BoardCreatorShould {
 
     private final BoardRepository boardRepository = Mockito.mock(BoardRepository.class);
     private final BoardCreator boardCreator = new BoardCreator(boardRepository);
+
     /*
      * This test case verifies that a board can be created with a valid name.
      * It creates a mock repository and uses the BoardCreator class to createToken a board with the name "My Board".
@@ -24,7 +25,7 @@ public class BoardCreatorShould {
     @Test
     public void should_create_a_board() {
 
-        User  user = createValidUserDomain();
+        User user = createValidUserDomain();
         Board board = createValidBoardDomain(user);
         boardCreator.createBoard(board);
 
@@ -36,7 +37,6 @@ public class BoardCreatorShould {
 //        var board = boardCreator.createToken(createBoardCommand);
 //
 //        assertEquals("My Board", board.getName());
-
 
 
     }

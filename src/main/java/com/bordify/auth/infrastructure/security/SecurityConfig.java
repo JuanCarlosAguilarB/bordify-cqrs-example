@@ -28,30 +28,30 @@ public class SecurityConfig {
 
 
     /**
-        * Configures security filters, authentication providers, and exceptions handling.
-        *
-        * @param http The HTTP security object to configure security settings.
-        * @return The security filter chain.
-        * @throws Exception If an error occurs during configuration.
+     * Configures security filters, authentication providers, and exceptions handling.
+     *
+     * @param http The HTTP security object to configure security settings.
+     * @return The security filter chain.
+     * @throws Exception If an error occurs during configuration.
      */
     @Autowired
     @Qualifier("delegatedAuthenticationEntryPoint")
     AuthenticationEntryPoint authEntryPoint;
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
-    {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf ->csrf.disable())
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest ->
-                        authRequest
-                                .requestMatchers("/auth/**").permitAll()
+                                authRequest
+                                        .requestMatchers("/auth/**").permitAll()
 //                                .requestMatchers(HttpMethod.PUT,"/v1/users/{id}/").permitAll()
-                                .requestMatchers(HttpMethod.PUT,"/v1/signup/{userId}/").permitAll()
-                                .requestMatchers("/v1/login/").permitAll()
-                                .requestMatchers("/api-docs/**").permitAll()
-                                .anyRequest().authenticated()
+                                        .requestMatchers(HttpMethod.PUT, "/v1/signup/{userId}/").permitAll()
+                                        .requestMatchers("/v1/login/").permitAll()
+                                        .requestMatchers("/api-docs/**").permitAll()
+                                        .anyRequest().authenticated()
                 )
-                .sessionManagement(sessionManager->
+                .sessionManagement(sessionManager ->
                         sessionManager
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)

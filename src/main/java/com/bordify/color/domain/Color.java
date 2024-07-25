@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Color {
 
     private Integer id;
-    private String  name;
-    private String  hex;
+    private String name;
+    private String hex;
 
 }

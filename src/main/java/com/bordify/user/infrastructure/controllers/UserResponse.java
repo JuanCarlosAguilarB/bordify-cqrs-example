@@ -15,13 +15,13 @@ import java.util.UUID;
 public class UserResponse {
 
 
-    private UUID        id;
-    private String      username;
-    private String      email;
-    private String      firstName;
-    private String      lastName;
-    private String      phoneNumber;
-    private LocalTime   created;
-    private LocalTime   lastLogin;
+    private UUID id;
+    private String username;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private LocalTime created;
+    private LocalTime lastLogin;
 
 }

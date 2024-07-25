@@ -46,8 +46,8 @@ public class TopicEntityRepositoryShould {
         userRepository.save(userTest);
 
         BoardEntity boardTest = BoardModelTestService.createValidBoard(userTest);
-        BoardEntity  noRalatedBoardTest = BoardModelTestService.createValidBoard(userTest);
-        boardRepository.saveAll(List.of(boardTest,noRalatedBoardTest));
+        BoardEntity noRalatedBoardTest = BoardModelTestService.createValidBoard(userTest);
+        boardRepository.saveAll(List.of(boardTest, noRalatedBoardTest));
 
         ColorEntity colorEntityTest = ColorModelTestService.createValidColor();
         colorJpaRepository.save(colorEntityTest);

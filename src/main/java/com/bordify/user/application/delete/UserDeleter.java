@@ -12,7 +12,7 @@ public class UserDeleter {
 
     private final UserRepository userRepository;
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         userRepository.delete(id);
     }
 

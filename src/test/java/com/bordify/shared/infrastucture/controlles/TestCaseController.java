@@ -32,32 +32,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 abstract public class TestCaseController {
 
 
+    private final User user = createRandomUser();
     @Autowired
     protected MockMvc mockMvc;
-
     @Autowired
     protected ObjectMapper objectMapper;
-
     @Autowired
-    private  UserRepository repository;
-
+    private UserRepository repository;
     @Autowired
     private AuthPostController authPostController;
-
     @Autowired
     private SecurityService securityService;
-
     private Boolean userWasPersisted = false;
 
-    private final User user = createRandomUser();
-
-    public User user(){
+    public User user() {
         return user;
     }
 
-    public  User createRandomPersistentUser() {
+    public User createRandomPersistentUser() {
 
-        if (!userWasPersisted){
+        if (!userWasPersisted) {
 
             String oldPassword = user.getPassword();
 
@@ -90,26 +84,26 @@ abstract public class TestCaseController {
 
 
     private MockHttpServletRequestBuilder mockRequest(
-             HttpMethod method,
-             String url,
-             Object body,
-             boolean needsAuthentication
-    ) throws Exception{
+            HttpMethod method,
+            String url,
+            Object body,
+            boolean needsAuthentication
+    ) throws Exception {
 
-        MockHttpServletRequestBuilder requestResult =  MockMvcRequestBuilders.request(method, url)
+        MockHttpServletRequestBuilder requestResult = MockMvcRequestBuilders.request(method, url)
                 .contentType(APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(body))
                 .accept(APPLICATION_JSON)
                 .characterEncoding("utf-8");
 
-        if(needsAuthentication){
+        if (needsAuthentication) {
             requestResult.header("Authorization", "Bearer " + token());
         }
 
         return requestResult;
     }
 
-    public ResultActions assertRequestWithBody (
+    public ResultActions assertRequestWithBody(
             HttpMethod method,
             String url,
             Object body,
@@ -126,7 +120,7 @@ abstract public class TestCaseController {
 //                .andReturn();
     }
 
-    public ResultActions assertRequestWithBody (
+    public ResultActions assertRequestWithBody(
             HttpMethod method,
             String url,
             Object body,
@@ -142,7 +136,7 @@ abstract public class TestCaseController {
     }
 
 
-    public ResultActions assertRequest (
+    public ResultActions assertRequest(
             HttpMethod method, String url,
             int expectedStatusCode,
             String expectedResponse,
@@ -156,13 +150,13 @@ abstract public class TestCaseController {
                 .andExpect(bodyEspexted);
     }
 
-    public ResultActions assertRequest (HttpMethod method, String url, int expectedStatusCode, boolean needsAuthentication) throws Exception {
+    public ResultActions assertRequest(HttpMethod method, String url, int expectedStatusCode, boolean needsAuthentication) throws Exception {
 
         return mockMvc.perform(mockRequest(method, url, null, needsAuthentication))
                 .andExpect(status().is(expectedStatusCode));
     }
 
-    public String buildUrl (String uri, String value) {
+    public String buildUrl(String uri, String value) {
 
         int startIndex = uri.indexOf("{");
         if (startIndex == -1) {

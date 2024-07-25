@@ -12,16 +12,16 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class TopicUpdater  {
+public class TopicUpdater {
 
-    private final TopicRepository  topicRepository;
+    private final TopicRepository topicRepository;
 
     public void update(UUID id, Map<String, Object> topic) {
 
         Topic topicSearched = topicRepository.findById(id).orElseThrow(() -> new RuntimeException("Topic not found"));
 
-        topic.forEach((key,value) -> {
-            Field  field = ReflectionUtils.findField(Topic.class, key);
+        topic.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(Topic.class, key);
             field.setAccessible(true);
             ReflectionUtils.setField(field, topicSearched, value);
         });

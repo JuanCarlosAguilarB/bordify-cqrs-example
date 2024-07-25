@@ -13,14 +13,12 @@ public class PageResult<T> {
             List<T> content,
             int pageNumber,
             int pageSize,
-            long totalElements)
-    {
+            long totalElements) {
         this.content = content;
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;
         this.totalElements = totalElements;
     }
-
 
 
     public List<T> getContent() {

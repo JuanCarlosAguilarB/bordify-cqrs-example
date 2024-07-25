@@ -5,7 +5,7 @@ import com.bordify.auth.infrastructure.persistence.UserAuthInformationEntity;
 
 public class UserAuthInformationMapper {
 
-    public static UserAuthInformation toDomain(UserAuthInformationEntity userEntity){
+    public static UserAuthInformation toDomain(UserAuthInformationEntity userEntity) {
         return UserAuthInformation.builder()
                 .userId(userEntity.getUserId())
                 .username(userEntity.getUsername())
@@ -16,7 +16,7 @@ public class UserAuthInformationMapper {
                 .build();
     }
 
-    public static UserAuthInformationEntity toEntity(UserAuthInformation user){
+    public static UserAuthInformationEntity toEntity(UserAuthInformation user) {
 
         return UserAuthInformationEntity.builder()
                 .userId(user.getUserId())

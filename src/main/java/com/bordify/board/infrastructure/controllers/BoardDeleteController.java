@@ -14,7 +14,7 @@ import java.util.UUID;
 @Tag(name = "Board", description = "Board management operations")
 public class BoardDeleteController {
 
-    private final BoardDeleter  boardDeleter;
+    private final BoardDeleter boardDeleter;
 
     public BoardDeleteController(BoardDeleter boardDeleter) {
         this.boardDeleter = boardDeleter;
@@ -26,7 +26,7 @@ public class BoardDeleteController {
      * @param boardId The id of the board to be deleted.
      * @return A ResponseEntity with no content.
      */
-    @Operation(summary = "Delete a board", description = "Deletes a board by its id", tags = { "Board" })
+    @Operation(summary = "Delete a board", description = "Deletes a board by its id", tags = {"Board"})
     @DeleteMapping("/v1/boards/{boardId}/")
     public ResponseEntity<?> deleteBoard(@PathVariable UUID boardId) {
         boardDeleter.deleteBoard(boardId);

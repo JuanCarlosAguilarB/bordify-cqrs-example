@@ -2,7 +2,7 @@ package com.bordify.utils;
 
 import java.lang.reflect.Field;
 
-public class UpdateFieldsOfClasses{
+public class UpdateFieldsOfClasses {
     public static void updateFields(Object obj, Object obj2) {
         Field[] fields = obj.getClass().getDeclaredFields();
         for (Field field : fields) {

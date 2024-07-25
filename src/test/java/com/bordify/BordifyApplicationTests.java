@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 //@SpringBootTest
 class BordifyApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

@@ -70,7 +70,8 @@ public class AuthServicesAdapter implements AuthServices {
         */
 
     }
-//    /**
+
+    //    /**
 //     * Validates whether the provided JWT token is valid for the given user details.
 //     *
 //     * @param token The JWT token to validate.
@@ -97,7 +98,7 @@ public class AuthServicesAdapter implements AuthServices {
      * Generates a JWT access token with the specified expiration and username.
      *
      * @param expirationInDays The expiration duration of the token in days.
-     * @param subject The username associated with the token.
+     * @param subject          The username associated with the token.
      * @return The generated JWT access token.
      */
     private String generateToken(int expirationInDays, String subject) {

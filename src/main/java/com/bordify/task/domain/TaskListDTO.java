@@ -40,10 +40,10 @@ public class TaskListDTO {
     /**
      * Constructs a TaskListDTO object with the given parameters.
      *
-     * @param id The unique identifier of the task.
-     * @param name The name of the task.
+     * @param id          The unique identifier of the task.
+     * @param name        The name of the task.
      * @param description The description of the task.
-     * @param topicId The unique identifier of the topicEntity associated with the task.
+     * @param topicId     The unique identifier of the topicEntity associated with the task.
      */
     public TaskListDTO(UUID id, String name, String description, UUID topicId) {
         this.id = id;

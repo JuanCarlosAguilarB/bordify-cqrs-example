@@ -12,7 +12,7 @@ import java.util.UUID;
  * Represents a user entity in the Bordify application.
  * This class defines the structure of a user entity, including their username, password, email,
  * name, verification status, phone number, and timestamps for creation and last login.
- *
+ * <p>
  * The `User` class leverages Lombok annotations to reduce boilerplate code, generating getters,
  * setters, constructors, and a builder pattern. Additionally, the `@Table` annotation is used
  * to specify the database table name as `"\"user\""`, which ensures compatibility with databases

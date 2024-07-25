@@ -15,7 +15,7 @@ import java.util.UUID;
 public class TopicDeleteController {
 
 
-    private final TopicDeleter  topicService;
+    private final TopicDeleter topicService;
 
     /**
      * Deletes a topicEntity by its ID.

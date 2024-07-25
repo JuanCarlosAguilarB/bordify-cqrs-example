@@ -17,12 +17,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BoardPatchController {
 
-    private final BoardUpdater  boardUpdater;
+    private final BoardUpdater boardUpdater;
 
     /**
      * Handle a partial update of a board.
      *
-     * @param id The id of the board to update.
+     * @param id           The id of the board to update.
      * @param boardRequest The request body containing the updated board data.
      * @return A ResponseEntity with the updated board.
      */

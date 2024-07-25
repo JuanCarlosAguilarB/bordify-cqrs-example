@@ -31,18 +31,18 @@ public class BoardGetController {
 
     private final BoardFinder boardFinder;
     private final UserFinder userFinder;
-    private final TopicFinder  topicFinder;
+    private final TopicFinder topicFinder;
 
 
     /**
      * List all boards.
      *
      * @param pageable The pagination information.
-     * @param auth The authentication object containing information about the authenticated user.
+     * @param auth     The authentication object containing information about the authenticated user.
      * @return A ResponseEntity with the list of boards.
      */
     @GetMapping("/v1/boards/")
-    @Operation(summary = "List boards", description = "List all boards", tags = { "Board" })
+    @Operation(summary = "List boards", description = "List all boards", tags = {"Board"})
     public ResponseEntity<?> listBoards(Pageable pageable, Authentication auth) {
 
         String username = auth.getName();
@@ -59,14 +59,14 @@ public class BoardGetController {
     /**
      * Get all topics of a board.
      *
-     * @param boardId The id of the board to retrieve topics for.
+     * @param boardId  The id of the board to retrieve topics for.
      * @param pageable The pagination information.
-     * @param auth The authentication object containing information about the authenticated user.
+     * @param auth     The authentication object containing information about the authenticated user.
      * @return A ResponseEntity with the topics of the board.
      */
     @Operation(summary = "Get all topics of a board",
             description = "Lists all topics of a board for a given board",
-            tags = { "Board" })
+            tags = {"Board"})
     @GetMapping("/v1/boards/{boardId}/topics/")
     public ResponseEntity<?> getTopicsOfBoard(
             @PathVariable UUID boardId,
@@ -77,9 +77,9 @@ public class BoardGetController {
         String username = auth.getName();
         User user = userFinder.findUserByUsername(username);
         Board board = boardFinder.findBoardById(boardId);
-        boolean isUserOwnerOfBoard = user.getId() == board.getUser().getId() ;
+        boolean isUserOwnerOfBoard = user.getId() == board.getUser().getId();
 
-        if (!isUserOwnerOfBoard){
+        if (!isUserOwnerOfBoard) {
 
             ApiExceptionResponse response = ApiExceptionResponse.builder()
                     .status(HttpStatus.FORBIDDEN.value())
@@ -88,7 +88,7 @@ public class BoardGetController {
                     .build();
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
         }
-        PaginationRequest  paginationRequest = new PaginationRequest(pageable.getPageNumber(), pageable.getPageSize());
+        PaginationRequest paginationRequest = new PaginationRequest(pageable.getPageNumber(), pageable.getPageSize());
 
         List<TopicListDTO> topics = topicFinder.getTopicsOfBoard(boardId, paginationRequest);
         Page<TopicListDTO> topicPaginated = new PageImpl<>(topics, pageable, topics.size());

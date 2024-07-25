@@ -20,7 +20,7 @@ public class UserGetControllerShould extends TestCaseController {
     private UserRepository repository;
 
     @Test
-    public void shouldReturnMeInformation() throws Exception{
+    public void shouldReturnMeInformation() throws Exception {
 
         String url = "/v1/users/me/";
         ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
@@ -32,15 +32,15 @@ public class UserGetControllerShould extends TestCaseController {
 //        result.andExpect(jsonPath("$.firstName", CoreMatchers.containsString(this.user().getFirstName())));
 
         result
-            .andExpect(content().contentType("application/json"))
-            .andExpect(jsonPath("$.id").exists())
-            .andExpect(jsonPath("$.id").value(this.user().getId().toString()))
-            .andExpect(jsonPath("$.username").value(this.user().getUsername()))
-            .andExpect(jsonPath("$.email").value(this.user().getEmail()))
-            .andExpect(jsonPath("$.firstName").value(this.user().getFirstName()))
-            .andExpect(jsonPath("$.lastName").value(this.user().getLastName()))
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.id").value(this.user().getId().toString()))
+                .andExpect(jsonPath("$.username").value(this.user().getUsername()))
+                .andExpect(jsonPath("$.email").value(this.user().getEmail()))
+                .andExpect(jsonPath("$.firstName").value(this.user().getFirstName()))
+                .andExpect(jsonPath("$.lastName").value(this.user().getLastName()))
 //            .andExpect(jsonPath("$.isVerified").value(this.user().getIsVerified()))
-            .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
+                .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
 //            .andExpect(jsonPath("$.created").value(this.user().getCreated().toString()))
 //            .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()))
         ;
@@ -49,23 +49,23 @@ public class UserGetControllerShould extends TestCaseController {
 
 
     @Test
-    public void shouldNotReturnMeSensibleInformation() throws Exception{
+    public void shouldNotReturnMeSensibleInformation() throws Exception {
 
         String url = "/v1/users/me/";
         ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
 
         result
-            .andDo(print())
-            .andExpect(jsonPath("$.username").exists())
-            .andExpect(jsonPath("$.email").exists())
-            .andExpect(jsonPath("$.password").doesNotExist())
-            .andExpect(jsonPath("$.isVerified").doesNotExist())
-            .andExpect(jsonPath("$.created").doesNotExist())
-            .andExpect(jsonPath("$.lastLogin").doesNotExist());
+                .andDo(print())
+                .andExpect(jsonPath("$.username").exists())
+                .andExpect(jsonPath("$.email").exists())
+                .andExpect(jsonPath("$.password").doesNotExist())
+                .andExpect(jsonPath("$.isVerified").doesNotExist())
+                .andExpect(jsonPath("$.created").doesNotExist())
+                .andExpect(jsonPath("$.lastLogin").doesNotExist());
     }
 
     @Test
-    public void shouldReturnOnlyMeInformation() throws Exception{
+    public void shouldReturnOnlyMeInformation() throws Exception {
 
 
         User anotherUser = createRandomUser();
@@ -88,7 +88,7 @@ public class UserGetControllerShould extends TestCaseController {
                 .andExpect(jsonPath("$.phoneNumber").value(this.user().getPhoneNumber()))
 //                .andExpect(jsonPath("$.created", Matchers.equalTo(this.user().getCreated().toString())))
 //                .andExpect(jsonPath("$.lastLogin").value(this.user().getLastLogin()))
-                ;
+        ;
 
     }
 
@@ -97,7 +97,7 @@ public class UserGetControllerShould extends TestCaseController {
 
         int numberMaxUsersCreated = (int) ((Math.random() * (10 - 1)) + 1);
 
-        for (int i = 0; i<numberMaxUsersCreated; i++){
+        for (int i = 0; i < numberMaxUsersCreated; i++) {
             repository.save(createRandomUser());
         }
         System.out.println("Users created: " + numberMaxUsersCreated);
@@ -108,10 +108,10 @@ public class UserGetControllerShould extends TestCaseController {
         ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
 
         result
-            // we have numberMaxUsersCreated + 1 users, bewcause we createToken an user
-            .andExpect(jsonPath("$.content", hasSize(numberMaxUsersCreated+1))) // Validate content size
-            .andExpect(jsonPath("$.totalElements").value(numberMaxUsersCreated+1)) // Validate total elements
-            // Ensure userRegistered is not in the list --> this maybe will be able to a feature
+                // we have numberMaxUsersCreated + 1 users, bewcause we createToken an user
+                .andExpect(jsonPath("$.content", hasSize(numberMaxUsersCreated + 1))) // Validate content size
+                .andExpect(jsonPath("$.totalElements").value(numberMaxUsersCreated + 1)) // Validate total elements
+        // Ensure userRegistered is not in the list --> this maybe will be able to a feature
 //            .andExpect(jsonPath("$.content[*].username", not(hasItem(userRegistered.getUsername()))))
         ;
     }
@@ -122,7 +122,7 @@ public class UserGetControllerShould extends TestCaseController {
         int numberMaxUsersCreated = (int) ((Math.random() * (15 - 1)) + 1);
         int pageSize = (int) ((Math.random() * (15 - 1)) + 1);
 
-        for (int i = 0; i<numberMaxUsersCreated; i++){
+        for (int i = 0; i < numberMaxUsersCreated; i++) {
             repository.save(createRandomUser());
         }
         System.out.println("Users created: " + numberMaxUsersCreated);
@@ -130,18 +130,17 @@ public class UserGetControllerShould extends TestCaseController {
         User userRegistered = createRandomPersistentUser();
 
 
-
-        String url = "/v1/users/?pageSize="+pageSize;
+        String url = "/v1/users/?pageSize=" + pageSize;
         ResultActions result = assertRequest(HttpMethod.GET, url, 200, true);
 
         // we have numberMaxUsersCreated + 1 users, bewcause we createToken an user
-        int numberUsersExpected = Math.min(numberMaxUsersCreated+1, pageSize);
+        int numberUsersExpected = Math.min(numberMaxUsersCreated + 1, pageSize);
 
         result
 
                 .andExpect(jsonPath("$.content", hasSize(numberUsersExpected))) // Validate content size
                 .andExpect(jsonPath("$.totalElements").value(numberMaxUsersCreated + 1)) // Validate total elements
-                // Ensure userRegistered is not in the list
+        // Ensure userRegistered is not in the list
 //                .andExpect(jsonPath("$.content[*].username", not(hasItem(userRegistered.getUsername()))))
         ;
     }

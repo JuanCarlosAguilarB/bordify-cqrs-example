@@ -11,9 +11,10 @@ import java.util.UUID;
 /**
  * Represents a board entity in the Bordify application. A board is a collection
  * of topicEntities and is associated with a user.
- *
+ * <p>
  * The BoardEntity class leverages Lombok to automate the creation of getter, setter,
  * toString, equals, and hashCode methods with the @Data annotation. It uses
+ *
  * @NoArgsConstructor and @AllArgsConstructor to generate constructors without and
  * with all parameters, respectively. @Builder provides a fluent API for building
  * BoardEntity instances.
@@ -47,7 +48,7 @@ public class BoardEntity {
      * operations but is not directly updatable or insertable through the Board
      * entity to prevent inconsistency.
      */
-    @Column(nullable = false, unique = false, name="user_id")
+    @Column(nullable = false, unique = false, name = "user_id")
     private UUID userId;
 
     /**

@@ -38,7 +38,7 @@ public interface BoardRepository {
      * Retrieves a page of board DTOs filtered by user ID.
      *
      * @param pageable The pagination information.
-     * @param userId The ID of the user.
+     * @param userId   The ID of the user.
      * @return A PageResult of board DTOs filtered by user ID.
      */
     public PageResult<BoardListDTO> findByUserId(PaginationRequest pageable, UUID userId);
@@ -59,7 +59,7 @@ public interface BoardRepository {
      */
     public void save(Board board);
 
-        /**
+    /**
      * Retrieves a board entity by its ID.
      *
      * @param boardId The ID of the board.

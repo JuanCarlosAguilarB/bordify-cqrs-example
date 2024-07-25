@@ -1,4 +1,5 @@
 package com.bordify.persistence;
+
 import com.bordify.user.infrastructure.persistence.UserEntity;
 import com.bordify.user.infrastructure.persistence.UserJpaRepository;
 import org.junit.jupiter.api.Assertions;

@@ -49,10 +49,10 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     @Override
     public PageResult<User> findAll(PaginationRequest pageable) {
 
-        Pageable pageableResult = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize()); // page 0, size 20
+        Pageable pageableResult = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()); // page 0, size 20
         Page<UserEntity> page = userJpaRepository.findAll(pageableResult);
 
-        PageResult<User> pageResult  = new PageResult<User>(
+        PageResult<User> pageResult = new PageResult<User>(
                 page.getContent().stream().map(UserMapper::toDomain).toList(),
                 page.getNumber(), page.getSize(), page.getTotalElements());
 

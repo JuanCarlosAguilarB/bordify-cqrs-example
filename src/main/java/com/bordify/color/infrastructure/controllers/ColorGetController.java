@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ColorGetController {
 
 
-
     private final ColorFinder colorFinder;
 
 
@@ -32,11 +31,11 @@ public class ColorGetController {
      * @param pageable Pagination information for the list.
      * @return ResponseEntity containing the list of colors.
      */
-    @Operation(summary = "List colors", description = "List all colors", tags = { "Catalogs" })
+    @Operation(summary = "List colors", description = "List all colors", tags = {"Catalogs"})
     @GetMapping("/v1/catalogs/colors/")
     public ResponseEntity<?> listColors(Pageable pageable) {
 
-        PaginationRequest  paginationRequest = new PaginationRequest(pageable.getPageNumber(), pageable.getPageSize());
+        PaginationRequest paginationRequest = new PaginationRequest(pageable.getPageNumber(), pageable.getPageSize());
 
         PageResult<Color> colors = colorFinder.listColors(paginationRequest);
         return ResponseEntity.ok(colors);

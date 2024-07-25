@@ -15,8 +15,8 @@ import java.util.UUID;
 @Builder
 public class TaskItem {
 
-    private UUID    id;
-    private String  content;
+    private UUID id;
+    private String content;
     private Boolean isDone;
     private Task task;
 

@@ -23,7 +23,7 @@ import java.util.UUID;
 @Tag(name = "Board", description = "Board management operations")
 public class BoardPutController {
 
-    private final BoardCreator  boardCreator;
+    private final BoardCreator boardCreator;
     private final UserFinder userFinder;
 
     public BoardPutController(BoardCreator boardCreator, UserFinder userFinder) {
@@ -36,11 +36,11 @@ public class BoardPutController {
      * Creates a new board for the authenticated user.
      *
      * @param boardRequest The request containing the name of the board to be created.
-     * @param auth The authentication object containing information about the authenticated user.
+     * @param auth         The authentication object containing information about the authenticated user.
      * @return A ResponseEntity with message the created board.
      */
 
-    @Operation(summary = "Create a new board", description = "Creates a new board for the authenticated user", tags = { "Board" })
+    @Operation(summary = "Create a new board", description = "Creates a new board for the authenticated user", tags = {"Board"})
     @PutMapping(value = "/v1/boards/{id}/")
     public ResponseEntity<?> create(
             @RequestBody BoardRequest boardRequest,
@@ -66,7 +66,7 @@ public class BoardPutController {
                 board
         );
 
-        Map<String,String> response = Map.of("message","Board created");
+        Map<String, String> response = Map.of("message", "Board created");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
     }

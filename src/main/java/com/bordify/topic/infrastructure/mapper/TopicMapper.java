@@ -22,10 +22,10 @@ public class TopicMapper {
     public static Topic toDomain(TopicEntity topicEntity) {
 
         BoardMapper boardMapper = new BoardMapper();
-        ColorMapper  colorMapper = new ColorMapper();
+        ColorMapper colorMapper = new ColorMapper();
 
-        Board  board = boardMapper.toDomain(topicEntity.getBoardEntity());
-        Color  color = colorMapper.toDomain(topicEntity.getColorEntity());
+        Board board = boardMapper.toDomain(topicEntity.getBoardEntity());
+        Color color = colorMapper.toDomain(topicEntity.getColorEntity());
 
         return Topic.builder()
                 .id(topicEntity.getId())

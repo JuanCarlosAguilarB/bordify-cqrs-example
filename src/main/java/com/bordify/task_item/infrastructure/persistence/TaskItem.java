@@ -37,7 +37,7 @@ public class TaskItem {
      * The ID of the task associated with this task item. This field is used for database operations but is
      * not directly updatable or insertable through the TaskItem entity to prevent inconsistency.
      */
-    @Column(nullable = false, name="task_id")
+    @Column(nullable = false, name = "task_id")
     private UUID taskId;
 
     /**

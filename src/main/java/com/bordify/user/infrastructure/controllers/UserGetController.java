@@ -27,11 +27,11 @@ public class UserGetController {
     private final GetUserIdFromToken getUserId;
 
 
-    @Operation(summary = "Get information of the user", description = "Get a user", tags = { "User" })
+    @Operation(summary = "Get information of the user", description = "Get a user", tags = {"User"})
     @GetMapping(value = "/v1/users/me/")
     public ResponseEntity<UserResponse> getUser(HttpServletRequest request) {
 
-        UUID userId =  getUserId.getUserId();
+        UUID userId = getUserId.getUserId();
         User user = userServices.findUserById(userId);
 
         UserResponse userResponse = UserResponse.builder()
@@ -45,7 +45,7 @@ public class UserGetController {
 
     }
 
-    @Operation(summary = "Get all users", description = "Get all users", tags = { "User" })
+    @Operation(summary = "Get all users", description = "Get all users", tags = {"User"})
     @GetMapping(value = "/v1/users/")
     public ResponseEntity<PageResult<User>> retriveUsers(@RequestParam(defaultValue = "1") int pageNumber,
                                                          @RequestParam(defaultValue = "10") int pageSize) {

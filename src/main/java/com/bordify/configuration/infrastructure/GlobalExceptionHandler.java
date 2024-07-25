@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Global exception handler class to handle various types of exceptions.
  */
 @ControllerAdvice
-public class GlobalExceptionHandler  {
-
+public class GlobalExceptionHandler {
 
 
 //    @ExceptionHandler(UserNotFoundException.class)
@@ -97,7 +96,7 @@ public class GlobalExceptionHandler  {
     @ExceptionHandler(InvalidRequestArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ApiExceptionResponse  handleInvalidRequestArgumentException(InvalidRequestArgumentException ex) {
+    public ApiExceptionResponse handleInvalidRequestArgumentException(InvalidRequestArgumentException ex) {
         return new ApiExceptionResponse.ApiExceptionResponseBuilder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error(HttpStatus.BAD_REQUEST.getReasonPhrase())

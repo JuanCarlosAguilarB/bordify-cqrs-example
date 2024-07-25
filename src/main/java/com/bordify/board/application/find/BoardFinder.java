@@ -14,13 +14,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BoardFinder {
 
-    private final BoardRepository  boardRepository;
+    private final BoardRepository boardRepository;
 
     /**
      * Lists all boards for a given user.
      *
      * @param pageable Pagination information.
-     * @param userId  The UUID of the user whose boards to list.
+     * @param userId   The UUID of the user whose boards to list.
      * @return A page of {@link BoardListDTO} objects.
      */
     public PageResult<BoardListDTO> findAllBoards(PaginationRequest pageable, UUID userId) {

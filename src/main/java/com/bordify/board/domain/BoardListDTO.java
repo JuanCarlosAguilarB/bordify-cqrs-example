@@ -7,7 +7,7 @@ import java.util.UUID;
 
 /**
  * Represents a data transfer object (DTO) for displaying basic information about a board.
-  * This class uses Lombok annotations to simplify the boilerplate code for getter, setter, and constructors.
+ * This class uses Lombok annotations to simplify the boilerplate code for getter, setter, and constructors.
  */
 @Data
 @AllArgsConstructor

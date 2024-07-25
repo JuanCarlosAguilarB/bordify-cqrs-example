@@ -41,7 +41,7 @@ public class BoardJpaRepositoryAdapter implements BoardRepository {
         Pageable pageableResult = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()); // page 0, size 20
         Page<BoardListDTO> page = boardRepository.findBy(pageableResult);
 
-        PageResult<BoardListDTO> pageResult  = new PageResult<BoardListDTO>(page.getContent(), page.getNumber(), page.getSize(), page.getTotalElements());
+        PageResult<BoardListDTO> pageResult = new PageResult<BoardListDTO>(page.getContent(), page.getNumber(), page.getSize(), page.getTotalElements());
 
         return pageResult;
     }
@@ -49,10 +49,10 @@ public class BoardJpaRepositoryAdapter implements BoardRepository {
     @Override
     public PageResult<BoardListDTO> findByUserId(PaginationRequest pageable, UUID userId) {
 
-        Pageable pageableResult = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize()); // page 0, size 20
+        Pageable pageableResult = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()); // page 0, size 20
         Page<BoardListDTO> page = boardRepository.findByUserId(pageableResult, userId);
 
-        PageResult<BoardListDTO> pageResult  = new PageResult<BoardListDTO>(page.getContent(), page.getNumber(), page.getSize(), page.getTotalElements());
+        PageResult<BoardListDTO> pageResult = new PageResult<BoardListDTO>(page.getContent(), page.getNumber(), page.getSize(), page.getTotalElements());
 
         return pageResult;
     }
@@ -60,7 +60,7 @@ public class BoardJpaRepositoryAdapter implements BoardRepository {
     @Override
     public Board findDtoById(UUID boardId) {
 
-        BoardEntity  boardEntity = boardRepository.findById(boardId).orElseThrow(null);
+        BoardEntity boardEntity = boardRepository.findById(boardId).orElseThrow(null);
 
         if (boardEntity != null) {
             return boardMapper.toDomain(boardEntity);
@@ -71,7 +71,7 @@ public class BoardJpaRepositoryAdapter implements BoardRepository {
 
     @Override
     public void save(Board board) {
-        BoardEntity  boardEntity = boardMapper.toEntity(board);
+        BoardEntity boardEntity = boardMapper.toEntity(board);
         boardRepository.save(boardEntity);
     }
 

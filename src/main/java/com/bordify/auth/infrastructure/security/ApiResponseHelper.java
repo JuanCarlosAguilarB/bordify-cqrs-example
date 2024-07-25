@@ -15,9 +15,9 @@ public class ApiResponseHelper {
      * Sends an error response with the specified status, error type, and message.
      *
      * @param response The HttpServletResponse object for sending the response.
-     * @param status The HttpStatus status code for the response.
-     * @param error The type of error that occurred.
-     * @param message The error message describing the issue.
+     * @param status   The HttpStatus status code for the response.
+     * @param error    The type of error that occurred.
+     * @param message  The error message describing the issue.
      * @throws IOException If an I/O error occurs during response writing.
      */
     public static void sendErrorResponse(HttpServletResponse response, HttpStatus status, String error, String message) throws IOException {

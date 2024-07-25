@@ -20,6 +20,7 @@ public interface UserRepository {
      * @return True if a user exists with the given username, false otherwise.
      */
     public boolean existsByUsername(String username);
+
     /**
      * Retrieves a user by their username.
      *

@@ -24,8 +24,9 @@ import java.util.UUID;
 public class TopicPutController {
 
     private final TopicCreator topicCreator;
-    private final BoardFinder  boardFinder;
-    private final ColorFinder  colorFinder;
+    private final BoardFinder boardFinder;
+    private final ColorFinder colorFinder;
+
     /**
      * Update or createToken a topicEntity.
      *
@@ -33,7 +34,7 @@ public class TopicPutController {
      * @param topicRequest The request body containing information to update the topicEntity.
      * @return ResponseEntity with the updated topicEntity.
      */
-    @Operation(summary = "Create a new topicEntity", description = "Creates a new topicEntity", tags = { "TopicEntity" })
+    @Operation(summary = "Create a new topicEntity", description = "Creates a new topicEntity", tags = {"TopicEntity"})
     @PutMapping("/v1/topics/{id}/")
     public ResponseEntity update(@PathVariable UUID id, @RequestBody TopicRequest topicRequest) {
 

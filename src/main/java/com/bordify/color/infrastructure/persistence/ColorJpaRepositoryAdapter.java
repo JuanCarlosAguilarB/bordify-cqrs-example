@@ -28,9 +28,9 @@ public class ColorJpaRepositoryAdapter implements ColorRepository {
 
         Page<ColorEntity> page = colorJpaRepository.findAll(pageableResult);
 
-        List<Color> colors =  page.getContent().stream().map(colorMapper::toDomain).toList();
+        List<Color> colors = page.getContent().stream().map(colorMapper::toDomain).toList();
 
-        return new PageResult<Color>(colors,page.getNumber(), page.getSize(), page.getTotalElements());
+        return new PageResult<Color>(colors, page.getNumber(), page.getSize(), page.getTotalElements());
 
     }
 

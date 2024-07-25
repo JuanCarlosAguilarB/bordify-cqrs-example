@@ -12,8 +12,8 @@ import java.util.UUID;
 @Builder
 public class Board {
 
-    private UUID        id;
-    private String      name;
+    private UUID id;
+    private String name;
     private User user;
 
 }

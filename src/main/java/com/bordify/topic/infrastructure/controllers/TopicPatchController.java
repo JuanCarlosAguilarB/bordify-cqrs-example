@@ -21,24 +21,24 @@ import java.util.UUID;
 public class TopicPatchController {
 
     private final TopicUpdater topicUpdater;
+
     /**
      * Partially updates a topicEntity.
      *
-     * @param id            The ID of the topicEntity to update.
-     * @param topicRequest  The request body containing partial information to update the topicEntity.
+     * @param id           The ID of the topicEntity to update.
+     * @param topicRequest The request body containing partial information to update the topicEntity.
      * @return ResponseEntity with the updated topicEntity.
      */
     @PatchMapping("/v1/topics/{id}/")
     public ResponseEntity<?> partialUpdate(
-        @PathVariable UUID id,
-         @RequestBody Map<String, Object> topicRequest) {
+            @PathVariable UUID id,
+            @RequestBody Map<String, Object> topicRequest) {
 
         topicUpdater.update(id, topicRequest);
 
         Map<String, String> response = Map.of("message", "topic updated");
         return ResponseEntity.ok(response);
     }
-
 
 
 }

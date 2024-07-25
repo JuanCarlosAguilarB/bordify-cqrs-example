@@ -37,6 +37,6 @@ public interface UserAuthInformationRepositoryJpa extends JpaRepository<UserAuth
      * @param email The email address of the user.
      * @return The user with the specified email address, or null if not found.
      */
-    public Optional<UserAuthInformationEntity>  findByEmail(String email);
+    public Optional<UserAuthInformationEntity> findByEmail(String email);
 
 }

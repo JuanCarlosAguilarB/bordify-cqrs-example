@@ -44,7 +44,7 @@ public class TaskService {
      * Retrieves a list of task DTOs for a given topic with populated task items.
      * Each task's related task items are fetched and set directly in the task DTO.
      *
-     * @param topicId The UUID of the topic.
+     * @param topicId  The UUID of the topic.
      * @param pageable The pagination information.
      * @return A list of {@link TaskListDTO} with task items populated.
      */
@@ -59,7 +59,7 @@ public class TaskService {
     /**
      * Retrieves a paginated view of task DTOs for a given topic.
      *
-     * @param topicId The UUID of the topic.
+     * @param topicId  The UUID of the topic.
      * @param pageable The pagination information.
      * @return A paginated list of {@link TaskListDTO}.
      */
@@ -174,7 +174,6 @@ public class TaskService {
         return task;
 
     }
-
 
 
 }

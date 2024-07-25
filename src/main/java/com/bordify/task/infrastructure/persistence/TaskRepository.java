@@ -19,7 +19,7 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
     /**
      * Retrieves a list of task DTOs by topicEntity ID with pagination.
      *
-     * @param id The ID of the topicEntity.
+     * @param id       The ID of the topicEntity.
      * @param pageable The pagination information.
      * @return A list of task DTOs associated with the specified topicEntity ID.
      */

@@ -9,7 +9,7 @@ import java.util.Map;
 
 import static com.bordify.shared.domain.FactoryValues.generateRandomAlphanumeric;
 
-public class UserPatchControllerShould  extends TestCaseController {
+public class UserPatchControllerShould extends TestCaseController {
 
 //    values to modify
 
@@ -34,7 +34,7 @@ public class UserPatchControllerShould  extends TestCaseController {
     public void shouldUpdateUsername() throws Exception {
         User userToUpdate = createRandomPersistentUser();
 
-        Map<String, String> data = Map.of("username",generateRandomAlphanumeric(10));
+        Map<String, String> data = Map.of("username", generateRandomAlphanumeric(10));
 
         assertRequestWithBody(
                 HttpMethod.PATCH,
@@ -45,11 +45,12 @@ public class UserPatchControllerShould  extends TestCaseController {
         );
 
     }
+
     @Test
     public void shouldUpdatePassword() throws Exception {
         User userToUpdate = createRandomPersistentUser();
 
-        Map<String, String> data = Map.of("password",generateRandomAlphanumeric(10));
+        Map<String, String> data = Map.of("password", generateRandomAlphanumeric(10));
 
         assertRequestWithBody(
                 HttpMethod.PATCH,
@@ -67,28 +68,34 @@ public class UserPatchControllerShould  extends TestCaseController {
     public void shouldUpdateEmail() throws Exception {
 
     }
+
     @Test
     public void shouldUpdateFirstName() throws Exception {
 
     }
+
     @Test
     public void shouldUpdateLastName() throws Exception {
 
     }
+
     @Test
     public void shouldUpdatePhoneNumber() throws Exception {
 
     }
+
     @Test
     public void shouldUpdateIsVerified() throws Exception {
 
     }
+
     @Test
     public void shouldUpdateCreated() throws Exception {
 
     }
+
     @Test
-    public void shouldUpdateLastLogin()  throws Exception {
+    public void shouldUpdateLastLogin() throws Exception {
     }
 
 }

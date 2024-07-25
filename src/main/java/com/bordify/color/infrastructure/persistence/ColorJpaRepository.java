@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Repository interface for accessing and managing colorEntity entities in the database.
  */
 public interface ColorJpaRepository extends JpaRepository<ColorEntity, Integer> {
-     public Page<ColorEntity> findAllBy(Pageable pageable);
+    public Page<ColorEntity> findAllBy(Pageable pageable);
 }

@@ -9,11 +9,12 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableScheduling
 @RestController
-public class ServerFUntionalities{
+public class ServerFUntionalities {
 
 
     private final String url = "https://para-bordify.onrender.com/docs";
-//https://bordify-monolith.onrender.com/api-docs/swagger-ui/index.html#/
+
+    //https://bordify-monolith.onrender.com/api-docs/swagger-ui/index.html#/
     @Scheduled(fixedRate = 30000) // Llamada cada 30 segundos
     public void callWebsite() {
         RestTemplate restTemplate = new RestTemplate();

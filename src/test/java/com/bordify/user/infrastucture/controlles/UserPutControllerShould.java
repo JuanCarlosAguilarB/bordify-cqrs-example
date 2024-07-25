@@ -23,7 +23,7 @@ public class UserPutControllerShould extends TestCaseController {
         User user = createRandomUser();
 
         String uri = String.format("/v1/users/%s/", user.getId());
-        Map<String,String> expectedResponse = Map.of("message", "User created");
+        Map<String, String> expectedResponse = Map.of("message", "User created");
 
         assertRequestWithBody(
                 HttpMethod.PUT,
@@ -42,7 +42,7 @@ public class UserPutControllerShould extends TestCaseController {
         User user = createRandomPersistentUser();
 
         String uri = String.format("/v1/users/%s/", user.getId());
-        Map<String,String> expectedResponse = Map.of("message", "User created");
+        Map<String, String> expectedResponse = Map.of("message", "User created");
 
         ResultActions response = assertRequestWithBody(
                 HttpMethod.PUT,
@@ -53,8 +53,8 @@ public class UserPutControllerShould extends TestCaseController {
         );
 
         response.andExpect(jsonPath(
-                "$.message",
-                CoreMatchers.containsString(user.getEmail())
+                        "$.message",
+                        CoreMatchers.containsString(user.getEmail())
                 )
         );
 

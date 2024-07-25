@@ -16,15 +16,15 @@ public class UserUpdater {
 
     private final UserRepository userRepository;
 
-   public void update(UUID userId, Map<String, Object> userInfo){
+    public void update(UUID userId, Map<String, Object> userInfo) {
 
-       User userSearched = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Topic not found"));
+        User userSearched = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Topic not found"));
 
-       userInfo.forEach((key,value) -> {
-           Field field = ReflectionUtils.findField(User.class, key);
-           field.setAccessible(true);
-           ReflectionUtils.setField(field, userSearched, value);
-       });
+        userInfo.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(User.class, key);
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, userSearched, value);
+        });
 
     }
 }

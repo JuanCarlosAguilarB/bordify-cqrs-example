@@ -14,7 +14,7 @@ public interface TopicRepository {
     /**
      * Retrieves a list of topic DTOs by boardEntity ID with custom projection and pagination.
      *
-     * @param boardId The ID of the boardEntity.
+     * @param boardId  The ID of the boardEntity.
      * @param pageable The pagination information.
      * @return A list of topic DTOs associated with the specified boardEntity ID.
      */
@@ -22,6 +22,7 @@ public interface TopicRepository {
 
     /**
      * Saves a topic entity to the database.
+     *
      * @param topic
      */
     public void save(Topic topic);

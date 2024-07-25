@@ -40,7 +40,7 @@ public interface BoardJpaRepository extends JpaRepository<BoardEntity, UUID> {
      * Retrieves a page of boardEntity DTOs filtered by user ID.
      *
      * @param pageable The pagination information.
-     * @param userId The ID of the user.
+     * @param userId   The ID of the user.
      * @return A page of boardEntity DTOs filtered by user ID.
      */
     public Page<BoardListDTO> findByUserId(Pageable pageable, UUID userId);

@@ -85,7 +85,7 @@ public class TaskRepositoryShould {
         TopicEntity topicEntityTest = TopicModelTestService.createValidTopic(colorEntityTest, boardEntityTest);
         topicJpaRepository.save(topicEntityTest);
 
-        List<Task> listTaskTopic =  TaskModelTestService.createValidListTask(topicEntityTest, 5);
+        List<Task> listTaskTopic = TaskModelTestService.createValidListTask(topicEntityTest, 5);
         taskRepository.saveAll(listTaskTopic);
 
         Pageable pageable = Pageable.unpaged();
@@ -97,7 +97,6 @@ public class TaskRepositoryShould {
 
 
     }
-
 
 
 }

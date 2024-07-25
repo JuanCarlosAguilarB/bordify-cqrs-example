@@ -7,7 +7,7 @@ import com.bordify.user.infrastructure.persistence.UserEntity;
 
 import java.util.UUID;
 
-public class BoardModelTestService  {
+public class BoardModelTestService {
 
     public static BoardEntity createValidBoard(UserEntity user) {
 

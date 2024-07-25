@@ -23,7 +23,7 @@ public class UserPutController {
 
     private final UserCreator userCreatorServices;
 
-    @Operation(summary = "Create a new user", description = "Creates a new user", tags = { "User" })
+    @Operation(summary = "Create a new user", description = "Creates a new user", tags = {"User"})
     @PutMapping(value = "/v1/users/{id}/")
     public ResponseEntity<?> createUser(
             @RequestBody RequestUserBody requestBody,
@@ -40,7 +40,7 @@ public class UserPutController {
 
         userCreatorServices.createUser(user);
 
-        Map<String,String> response = Map.of("message","User created");
+        Map<String, String> response = Map.of("message", "User created");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
     }

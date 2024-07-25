@@ -47,5 +47,4 @@ public interface UserAuthInformationRepository {
     public Stream<UserAuthInformation> findByEmail(String email);
 
 
-
 }

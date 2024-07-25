@@ -15,7 +15,7 @@ public interface TaskRepository {
     /**
      * Retrieves a list of task DTOs by topic ID with pagination.
      *
-     * @param id The ID of the topic.
+     * @param id       The ID of the topic.
      * @param pageable The pagination information.
      * @return A list of task DTOs associated with the specified topic ID.
      */

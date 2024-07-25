@@ -24,7 +24,7 @@ public class UserDeleteController {
      * @param id The id of the user to be deleted.
      * @return A ResponseEntity with no content.
      */
-    @Operation(summary = "Delete a user", description = "Deletes a user by your id", tags = { "User" })
+    @Operation(summary = "Delete a user", description = "Deletes a user by your id", tags = {"User"})
     @DeleteMapping("/v1/users/{id}/")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         userServices.delete(id);

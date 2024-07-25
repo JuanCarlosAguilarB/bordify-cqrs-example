@@ -23,7 +23,7 @@ public class AuthPostController {
      * @param loginRequest The login request containing the username and password.
      * @return A ResponseEntity with the JWT token and user information.
      */
-    @Operation(summary = "Authenticate a user", description = "Authenticates a user and returns a JWT token", tags = { "Auth" })
+    @Operation(summary = "Authenticate a user", description = "Authenticates a user and returns a JWT token", tags = {"Auth"})
     @PostMapping("/v1/login/")
     public ResponseEntity<?> authenticateUser(@RequestBody Auth loginRequest) {
 

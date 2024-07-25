@@ -66,7 +66,7 @@ public class TaskController {
         List<TaskItem> taskItems = new ArrayList<>();
 
         for (String assignee : createTaskRequest.getTaskItems()) {
-            TaskItem taskItem =  taskItemRepository.save(
+            TaskItem taskItem = taskItemRepository.save(
                     TaskItem.builder()
                             .content(assignee)
                             .taskId(task.getId())
@@ -77,9 +77,8 @@ public class TaskController {
 
         task.setTaskItems(taskItems);
         System.out.println("Task created: " + task);
-        return ResponseEntity.status(HttpStatus.CREATED).body(task)   ;
+        return ResponseEntity.status(HttpStatus.CREATED).body(task);
     }
-
 
 
     /**
@@ -122,6 +121,7 @@ public class TaskController {
 
     /**
      * Updates a task.
+     *
      * @param id          The id of the task to update.
      * @param taskRequest The request containing updated task details.
      * @return ResponseEntity indicating the success of the operation.

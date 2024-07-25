@@ -9,7 +9,7 @@ import java.util.UUID;
 @Service
 public class BoardDeleter {
 
-    private final BoardRepository  boardRepository;
+    private final BoardRepository boardRepository;
 
     public BoardDeleter(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;

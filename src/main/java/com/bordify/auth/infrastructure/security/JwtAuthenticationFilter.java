@@ -37,11 +37,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     /**
      * Performs the JWT token validation and sets the authentication context if valid.
      *
-     * @param request The HTTP servlet request.
-     * @param response The HTTP servlet response.
+     * @param request     The HTTP servlet request.
+     * @param response    The HTTP servlet response.
      * @param filterChain The filter chain for the request.
      * @throws ServletException If an error occurs during the filter execution.
-     * @throws IOException If an I/O error occurs during the filter execution.
+     * @throws IOException      If an I/O error occurs during the filter execution.
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

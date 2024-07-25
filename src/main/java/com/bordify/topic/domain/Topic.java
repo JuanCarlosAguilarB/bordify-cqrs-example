@@ -16,8 +16,8 @@ import java.util.UUID;
 @Setter
 public class Topic {
 
-    private UUID    id;
-    private String  name;
+    private UUID id;
+    private String name;
     private Board board;
     private Color color;
 

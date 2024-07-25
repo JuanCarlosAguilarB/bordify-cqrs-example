@@ -16,13 +16,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TopicFinder {
 
-    private final TopicRepository  topicRepository;
+    private final TopicRepository topicRepository;
     private final TaskService taskService;
 
     /**
      * Retrieves a paginated list of topicEntities for a specified board with their related tasks.
      *
-     * @param boardId The UUID of the board.
+     * @param boardId  The UUID of the board.
      * @param pageable The pagination information.
      * @return A page of {@link TopicListDTO} each populated with related tasks.
      */

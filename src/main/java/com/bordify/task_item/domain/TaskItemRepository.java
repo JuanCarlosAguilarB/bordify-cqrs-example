@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * Repository interface for accessing and managing task item entities in the database.
  */
-public interface TaskItemRepository{
+public interface TaskItemRepository {
 
     /**
      * Retrieves a list of task items by task ID.

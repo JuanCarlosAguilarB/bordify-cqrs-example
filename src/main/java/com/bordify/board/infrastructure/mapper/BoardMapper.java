@@ -7,7 +7,7 @@ import com.bordify.user.infrastructure.mapper.UserMapper;
 
 public class BoardMapper {
 
-    public Board toDomain(BoardEntity  boardEntity) {
+    public Board toDomain(BoardEntity boardEntity) {
 
         User user = UserMapper.toDomain(boardEntity.getUser());
 

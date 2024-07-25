@@ -17,6 +17,7 @@ public class ColorFinder {
 
 
     private final ColorRepository colorRepository;
+
     /**
      * Retrieves all colors in a paginated format.
      *

@@ -17,7 +17,7 @@ public interface TopicJpaRepository extends JpaRepository<TopicEntity, UUID> {
     /**
      * Retrieves a list of topicEntity DTOs by boardEntity ID with custom projection and pagination.
      *
-     * @param boardId The ID of the boardEntity.
+     * @param boardId  The ID of the boardEntity.
      * @param pageable The pagination information.
      * @return A list of topicEntity DTOs associated with the specified boardEntity ID.
      */

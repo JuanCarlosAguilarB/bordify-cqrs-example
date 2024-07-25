@@ -23,7 +23,7 @@ public class AuthPutController {
 
     private final UserAuthInformationCreator userServices;
 
-    @PutMapping ("/v1/signup/{userId}/")
+    @PutMapping("/v1/signup/{userId}/")
     public ResponseEntity<Map<String, Object>> signUpUser(@RequestBody UserAuthInformationRequest userRequest, @PathVariable UUID userId) {
 
         UserAuthInformation userAuthInformation = UserAuthInformation.builder()
@@ -48,7 +48,7 @@ public class AuthPutController {
 @Data
 class UserAuthInformationRequest {
 
-    private String      email;
-    private String      username;
-    private String      password;
+    private String email;
+    private String username;
+    private String password;
 }

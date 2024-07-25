@@ -32,8 +32,7 @@ public class AuthBeen {
      * @throws Exception If an error occurs during authentication manager configuration.
      */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception
-    {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
@@ -44,15 +43,14 @@ public class AuthBeen {
      * @return An AuthenticationProvider instance for user authentication.
      */
     @Bean
-    public AuthenticationProvider authenticationProvider()
-    {
-        DaoAuthenticationProvider authenticationProvider= new DaoAuthenticationProvider();
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
     }
 
-    @ExceptionHandler({ UserNotFoundException.class })
+    @ExceptionHandler({UserNotFoundException.class})
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {

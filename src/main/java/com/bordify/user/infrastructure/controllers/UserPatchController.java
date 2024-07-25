@@ -20,7 +20,7 @@ public class UserPatchController {
 
     private final UserUpdater userServices;
 
-    @Operation(summary = "Modify information of the user", description = "Modify information of the user", tags = { "User" })
+    @Operation(summary = "Modify information of the user", description = "Modify information of the user", tags = {"User"})
     @PatchMapping(value = "/v1/users/{id}")
     public ResponseEntity<?> getUser(@RequestBody Map<String, Object> userData, @PathVariable UUID id) {
 

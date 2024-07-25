@@ -39,8 +39,8 @@ public class TopicListDTO {
     /**
      * Constructs a TopicListDTO object with the given parameters.
      *
-     * @param id The unique identifier of the topic.
-     * @param name The name of the topic.
+     * @param id    The unique identifier of the topic.
+     * @param name  The name of the topic.
      * @param color The color associated with the topic.
      */
     public TopicListDTO(UUID id, String name, Color color) {

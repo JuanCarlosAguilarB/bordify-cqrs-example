@@ -12,11 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserAuthInformation {
 
-    private UUID        userId;
-    private String      email;
-    private String      username;
-    private String      password;
-    private Boolean     isVerified;
-    private LocalTime   created;
-    private LocalTime   lastLogin;
+    private UUID userId;
+    private String email;
+    private String username;
+    private String password;
+    private Boolean isVerified;
+    private LocalTime created;
+    private LocalTime lastLogin;
 }
