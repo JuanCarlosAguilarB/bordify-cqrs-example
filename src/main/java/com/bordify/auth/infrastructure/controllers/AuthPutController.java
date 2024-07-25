@@ -1,7 +1,7 @@
 package com.bordify.auth.infrastructure.controllers;
 
-import com.bordify.auth.application.create.UserAuthInformationCreator;
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.CreateUserAuthInformationCommand;
+import com.bordify.shared.domain.CommandBus;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalTime;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,23 +20,19 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AuthPutController {
 
-    private final UserAuthInformationCreator userServices;
+    private final CommandBus bus;
 
     @PutMapping("/v1/signup/{userId}/")
     public ResponseEntity<Map<String, Object>> signUpUser(@RequestBody UserAuthInformationRequest userRequest, @PathVariable UUID userId) {
 
-        UserAuthInformation userAuthInformation = UserAuthInformation.builder()
+        CreateUserAuthInformationCommand user = CreateUserAuthInformationCommand.builder()
                 .userId(userId)
                 .email(userRequest.getEmail())
                 .username(userRequest.getUsername())
                 .password(userRequest.getPassword())
-                .isVerified(false)
-                .created(LocalTime.now())
-                .lastLogin(null)
                 .build();
 
-        userServices.createUser(userAuthInformation);
-
+        bus.send(user);
         return ResponseEntity.ok(Map.of("message", "User created successfully"));
     }
 
