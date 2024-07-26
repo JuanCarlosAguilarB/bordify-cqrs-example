@@ -1,4 +1,4 @@
-package com.bordify.auth.domain;
+package com.bordify.auth.application.create;
 
 import com.bordify.shared.domain.bus.command.Command;
 import lombok.Builder;

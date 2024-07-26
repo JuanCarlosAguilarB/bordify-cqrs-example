@@ -1,6 +1,6 @@
 package com.bordify.auth.infrastructure.controllers;
 
-import com.bordify.auth.domain.CreateUserAuthInformationCommand;
+import com.bordify.auth.application.create.CreateUserAuthInformationCommand;
 import com.bordify.shared.domain.bus.command.CommandBus;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
