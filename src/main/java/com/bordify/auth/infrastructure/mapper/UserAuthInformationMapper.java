@@ -8,6 +8,7 @@ public class UserAuthInformationMapper {
     public static UserAuthInformation toDomain(UserAuthInformationEntity userEntity) {
         return UserAuthInformation.builder()
                 .userId(userEntity.getUserId())
+                .email(userEntity.getEmail())
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .isVerified(userEntity.getIsVerified())
@@ -20,6 +21,7 @@ public class UserAuthInformationMapper {
 
         return UserAuthInformationEntity.builder()
                 .userId(user.getUserId())
+                .email(user.getEmail())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .isVerified(user.getIsVerified())
