@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,14 +23,25 @@ public class CommandBusAdaptaer implements CommandBus {
 
    @PostConstruct
     private void registerCommandHandlers() {
-       applicationContext.getBeansOfType(CommandHandler.class).forEach((key, value) -> {
-           commandHandlerMap.put(value.getCommandType(), value);
-       });
+       applicationContext.getBeansOfType(CommandHandler.class).forEach(this::accept);
     }
 
     @Override
     public void send(Command command) {
-        CommandHandler commandHandler = commandHandlerMap.get(command.getClass());
-        commandHandler.handle(command);
+        CommandHandler handler = commandHandlerMap.get(command.getClass());
+
+        if (handler == null) throw new RuntimeException("No handler found for command type: " + command.getClass().getName());
+
+        handler.handle(command);
+    }
+
+    private void accept(String key, CommandHandler value) {
+        Class<? extends Command> commandType = findCommandType(value);
+        commandHandlerMap.put(commandType, value);
+    }
+
+    private Class<? extends Command> findCommandType(CommandHandler handler) {
+        ParameterizedType parameterizedType = (ParameterizedType) handler.getClass().getGenericInterfaces()[0];
+        return (Class<? extends Command>) parameterizedType.getActualTypeArguments()[0];
     }
 }

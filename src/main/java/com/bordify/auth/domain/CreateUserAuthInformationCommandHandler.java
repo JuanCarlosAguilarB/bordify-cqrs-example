@@ -17,11 +17,6 @@ public class CreateUserAuthInformationCommandHandler implements CommandHandler<C
     private final UserAuthInformationCreator service;
 
     @Override
-    public Class<CreateUserAuthInformationCommand> getCommandType() {
-        return CreateUserAuthInformationCommand.class;
-    }
-
-    @Override
     public void handle(CreateUserAuthInformationCommand command) {
         System.out.println("CreateUserAuthInformationCommandHandler");
 
