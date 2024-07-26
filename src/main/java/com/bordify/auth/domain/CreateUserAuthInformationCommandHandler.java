@@ -18,7 +18,7 @@ public class CreateUserAuthInformationCommandHandler implements CommandHandler<C
 
     @Override
     public Class<CreateUserAuthInformationCommand> getCommandType() {
-        return null;
+        return CreateUserAuthInformationCommand.class;
     }
 
     @Override
@@ -36,3 +36,11 @@ public class CreateUserAuthInformationCommandHandler implements CommandHandler<C
     }
 
 }
+
+/*
+TODO:
+    - modify services of createUser because, some params should'n be required (as isVerified).
+    - i need to read all commands and handlers and realize the mapping between them.
+ */
+
+
