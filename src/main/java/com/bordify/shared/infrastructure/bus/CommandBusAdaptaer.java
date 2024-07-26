@@ -1,8 +1,8 @@
 package com.bordify.shared.infrastructure.bus;
 
-import com.bordify.shared.domain.Command;
-import com.bordify.shared.domain.CommandBus;
-import com.bordify.shared.domain.CommandHandler;
+import com.bordify.shared.domain.bus.command.Command;
+import com.bordify.shared.domain.bus.command.CommandBus;
+import com.bordify.shared.domain.bus.command.CommandHandler;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;

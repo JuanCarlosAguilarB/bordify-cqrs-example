@@ -1,7 +1,7 @@
 package com.bordify.auth.domain;
 
 import com.bordify.auth.application.create.UserAuthInformationCreator;
-import com.bordify.shared.domain.CommandHandler;
+import com.bordify.shared.domain.bus.command.CommandHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

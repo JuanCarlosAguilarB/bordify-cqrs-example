@@ -1,4 +1,4 @@
-package com.bordify.shared.domain;
+package com.bordify.shared.domain.bus.command;
 
 public interface CommandHandler<T extends Command> {
 
