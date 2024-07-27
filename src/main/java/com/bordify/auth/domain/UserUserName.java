@@ -7,7 +7,6 @@ import lombok.ToString;
 @EqualsAndHashCode
 public final class UserUserName {
 
-
     private final String value;
 
     public UserUserName(String value) {
