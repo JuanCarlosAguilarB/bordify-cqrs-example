@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -23,9 +23,9 @@ public class UserAuthInformationEntity {
     @Id
     private UUID userId;
     private String email;
-    private String username;
+    private String userName;
     private String password;
     private Boolean isVerified;
-    private LocalTime created;
-    private LocalTime lastLogin;
+    private LocalDateTime created;
+    private LocalDateTime lastLogin;
 }
