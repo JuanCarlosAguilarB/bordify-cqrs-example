@@ -12,7 +12,7 @@ public interface UserAuthInformationRepository {
      * @param username The username of the user.
      * @return True if a user exists with the given username, false otherwise.
      */
-    public boolean existsByUsername(String username);
+    public boolean existsByUsername(UserUserName username);
 
     /**
      * Saves a user entity to the database.
@@ -27,7 +27,7 @@ public interface UserAuthInformationRepository {
      * @param username The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<UserAuthInformation> findByUsername(String username);
+    public Optional<UserAuthInformation> findByUsername(UserUserName username);
 
 
     /**
@@ -36,7 +36,7 @@ public interface UserAuthInformationRepository {
      * @param email The email address of the user.
      * @return True if a user exists with the given email, false otherwise.
      */
-    public boolean existsByEmail(String email);
+    public boolean existsByEmail(UserEmail email);
 
     /**
      * Retrieves a user by their email address.
@@ -44,7 +44,7 @@ public interface UserAuthInformationRepository {
      * @param email The email address of the user.
      * @return The user with the specified email address, or null if not found.
      */
-    public Stream<UserAuthInformation> findByEmail(String email);
+    public Stream<UserAuthInformation> findByEmail(UserEmail email);
 
 
 }
