@@ -10,19 +10,19 @@ public interface UserAuthInformationRepositoryJpa extends JpaRepository<UserAuth
     /**
      * Checks if a user exists with the given username.
      *
-     * @param username The username of the user.
+     * @param userName The username of the user.
      * @return True if a user exists with the given username, false otherwise.
      */
-    public boolean existsByUsername(String username);
+    public boolean existsByUserName(String userName);
 
 
     /**
      * Retrieves a user by their username.
      *
-     * @param username The username of the user.
+     * @param userName The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<UserAuthInformationEntity> findByUsername(String username);
+    public Optional<UserAuthInformationEntity> findByUserName(String userName);
 
     /**
      * Checks if a user exists with the given email.
