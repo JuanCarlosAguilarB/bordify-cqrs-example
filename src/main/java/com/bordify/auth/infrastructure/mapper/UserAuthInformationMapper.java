@@ -1,31 +1,34 @@
 package com.bordify.auth.infrastructure.mapper;
 
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.*;
 import com.bordify.auth.infrastructure.persistence.UserAuthInformationEntity;
+import com.bordify.shared.domain.UserUserId;
 
 public class UserAuthInformationMapper {
 
-    public static UserAuthInformation toDomain(UserAuthInformationEntity userEntity) {
-        return UserAuthInformation.builder()
-                .userId(userEntity.getUserId())
-                .email(userEntity.getEmail())
-                .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .isVerified(userEntity.getIsVerified())
-                .created(userEntity.getCreated())
-                .lastLogin(userEntity.getLastLogin())
-                .build();
+    public static UserAuthInformation toDomain(UserAuthInformationEntity userEntity) throws UserEmailException {
+
+        return new UserAuthInformation(
+                new UserUserId(userEntity.getUserId()),
+                new UserEmail(userEntity.getEmail()),
+                new UserUserName(userEntity.getUserName()),
+                new UserPassword(userEntity.getPassword()),
+                new UserIsVerified(userEntity.getIsVerified()),
+                new UserDateCreated(userEntity.getCreated()),
+                new UserDateLastLogin(userEntity.getLastLogin())
+        );
     }
 
     public static UserAuthInformationEntity toEntity(UserAuthInformation user) {
 
         return UserAuthInformationEntity.builder()
-                .userId(user.getUserId())
-                .email(user.getEmail())
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .isVerified(user.getIsVerified())
-                .created(user.getCreated())
+                .userId(user.id().value())
+                .userName(user.userName().value())
+                .email(user.email().value())
+                .password(user.password().value())
+                .isVerified(user.isVerified().value())
+                .lastLogin(user.lastLogin().value())
+                .created(user.created().value())
                 .build();
     }
 }
