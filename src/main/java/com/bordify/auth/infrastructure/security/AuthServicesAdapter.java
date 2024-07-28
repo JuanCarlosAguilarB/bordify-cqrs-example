@@ -7,7 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserAuthInformationFinder;
 import com.bordify.auth.domain.*;
 import com.bordify.shared.domain.CreadentialsNotValidException;
-import com.bordify.user.domain.SecurityService;
+import com.bordify.auth.domain.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

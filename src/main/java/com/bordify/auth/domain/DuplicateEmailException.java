@@ -1,4 +1,4 @@
-package com.bordify.user.domain;
+package com.bordify.auth.domain;
 
 
 /**

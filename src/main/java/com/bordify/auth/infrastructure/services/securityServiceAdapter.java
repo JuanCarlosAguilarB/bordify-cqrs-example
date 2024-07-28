@@ -1,6 +1,6 @@
-package com.bordify.user.infrastructure.services;
+package com.bordify.auth.infrastructure.services;
 
-import com.bordify.user.domain.SecurityService;
+import com.bordify.auth.domain.SecurityService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

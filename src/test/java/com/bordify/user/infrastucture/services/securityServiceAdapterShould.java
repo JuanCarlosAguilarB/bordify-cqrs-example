@@ -1,7 +1,7 @@
 package com.bordify.user.infrastucture.services;
 
 
-import com.bordify.user.domain.SecurityService;
+import com.bordify.auth.domain.SecurityService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

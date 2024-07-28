@@ -2,8 +2,8 @@ package com.bordify.auth.application.create;
 
 import com.bordify.auth.domain.*;
 import com.bordify.shared.domain.UserUserId;
-import com.bordify.user.domain.DuplicateEmailException;
-import com.bordify.user.domain.SecurityService;
+import com.bordify.auth.domain.DuplicateEmailException;
+import com.bordify.auth.domain.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
