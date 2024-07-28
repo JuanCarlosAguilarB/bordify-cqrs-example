@@ -1,10 +1,7 @@
 package com.bordify.auth.application.authenticate;
 
 import com.bordify.auth.application.find.UserAuthInformationFinder;
-import com.bordify.auth.domain.Auth;
-import com.bordify.auth.domain.AuthServices;
-import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +17,7 @@ public class UserAuthenticator {
         authServices.ensureCredentialsAreValid(auth);
 
         String username = auth.getUserName();
-        UserAuthInformation user = userFinder.findUserByUsername(username);
+        UserAuthInformation user = userFinder.findUserByUsername(new UserUserName(username));
 
         return authServices.createToken(user);
 

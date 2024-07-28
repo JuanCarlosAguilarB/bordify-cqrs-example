@@ -2,6 +2,7 @@ package com.bordify.auth.application.find;
 
 import com.bordify.auth.domain.UserAuthInformation;
 import com.bordify.auth.domain.UserAuthInformationRepository;
+import com.bordify.auth.domain.UserUserName;
 import com.bordify.user.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class UserAuthInformationFinder {
      * @return The User object corresponding to the specified username.
      * @throws UserNotFoundException If no user is found with the specified username.
      */
-    public UserAuthInformation findUserByUsername(String username) {
+    public UserAuthInformation findUserByUsername(UserUserName username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
     }

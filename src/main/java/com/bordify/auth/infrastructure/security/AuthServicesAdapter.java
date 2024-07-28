@@ -5,10 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserAuthInformationFinder;
-import com.bordify.auth.domain.Auth;
-import com.bordify.auth.domain.AuthServices;
-import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.*;
 import com.bordify.shared.domain.CreadentialsNotValidException;
 import com.bordify.user.domain.SecurityService;
 import lombok.AllArgsConstructor;
@@ -38,7 +35,7 @@ public class AuthServicesAdapter implements AuthServices {
         //    @Value("${jwt.accessTokenExpirationInDays:10}")
         int accessTokenExpirationInDays = 1000;
 
-        String username = user.getUsername();
+        String username = user.userName().value();
 
         String accessToken = generateToken(accessTokenExpirationInDays, username);
         String refreshToken = generateToken(refreshTokenExpirationInDays, username);
@@ -53,9 +50,9 @@ public class AuthServicesAdapter implements AuthServices {
     @Override
     public void ensureCredentialsAreValid(Auth auth) {
 
-        UserAuthInformation userAuthInformation = userFinder.findUserByUsername(auth.getUserName());
+        UserAuthInformation userAuthInformation = userFinder.findUserByUsername(new UserUserName(auth.getUserName()));
 
-        if (!securityService.matches(auth.getPassword(), userAuthInformation.getPassword())) {
+        if (!securityService.matches(auth.getPassword(), userAuthInformation.password().value())) {
             throw new CreadentialsNotValidException("Invalid credentials");
         }
 
@@ -114,6 +111,6 @@ public class AuthServicesAdapter implements AuthServices {
     @Override
     public UserAuthInformation decode(AuthenticationToken token) {
         DecodedJWT decodedJWT = JWT.decode(token.getToken());
-        return userFinder.findUserByUsername(decodedJWT.getSubject());
+        return userFinder.findUserByUsername(new UserUserName(decodedJWT.getSubject()));
     }
 }
