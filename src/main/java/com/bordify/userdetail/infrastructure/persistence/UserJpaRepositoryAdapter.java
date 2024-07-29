@@ -2,7 +2,7 @@ package com.bordify.userdetail.infrastructure.persistence;
 
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import com.bordify.userdetail.domain.UserRepository;
 import com.bordify.userdetail.infrastructure.mapper.UserMapper;
 import org.springframework.data.domain.Page;
@@ -29,30 +29,30 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
+    public Optional<UserDetail> findByUsername(String username) {
         return userJpaRepository.findByUsername(username)
                 .map(UserMapper::toDomain);
     }
 
     @Override
-    public void save(User user) {
+    public void save(UserDetail user) {
         UserEntity userEntity = UserMapper.toEntity(user);
         userJpaRepository.save(userEntity);
     }
 
     @Override
-    public Optional<User> findById(UUID userId) {
+    public Optional<UserDetail> findById(UUID userId) {
         Optional<UserEntity> userSearched = userJpaRepository.findById(userId);
         return userSearched.map(UserMapper::toDomain);
     }
 
     @Override
-    public PageResult<User> findAll(PaginationRequest pageable) {
+    public PageResult<UserDetail> findAll(PaginationRequest pageable) {
 
         Pageable pageableResult = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()); // page 0, size 20
         Page<UserEntity> page = userJpaRepository.findAll(pageableResult);
 
-        PageResult<User> pageResult = new PageResult<User>(
+        PageResult<UserDetail> pageResult = new PageResult<UserDetail>(
                 page.getContent().stream().map(UserMapper::toDomain).toList(),
                 page.getNumber(), page.getSize(), page.getTotalElements());
 

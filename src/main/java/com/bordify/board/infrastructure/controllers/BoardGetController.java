@@ -7,7 +7,7 @@ import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.topic.application.find.TopicFinder;
 import com.bordify.topic.domain.TopicListDTO;
 import com.bordify.userdetail.application.find.UserFinder;
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,7 +48,7 @@ public class BoardGetController {
 
         String username = auth.getName();
 
-        User user = userFinder.findUserByUsername(username);
+        UserDetail user = userFinder.findUserByUsername(username);
 
         PaginationRequest paginationRequest = new PaginationRequest(pageable.getPageNumber(), pageable.getPageSize());
 
@@ -75,7 +76,7 @@ public class BoardGetController {
 
         // verify that owner of the board is the one requesting the topics
         String username = auth.getName();
-        User user = userFinder.findUserByUsername(username);
+        UserDetail user = userFinder.findUserByUsername(username);
         Board board = boardFinder.findBoardById(boardId);
         boolean isUserOwnerOfBoard = user.getId() == board.getUser().getId();
 
@@ -84,7 +85,7 @@ public class BoardGetController {
             ApiExceptionResponse response = ApiExceptionResponse.builder()
                     .status(HttpStatus.FORBIDDEN.value())
                     .error(HttpStatus.FORBIDDEN.getReasonPhrase())
-                    .message("User is not the owner of the board")
+                    .message("UserDetail is not the owner of the board")
                     .build();
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
         }

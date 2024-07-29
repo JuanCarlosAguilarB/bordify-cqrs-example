@@ -3,7 +3,7 @@ package com.bordify.userdetail.application.find;
 
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import com.bordify.userdetail.domain.UserRepository;
 import org.springframework.stereotype.Service;
@@ -24,23 +24,23 @@ public class UserFinder {
      * Retrieves a user by the specified username.
      *
      * @param username The username of the user to retrieve.
-     * @return The User object corresponding to the specified username.
+     * @return The UserDetail object corresponding to the specified username.
      * @throws UserNotFoundException If no user is found with the specified username.
      */
-    public User findUserByUsername(String username) {
+    public UserDetail findUserByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
+                .orElseThrow(() -> new UserNotFoundException("UserDetail not found with username: " + username));
     }
 
-    public PageResult<User> getall(PaginationRequest pagination) {
+    public PageResult<UserDetail> getall(PaginationRequest pagination) {
 
         return userRepository.findAll(pagination);
 
     }
 
-    public User findUserById(UUID id) {
+    public UserDetail findUserById(UUID id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+                .orElseThrow(() -> new UserNotFoundException("UserDetail not found with id: " + id));
     }
 
 }

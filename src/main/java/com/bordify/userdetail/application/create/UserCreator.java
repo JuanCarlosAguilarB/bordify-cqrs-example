@@ -1,7 +1,7 @@
 package com.bordify.userdetail.application.create;
 
 import com.bordify.auth.domain.DuplicateEmailException;
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import com.bordify.userdetail.domain.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class UserCreator {
      * @param user The user object containing the user details to be created.
      * @throws DuplicateEmailException If the provided email or username is already registered.
      */
-    public void createUser(User user) {
+    public void createUser(UserDetail user) {
 
         userRepository.save(user);
 

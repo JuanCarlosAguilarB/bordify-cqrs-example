@@ -61,7 +61,7 @@ public class AuthBeen {
                 UserReadModel user = userFinder.findUserByUsername(new UserUserName(username));
 
                 if (user == null) {
-                    throw new UserNotFoundException("User not found with username: " + username);
+                    throw new UserNotFoundException("UserDetail not found with username: " + username);
                 }
 
                 return new org.springframework.security.core.userdetails.User(

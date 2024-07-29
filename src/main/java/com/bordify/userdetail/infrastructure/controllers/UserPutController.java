@@ -1,7 +1,7 @@
 package com.bordify.userdetail.infrastructure.controllers;
 
 import com.bordify.userdetail.application.create.UserCreator;
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -16,21 +16,21 @@ import java.util.Map;
 import java.util.UUID;
 
 
-@Tag(name = "User", description = "User management operations")
+@Tag(name = "UserDetail", description = "UserDetail management operations")
 @RestController
 @AllArgsConstructor
 public class UserPutController {
 
     private final UserCreator userCreatorServices;
 
-    @Operation(summary = "Create a new user", description = "Creates a new user", tags = {"User"})
+    @Operation(summary = "Create a new user", description = "Creates a new user", tags = {"UserDetail"})
     @PutMapping(value = "/v1/users/{id}/")
     public ResponseEntity<?> createUser(
             @RequestBody RequestUserBody requestBody,
             @PathVariable UUID id
     ) {
 
-        User user = User.builder()
+        UserDetail user = UserDetail.builder()
                 .id(id)
                 .username(requestBody.getUsername())
                 .firstName(requestBody.getFirstName())
@@ -40,7 +40,7 @@ public class UserPutController {
 
         userCreatorServices.createUser(user);
 
-        Map<String, String> response = Map.of("message", "User created");
+        Map<String, String> response = Map.of("message", "UserDetail created");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
     }

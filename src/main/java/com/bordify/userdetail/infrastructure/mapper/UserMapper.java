@@ -1,14 +1,14 @@
 package com.bordify.userdetail.infrastructure.mapper;
 
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import com.bordify.userdetail.infrastructure.persistence.UserEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapper {
 
-    public static User toDomain(UserEntity userEntity) {
-        return User.builder()
+    public static UserDetail toDomain(UserEntity userEntity) {
+        return UserDetail.builder()
                 .id(userEntity.getId())
                 .username(userEntity.getUsername())
                 .firstName(userEntity.getFirstName())
@@ -18,7 +18,7 @@ public class UserMapper {
     }
 
 
-    public static UserEntity toEntity(User user) {
+    public static UserEntity toEntity(UserDetail user) {
         return UserEntity.builder()
                 .id(user.getId())
                 .username(user.getUsername())

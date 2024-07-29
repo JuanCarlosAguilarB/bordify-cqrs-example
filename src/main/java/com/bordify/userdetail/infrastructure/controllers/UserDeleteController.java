@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@Tag(name = "User", description = "User management operations")
+@Tag(name = "UserDetail", description = "UserDetail management operations")
 @RestController
 @AllArgsConstructor
 public class UserDeleteController {
@@ -24,7 +24,7 @@ public class UserDeleteController {
      * @param id The id of the user to be deleted.
      * @return A ResponseEntity with no content.
      */
-    @Operation(summary = "Delete a user", description = "Deletes a user by your id", tags = {"User"})
+    @Operation(summary = "Delete a user", description = "Deletes a user by your id", tags = {"UserDetail"})
     @DeleteMapping("/v1/users/{id}/")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         userServices.delete(id);

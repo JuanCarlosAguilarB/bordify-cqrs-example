@@ -27,14 +27,14 @@ public interface UserRepository {
      * @param username The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<User> findByUsername(String username);
+    public Optional<UserDetail> findByUsername(String username);
 
     /**
      * Saves a user entity to the database.
      *
      * @param user The user entity to be saved.
      */
-    public void save(User user);
+    public void save(UserDetail user);
 
 
     /**
@@ -43,9 +43,9 @@ public interface UserRepository {
      * @param userId
      * @return
      */
-    public Optional<User> findById(UUID userId);
+    public Optional<UserDetail> findById(UUID userId);
 
-    PageResult<User> findAll(PaginationRequest pagination);
+    PageResult<UserDetail> findAll(PaginationRequest pagination);
 
     void delete(UUID id);
 }

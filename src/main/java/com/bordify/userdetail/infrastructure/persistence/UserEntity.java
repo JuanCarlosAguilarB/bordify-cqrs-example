@@ -13,7 +13,7 @@ import java.util.UUID;
  * This class defines the structure of a user entity, including their username, password, email,
  * name, verification status, phone number, and timestamps for creation and last login.
  * <p>
- * The `User` class leverages Lombok annotations to reduce boilerplate code, generating getters,
+ * The `UserDetail` class leverages Lombok annotations to reduce boilerplate code, generating getters,
  * setters, constructors, and a builder pattern. Additionally, the `@Table` annotation is used
  * to specify the database table name as `"\"user\""`, which ensures compatibility with databases
  * where `user` is a reserved keyword or requires case-sensitive handling.
@@ -28,7 +28,7 @@ import java.util.UUID;
 public class UserEntity {
 
     /**
-     * Unique identifier for the User. It is automatically generated and uses UUID as the ID type.
+     * Unique identifier for the UserDetail. It is automatically generated and uses UUID as the ID type.
      */
     @Id
     private UUID id;

@@ -17,12 +17,12 @@ public class UserAuthInformationFinder {
      * Retrieves a user by the specified username.
      *
      * @param username The username of the user to retrieve.
-     * @return The User object corresponding to the specified username.
+     * @return The UserDetail object corresponding to the specified username.
      * @throws UserNotFoundException If no user is found with the specified username.
      */
     public UserReadModel findUserByUsername(UserUserName username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User not found with username: " + username));
+                .orElseThrow(() -> new UserNotFoundException("UserDetail not found with username: " + username));
     }
 
 }

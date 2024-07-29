@@ -1,6 +1,6 @@
 package com.bordify.board.domain;
 
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +14,6 @@ public class Board {
 
     private UUID id;
     private String name;
-    private User user;
+    private UserDetail user;
 
 }

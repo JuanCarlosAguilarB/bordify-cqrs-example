@@ -1,6 +1,6 @@
 package com.bordify.userdetail.application.update;
 
-import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.domain.UserDetail;
 import com.bordify.userdetail.domain.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ public class UserUpdater {
 
     public void update(UUID userId, Map<String, Object> userInfo) {
 
-        User userSearched = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Topic not found"));
+        UserDetail userSearched = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Topic not found"));
 
         userInfo.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(User.class, key);
+            Field field = ReflectionUtils.findField(UserDetail.class, key);
             field.setAccessible(true);
             ReflectionUtils.setField(field, userSearched, value);
         });

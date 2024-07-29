@@ -52,10 +52,10 @@ public class BoardEntity {
     private UUID userId;
 
     /**
-     * The User entity associated with this board. Mapped using a many-to-one
+     * The UserDetail entity associated with this board. Mapped using a many-to-one
      * relationship where each board is owned by a single user. The @JoinColumn
      * annotation specifies that this entity uses the 'user_id' column in the
-     * Board table to join to the User table.
+     * Board table to join to the UserDetail table.
      */
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)

@@ -33,7 +33,7 @@ public class AuthPutController {
                 .build();
 
         bus.send(user);
-        return ResponseEntity.ok(Map.of("message", "User created successfully"));
+        return ResponseEntity.ok(Map.of("message", "UserDetail created successfully"));
     }
 
 }
