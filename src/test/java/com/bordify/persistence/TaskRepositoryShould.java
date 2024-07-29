@@ -14,8 +14,8 @@ import com.bordify.task.infrastructure.persistence.Task;
 import com.bordify.task.infrastructure.persistence.TaskRepository;
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
 import com.bordify.topic.infrastructure.persistence.TopicJpaRepository;
-import com.bordify.userdetails.infrastructure.persistence.UserEntity;
-import com.bordify.userdetails.infrastructure.persistence.UserJpaRepository;
+import com.bordify.userdetail.infrastructure.persistence.UserEntity;
+import com.bordify.userdetail.infrastructure.persistence.UserJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.bordify.userdetails.domain.UserModelTestService.createValidUserEntity;
+import static com.bordify.userdetail.domain.UserModelTestService.createValidUserEntity;
 
 @DataJpaTest
 public class TaskRepositoryShould {

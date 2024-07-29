@@ -3,8 +3,8 @@ package com.bordify.board.infrastructure.controllers;
 
 import com.bordify.board.application.create.BoardCreator;
 import com.bordify.board.domain.Board;
-import com.bordify.userdetails.application.find.UserFinder;
-import com.bordify.userdetails.domain.User;
+import com.bordify.userdetail.application.find.UserFinder;
+import com.bordify.userdetail.domain.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;

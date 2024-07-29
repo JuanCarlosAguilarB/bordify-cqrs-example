@@ -2,8 +2,8 @@ package com.bordify.boards.infrastructure.persistence.models;
 
 import com.bordify.board.domain.Board;
 import com.bordify.board.infrastructure.persistence.BoardEntity;
-import com.bordify.userdetails.domain.User;
-import com.bordify.userdetails.infrastructure.persistence.UserEntity;
+import com.bordify.userdetail.domain.User;
+import com.bordify.userdetail.infrastructure.persistence.UserEntity;
 
 import java.util.UUID;
 

@@ -1,6 +1,6 @@
 package com.bordify.board.domain;
 
-import com.bordify.userdetails.domain.User;
+import com.bordify.userdetail.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

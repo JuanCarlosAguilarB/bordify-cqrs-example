@@ -3,13 +3,13 @@ package com.bordify.boards.application.create;
 import com.bordify.board.application.create.BoardCreator;
 import com.bordify.board.domain.Board;
 import com.bordify.board.domain.BoardRepository;
-import com.bordify.userdetails.domain.User;
+import com.bordify.userdetail.domain.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static com.bordify.boards.infrastructure.persistence.models.BoardModelTestService.createValidBoardDomain;
-import static com.bordify.userdetails.domain.UserModelTestService.createValidUserDomain;
+import static com.bordify.userdetail.domain.UserModelTestService.createValidUserDomain;
 
 public class BoardCreatorShould {
 

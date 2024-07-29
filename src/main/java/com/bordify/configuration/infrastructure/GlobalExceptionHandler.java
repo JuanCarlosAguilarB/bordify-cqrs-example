@@ -8,7 +8,7 @@ import com.bordify.shared.domain.EntityNotFound;
 import com.bordify.shared.domain.InvalidRequestArgumentException;
 import com.bordify.shared.domain.ResourceNotCreatedException;
 import com.bordify.auth.domain.DuplicateEmailException;
-import com.bordify.userdetails.domain.UserNotFoundException;
+import com.bordify.userdetail.domain.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
