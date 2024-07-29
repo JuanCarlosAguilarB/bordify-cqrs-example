@@ -3,7 +3,7 @@ package com.bordify.auth.application.find;
 import com.bordify.auth.domain.UserReadModel;
 import com.bordify.auth.domain.UserAuthInformationRepository;
 import com.bordify.auth.domain.UserUserName;
-import com.bordify.user.domain.UserNotFoundException;
+import com.bordify.userdetails.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
