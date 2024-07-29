@@ -1,6 +1,6 @@
 package com.bordify.auth.infrastructure.controllers;
 
-import com.bordify.auth.application.create.CreateUserAuthInformationCommand;
+import com.bordify.auth.application.create.CreateUserCommand;
 import com.bordify.shared.domain.bus.command.CommandBus;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -23,9 +23,9 @@ public class AuthPutController {
     private final CommandBus bus;
 
     @PutMapping("/v1/signup/{userId}/")
-    public ResponseEntity<Map<String, Object>> signUpUser(@RequestBody UserAuthInformationRequest userRequest, @PathVariable UUID userId) {
+    public ResponseEntity<Map<String, Object>> signUpUser(@RequestBody UserRequest userRequest, @PathVariable UUID userId) {
 
-        CreateUserAuthInformationCommand user = CreateUserAuthInformationCommand.builder()
+        CreateUserCommand user = CreateUserCommand.builder()
                 .userId(userId)
                 .email(userRequest.getEmail())
                 .username(userRequest.getUsername())
@@ -41,7 +41,7 @@ public class AuthPutController {
 
 @Builder
 @Data
-class UserAuthInformationRequest {
+class UserRequest {
 
     private String email;
     private String username;

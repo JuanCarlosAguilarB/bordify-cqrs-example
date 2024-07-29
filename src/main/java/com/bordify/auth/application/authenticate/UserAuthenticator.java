@@ -1,6 +1,6 @@
 package com.bordify.auth.application.authenticate;
 
-import com.bordify.auth.application.find.UserAuthInformationFinder;
+import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserAuthenticator {
 
-    private final UserAuthInformationFinder userFinder;
+    private final UserFinder userFinder;
     private final AuthServices authServices;
 
     public AuthenticationToken authenticate(Auth auth) {

@@ -18,7 +18,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @Table(name = "\"user_auth_information\"")
-public class UserAuthInformationEntity {
+public class UserEntity {
 
     @Id
     private UUID userId;

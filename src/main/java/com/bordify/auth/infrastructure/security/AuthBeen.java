@@ -1,6 +1,6 @@
 package com.bordify.auth.infrastructure.security;
 
-import com.bordify.auth.application.find.UserAuthInformationFinder;
+import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.UserReadModel;
 import com.bordify.auth.domain.UserUserName;
 import com.bordify.userdetail.domain.UserNotFoundException;
@@ -23,7 +23,7 @@ import java.util.Collections;
 public class AuthBeen {
 
     private final PasswordEncoder passwordEncoder;
-    private final UserAuthInformationFinder userFinder;
+    private final UserFinder userFinder;
 
     /**
      * Configures an AuthenticationManager bean for managing authentication.

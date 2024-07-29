@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-public class UserAuthInformationCreator {
+public class UserCreator {
 
-    private final UserAuthInformationRepository userRepository;
+    private final UserRepository userRepository;
     private final SecurityService securityService;
 
 

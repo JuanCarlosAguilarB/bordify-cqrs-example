@@ -1,7 +1,7 @@
 package com.bordify.auth.application.find;
 
 import com.bordify.auth.domain.UserReadModel;
-import com.bordify.auth.domain.UserAuthInformationRepository;
+import com.bordify.auth.domain.UserRepository;
 import com.bordify.auth.domain.UserUserName;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class UserAuthInformationFinder {
+public class UserFinder {
 
-    private final UserAuthInformationRepository userRepository;
+    private final UserRepository userRepository;
 
     /**
      * Retrieves a user by the specified username.

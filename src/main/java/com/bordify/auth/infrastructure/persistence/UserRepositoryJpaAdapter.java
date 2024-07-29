@@ -1,23 +1,23 @@
 package com.bordify.auth.infrastructure.persistence;
 
 import com.bordify.auth.domain.UserReadModel;
-import com.bordify.auth.domain.UserAuthInformationRepository;
+import com.bordify.auth.domain.UserRepository;
 import com.bordify.auth.domain.UserEmail;
 import com.bordify.auth.domain.UserUserName;
-import com.bordify.auth.infrastructure.mapper.UserAuthInformationMapper;
+import com.bordify.auth.infrastructure.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.bordify.auth.infrastructure.mapper.UserAuthInformationMapper.toEntity;
+import static com.bordify.auth.infrastructure.mapper.UserMapper.toEntity;
 
 @Repository
 @AllArgsConstructor
-public class UserAuthInformationRepositoryJpaAdapter implements UserAuthInformationRepository {
+public class UserRepositoryJpaAdapter implements UserRepository {
 
-    private final UserAuthInformationRepositoryJpa repository;
+    private final UserRepositoryJpa repository;
 
     @Override
     public boolean existsByUsername(UserUserName username) {
@@ -32,7 +32,7 @@ public class UserAuthInformationRepositoryJpaAdapter implements UserAuthInformat
     @Override
     public Optional<UserReadModel> findByUsername(UserUserName username)  {
         return repository.findByUserName(username.value())
-                .map(UserAuthInformationMapper::toDomain);
+                .map(UserMapper::toDomain);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class UserAuthInformationRepositoryJpaAdapter implements UserAuthInformat
     @Override
     public Stream<UserReadModel> findByEmail(UserEmail email) {
         return repository.findByEmail(email.value()).stream()
-                .map(UserAuthInformationMapper::toDomain);
+                .map(UserMapper::toDomain);
     }
 
 }

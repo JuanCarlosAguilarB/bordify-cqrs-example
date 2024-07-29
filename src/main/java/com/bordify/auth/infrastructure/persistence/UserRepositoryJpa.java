@@ -1,42 +1,35 @@
-package com.bordify.auth.domain;
+package com.bordify.auth.infrastructure.persistence;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
-import java.util.stream.Stream;
+import java.util.UUID;
 
-public interface UserAuthInformationRepository {
+public interface UserRepositoryJpa extends JpaRepository<UserEntity, UUID> {
 
     /**
      * Checks if a user exists with the given username.
      *
-     * @param username The username of the user.
+     * @param userName The username of the user.
      * @return True if a user exists with the given username, false otherwise.
      */
-    public boolean existsByUsername(UserUserName username);
+    public boolean existsByUserName(String userName);
 
-    /**
-     * Saves a user entity to the database.
-     *
-     * @param user The user to be saved.
-     */
-    public void save(UserReadModel user);
 
     /**
      * Retrieves a user by their username.
      *
-     * @param username The username of the user.
+     * @param userName The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<UserReadModel> findByUsername(UserUserName username);
-
+    public Optional<UserEntity> findByUserName(String userName);
 
     /**
      * Checks if a user exists with the given email.
      *
-     * @param email The email address of the user.
      * @return True if a user exists with the given email, false otherwise.
      */
-    public boolean existsByEmail(UserEmail email);
+    public boolean existsByEmail(String email);
 
     /**
      * Retrieves a user by their email address.
@@ -44,7 +37,6 @@ public interface UserAuthInformationRepository {
      * @param email The email address of the user.
      * @return The user with the specified email address, or null if not found.
      */
-    public Stream<UserReadModel> findByEmail(UserEmail email);
-
+    public Optional<UserEntity> findByEmail(String email);
 
 }

@@ -1,12 +1,12 @@
 package com.bordify.auth.infrastructure.mapper;
 
 import com.bordify.auth.domain.*;
-import com.bordify.auth.infrastructure.persistence.UserAuthInformationEntity;
+import com.bordify.auth.infrastructure.persistence.UserEntity;
 import com.bordify.shared.domain.UserUserId;
 
-public class UserAuthInformationMapper {
+public class UserMapper {
 
-    public static UserReadModel toDomain(UserAuthInformationEntity userEntity) throws UserEmailException {
+    public static UserReadModel toDomain(UserEntity userEntity) throws UserEmailException {
 
         return new UserReadModel(
                 new UserUserId(userEntity.getUserId()),
@@ -19,9 +19,9 @@ public class UserAuthInformationMapper {
         );
     }
 
-    public static UserAuthInformationEntity toEntity(UserReadModel user) {
+    public static UserEntity toEntity(UserReadModel user) {
 
-        return UserAuthInformationEntity.builder()
+        return UserEntity.builder()
                 .userId(user.id().value())
                 .userName(user.userName().value())
                 .email(user.email().value())

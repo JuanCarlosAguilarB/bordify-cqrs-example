@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Builder
 @Data
-public class CreateUserAuthInformationCommand implements Command {
+public class CreateUserCommand implements Command {
 
     private UUID userId;
     private String email;

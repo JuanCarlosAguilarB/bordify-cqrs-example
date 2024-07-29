@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CreateUserAuthInformationCommandHandler implements CommandHandler<CreateUserAuthInformationCommand> {
+public class CreateUserCommandHandler implements CommandHandler<CreateUserCommand> {
 
-    private final UserAuthInformationCreator service;
+    private final UserCreator service;
 
     @Override
-    public void handle(CreateUserAuthInformationCommand command) {
-        System.out.println("CreateUserAuthInformationCommandHandler");
+    public void handle(CreateUserCommand command) {
+        System.out.println("CreateUserCommandHandler");
 
         service.createUser(
                 new UserUserId(command.getUserId()),

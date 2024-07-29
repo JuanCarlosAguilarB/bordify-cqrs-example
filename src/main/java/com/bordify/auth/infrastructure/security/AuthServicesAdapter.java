@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.bordify.auth.application.find.UserAuthInformationFinder;
+import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.*;
 import com.bordify.shared.domain.CreadentialsNotValidException;
 import com.bordify.auth.domain.SecurityService;
@@ -22,7 +22,7 @@ public class AuthServicesAdapter implements AuthServices {
     private final String secret = "secret";
     private final LocalDate now = LocalDate.now();
     private final Algorithm algorithm = Algorithm.HMAC256(this.secret);
-    private final UserAuthInformationFinder userFinder;
+    private final UserFinder userFinder;
     private final SecurityService securityService;
 
     @Override
