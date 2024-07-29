@@ -2,7 +2,6 @@ package com.bordify.userdetail.infrastucture.controlles;
 
 
 import com.bordify.shared.infrastucture.controlles.TestCaseController;
-import com.bordify.userdetail.domain.User;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
@@ -14,7 +13,7 @@ import static com.bordify.userdetail.domain.UserFactory.createRandomUser;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
-public class UserPutControllerShould extends TestCaseController {
+public class UserDetailPutControllerShould extends TestCaseController {
 
 
     @Test

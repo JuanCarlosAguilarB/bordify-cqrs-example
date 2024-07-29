@@ -3,8 +3,8 @@ package com.bordify.userdetail.infrastructure.persistence;
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.userdetail.domain.UserDetail;
-import com.bordify.userdetail.domain.UserRepository;
-import com.bordify.userdetail.infrastructure.mapper.UserMapper;
+import com.bordify.userdetail.domain.UserDetailRepository;
+import com.bordify.userdetail.infrastructure.mapper.UserDetailMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,46 +14,46 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class UserJpaRepositoryAdapter implements UserRepository {
+public class UserDetailJpaDetailRepositoryAdapter implements UserDetailRepository {
 
-    private final UserJpaRepository userJpaRepository;
+    private final UserDetailJpaRepository userDetailJpaRepository;
 
-    public UserJpaRepositoryAdapter(UserJpaRepository userJpaRepository) {
-        this.userJpaRepository = userJpaRepository;
+    public UserDetailJpaDetailRepositoryAdapter(UserDetailJpaRepository userDetailJpaRepository) {
+        this.userDetailJpaRepository = userDetailJpaRepository;
     }
 
 
     @Override
     public boolean existsByUsername(String userName) {
-        return userJpaRepository.existsByUsername(userName);
+        return userDetailJpaRepository.existsByUsername(userName);
     }
 
     @Override
     public Optional<UserDetail> findByUsername(String username) {
-        return userJpaRepository.findByUsername(username)
-                .map(UserMapper::toDomain);
+        return userDetailJpaRepository.findByUsername(username)
+                .map(UserDetailMapper::toDomain);
     }
 
     @Override
     public void save(UserDetail user) {
-        UserEntity userEntity = UserMapper.toEntity(user);
-        userJpaRepository.save(userEntity);
+        UserDetailEntity userDetailEntity = UserDetailMapper.toEntity(user);
+        userDetailJpaRepository.save(userDetailEntity);
     }
 
     @Override
     public Optional<UserDetail> findById(UUID userId) {
-        Optional<UserEntity> userSearched = userJpaRepository.findById(userId);
-        return userSearched.map(UserMapper::toDomain);
+        Optional<UserDetailEntity> userSearched = userDetailJpaRepository.findById(userId);
+        return userSearched.map(UserDetailMapper::toDomain);
     }
 
     @Override
     public PageResult<UserDetail> findAll(PaginationRequest pageable) {
 
         Pageable pageableResult = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()); // page 0, size 20
-        Page<UserEntity> page = userJpaRepository.findAll(pageableResult);
+        Page<UserDetailEntity> page = userDetailJpaRepository.findAll(pageableResult);
 
         PageResult<UserDetail> pageResult = new PageResult<UserDetail>(
-                page.getContent().stream().map(UserMapper::toDomain).toList(),
+                page.getContent().stream().map(UserDetailMapper::toDomain).toList(),
                 page.getNumber(), page.getSize(), page.getTotalElements());
 
         return pageResult;
@@ -61,7 +61,7 @@ public class UserJpaRepositoryAdapter implements UserRepository {
 
     @Override
     public void delete(UUID id) {
-        userJpaRepository.deleteById(id);
+        userDetailJpaRepository.deleteById(id);
     }
 
 }

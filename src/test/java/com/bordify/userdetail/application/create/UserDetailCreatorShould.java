@@ -1,20 +1,19 @@
 package com.bordify.userdetail.application.create;
 
 import com.bordify.auth.domain.SecurityService;
-import com.bordify.userdetail.domain.User;
 import com.bordify.userdetail.domain.UserModelTestService;
-import com.bordify.userdetail.domain.UserRepository;
+import com.bordify.userdetail.domain.UserDetailRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class UserCreatorShould {
+public class UserDetailCreatorShould {
 
-    private final UserRepository userRepositoryMock = Mockito.mock(UserRepository.class);
+    private final UserDetailRepository userDetailRepositoryMock = Mockito.mock(UserDetailRepository.class);
     private final SecurityService securityServiceMock = Mockito.mock(SecurityService.class);
 
-    private final UserCreator userCreator = new UserCreator(
-            userRepositoryMock, securityServiceMock
+    private final UserDetailCreator userDetailCreator = new UserDetailCreator(
+            userDetailRepositoryMock, securityServiceMock
     );
 
 
@@ -24,8 +23,8 @@ public class UserCreatorShould {
         // the absence of errors is what tells me that the user was created correctly
         User userTest = UserModelTestService.createValidUserDomain();
 
-        userCreator.createUser(userTest);
-        Mockito.verify(userRepositoryMock, Mockito.times(1)).save(userTest);
+        userDetailCreator.createUser(userTest);
+        Mockito.verify(userDetailRepositoryMock, Mockito.times(1)).save(userTest);
 
     }
 

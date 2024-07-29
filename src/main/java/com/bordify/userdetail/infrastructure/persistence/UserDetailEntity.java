@@ -21,11 +21,11 @@ import java.util.UUID;
 @Entity
 @Data
 @Builder
-@Table(name = "\"user\"")
+@Table(name = "\"user_detail\"")
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity {
+public class UserDetailEntity {
 
     /**
      * Unique identifier for the UserDetail. It is automatically generated and uses UUID as the ID type.

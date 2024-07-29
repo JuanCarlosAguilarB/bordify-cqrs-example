@@ -14,8 +14,8 @@ import com.bordify.task.infrastructure.persistence.Task;
 import com.bordify.task.infrastructure.persistence.TaskRepository;
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
 import com.bordify.topic.infrastructure.persistence.TopicJpaRepository;
-import com.bordify.userdetail.infrastructure.persistence.UserEntity;
-import com.bordify.userdetail.infrastructure.persistence.UserJpaRepository;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailEntity;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class TaskRepositoryShould {
     @Autowired
     private TaskRepository taskRepository;
     @Autowired
-    private UserJpaRepository userRepository;
+    private UserDetailJpaRepository userRepository;
     @Autowired
     private BoardJpaRepository boardRepository;
     @Autowired
@@ -46,7 +46,7 @@ public class TaskRepositoryShould {
     @Test
     public void shouldFindTaskById() {
 
-        UserEntity userTest = createValidUserEntity();
+        UserDetailEntity userTest = createValidUserEntity();
         userRepository.save(userTest);
 
         BoardEntity boardEntityTest = BoardModelTestService.createValidBoard(userTest);
@@ -73,7 +73,7 @@ public class TaskRepositoryShould {
     @Test
     public void shouldFindAllTasksOfTopic() {
 
-        UserEntity userTest = createValidUserEntity();
+        UserDetailEntity userTest = createValidUserEntity();
         userRepository.save(userTest);
 
         BoardEntity boardEntityTest = BoardModelTestService.createValidBoard(userTest);

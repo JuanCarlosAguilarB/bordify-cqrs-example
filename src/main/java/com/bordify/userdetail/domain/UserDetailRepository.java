@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * Repository interface for accessing and managing user entities in the database.
  */
-public interface UserRepository {
+public interface UserDetailRepository {
 
 
     /**

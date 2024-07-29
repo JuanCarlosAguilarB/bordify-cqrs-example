@@ -11,8 +11,8 @@ import com.bordify.topic.domain.TopicListDTO;
 import com.bordify.topic.infrastructure.persistence.TopicEntity;
 import com.bordify.topic.infrastructure.persistence.TopicJpaRepository;
 import com.bordify.userdetail.domain.UserModelTestService;
-import com.bordify.userdetail.infrastructure.persistence.UserEntity;
-import com.bordify.userdetail.infrastructure.persistence.UserJpaRepository;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailEntity;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailJpaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,14 +35,14 @@ public class TopicEntityRepositoryShould {
     private ColorJpaRepository colorJpaRepository;
 
     @Autowired
-    private UserJpaRepository userRepository;
+    private UserDetailJpaRepository userRepository;
 
 
     @DisplayName("Should find one topicEntity by boardId")
     @Test
     public void shouldFindOneTopicByBoardId() {
 
-        UserEntity userTest = UserModelTestService.createValidUserEntity();
+        UserDetailEntity userTest = UserModelTestService.createValidUserEntity();
         userRepository.save(userTest);
 
         BoardEntity boardTest = BoardModelTestService.createValidBoard(userTest);

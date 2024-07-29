@@ -1,6 +1,6 @@
 package com.bordify.userdetail.infrastructure.controllers;
 
-import com.bordify.userdetail.application.update.UserUpdater;
+import com.bordify.userdetail.application.update.UserDetailUpdater;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -16,9 +16,9 @@ import java.util.UUID;
 @Tag(name = "UserDetail", description = "UserDetail management operations")
 @RestController
 @AllArgsConstructor
-public class UserPatchController {
+public class UserDetailPatchController {
 
-    private final UserUpdater userServices;
+    private final UserDetailUpdater userServices;
 
     @Operation(summary = "Modify information of the user", description = "Modify information of the user", tags = {"UserDetail"})
     @PatchMapping(value = "/v1/users/{id}")

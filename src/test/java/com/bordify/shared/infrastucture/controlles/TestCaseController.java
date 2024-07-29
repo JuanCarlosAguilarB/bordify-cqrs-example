@@ -5,8 +5,7 @@ import com.bordify.auth.domain.Auth;
 import com.bordify.auth.domain.AuthenticationToken;
 import com.bordify.auth.infrastructure.controllers.AuthPostController;
 import com.bordify.auth.domain.SecurityService;
-import com.bordify.userdetail.domain.User;
-import com.bordify.userdetail.domain.UserRepository;
+import com.bordify.userdetail.domain.UserDetailRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ abstract public class TestCaseController {
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
-    private UserRepository repository;
+    private UserDetailRepository repository;
     @Autowired
     private AuthPostController authPostController;
     @Autowired

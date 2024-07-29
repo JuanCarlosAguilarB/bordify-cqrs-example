@@ -1,18 +1,18 @@
 package com.bordify.userdetail.domain;
 
 
-import com.bordify.userdetail.infrastructure.persistence.UserEntity;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailEntity;
 
 import java.time.LocalTime;
 import java.util.UUID;
 
 public class UserModelTestService {
 
-    public static UserEntity createValidUserEntity() {
+    public static UserDetailEntity createValidUserEntity() {
 
         LocalTime currentTime = LocalTime.now();
 
-        UserEntity user = UserEntity.builder()
+        UserDetailEntity user = UserDetailEntity.builder()
                 .id(UUID.randomUUID())
                 .username("john_doe")
                 .password("password123")

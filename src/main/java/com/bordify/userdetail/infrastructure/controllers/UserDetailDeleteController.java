@@ -1,6 +1,6 @@
 package com.bordify.userdetail.infrastructure.controllers;
 
-import com.bordify.userdetail.application.delete.UserDeleter;
+import com.bordify.userdetail.application.delete.UserDetailDeleter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -14,9 +14,9 @@ import java.util.UUID;
 @Tag(name = "UserDetail", description = "UserDetail management operations")
 @RestController
 @AllArgsConstructor
-public class UserDeleteController {
+public class UserDetailDeleteController {
 
-    private final UserDeleter userServices;
+    private final UserDetailDeleter userServices;
 
     /**
      * Deletes a user by your id.

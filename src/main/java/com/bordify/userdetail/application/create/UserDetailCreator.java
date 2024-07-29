@@ -2,7 +2,7 @@ package com.bordify.userdetail.application.create;
 
 import com.bordify.auth.domain.DuplicateEmailException;
 import com.bordify.userdetail.domain.UserDetail;
-import com.bordify.userdetail.domain.UserRepository;
+import com.bordify.userdetail.domain.UserDetailRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AllArgsConstructor
-public class UserCreator {
+public class UserDetailCreator {
 
-    private final UserRepository userRepository;
+    private final UserDetailRepository userDetailRepository;
 
     /**
      * Creates a new user with the provided user details and generates an authentication token.
@@ -24,7 +24,7 @@ public class UserCreator {
      */
     public void createUser(UserDetail user) {
 
-        userRepository.save(user);
+        userDetailRepository.save(user);
 
     }
 

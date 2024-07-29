@@ -1,7 +1,6 @@
 package com.bordify.userdetail.infrastucture.controlles;
 
 import com.bordify.shared.infrastucture.controlles.TestCaseController;
-import com.bordify.userdetail.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 
@@ -9,7 +8,7 @@ import java.util.Map;
 
 import static com.bordify.shared.domain.FactoryValues.generateRandomAlphanumeric;
 
-public class UserPatchControllerShould extends TestCaseController {
+public class UserDetailPatchControllerShould extends TestCaseController {
 
 //    values to modify
 

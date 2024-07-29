@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class RequestUserBody {
+public class RequestUserDetailUserDetailBody {
     private String username;
     private String firstName;
     private String lastName;

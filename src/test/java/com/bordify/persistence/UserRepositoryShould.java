@@ -1,7 +1,7 @@
 package com.bordify.persistence;
 
-import com.bordify.userdetail.infrastructure.persistence.UserEntity;
-import com.bordify.userdetail.infrastructure.persistence.UserJpaRepository;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailEntity;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailJpaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,12 +16,12 @@ import static com.bordify.userdetail.domain.UserModelTestService.createValidUser
 public class UserRepositoryShould {
 
     @Autowired
-    private UserJpaRepository userRepository;
+    private UserDetailJpaRepository userRepository;
 
     @DisplayName("Should find user by email")
     @Test
     public void shouldFindUserByEmail() {
-        UserEntity userTest = createValidUserEntity();
+        UserDetailEntity userTest = createValidUserEntity();
         userRepository.save(userTest);
 
         boolean hasUser = userRepository.existsByEmail(userTest.getEmail());
@@ -32,7 +32,7 @@ public class UserRepositoryShould {
     @DisplayName("Should find user by userName")
     @Test
     public void shouldFindUserByUsername() {
-        UserEntity userTest = createValidUserEntity();
+        UserDetailEntity userTest = createValidUserEntity();
         userRepository.save(userTest);
 
         boolean hasUser = userRepository.existsByUsername(userTest.getUsername());
@@ -43,10 +43,10 @@ public class UserRepositoryShould {
     @DisplayName("Should get an user by userName")
     @Test
     public void shouldGetAnUserByUsername() {
-        UserEntity userTest = createValidUserEntity();
+        UserDetailEntity userTest = createValidUserEntity();
         userRepository.save(userTest);
 
-        Optional<UserEntity> user = userRepository.findByUsername(userTest.getUsername());
+        Optional<UserDetailEntity> user = userRepository.findByUsername(userTest.getUsername());
 
         Assertions.assertEquals(Optional.of(userTest), user);
     }
@@ -55,10 +55,10 @@ public class UserRepositoryShould {
     @DisplayName("Should get an user by email")
     @Test
     public void shouldGetAnUserByEmail() {
-        UserEntity userTest = createValidUserEntity();
+        UserDetailEntity userTest = createValidUserEntity();
         userRepository.save(userTest);
 
-        Optional<UserEntity> user = userRepository.findByEmail(userTest.getEmail());
+        Optional<UserDetailEntity> user = userRepository.findByEmail(userTest.getEmail());
 
         Assertions.assertEquals(userTest, user.isPresent() ? user.get() : null);
     }

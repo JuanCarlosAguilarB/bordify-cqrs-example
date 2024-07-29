@@ -1,8 +1,7 @@
 package com.bordify.userdetail.infrastucture.controlles;
 
 import com.bordify.shared.infrastucture.controlles.TestCaseController;
-import com.bordify.userdetail.domain.User;
-import com.bordify.userdetail.domain.UserRepository;
+import com.bordify.userdetail.domain.UserDetailRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -14,10 +13,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-public class UserGetControllerShould extends TestCaseController {
+public class UserDetailGetControllerShould extends TestCaseController {
 
     @Autowired
-    private UserRepository repository;
+    private UserDetailRepository repository;
 
     @Test
     public void shouldReturnMeInformation() throws Exception {

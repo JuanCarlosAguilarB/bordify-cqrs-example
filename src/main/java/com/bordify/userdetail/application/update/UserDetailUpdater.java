@@ -1,7 +1,7 @@
 package com.bordify.userdetail.application.update;
 
 import com.bordify.userdetail.domain.UserDetail;
-import com.bordify.userdetail.domain.UserRepository;
+import com.bordify.userdetail.domain.UserDetailRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -12,13 +12,13 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class UserUpdater {
+public class UserDetailUpdater {
 
-    private final UserRepository userRepository;
+    private final UserDetailRepository userDetailRepository;
 
     public void update(UUID userId, Map<String, Object> userInfo) {
 
-        UserDetail userSearched = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Topic not found"));
+        UserDetail userSearched = userDetailRepository.findById(userId).orElseThrow(() -> new RuntimeException("Topic not found"));
 
         userInfo.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(UserDetail.class, key);

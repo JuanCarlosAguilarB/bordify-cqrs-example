@@ -4,7 +4,7 @@ package com.bordify.userdetail.infrastructure.controllers;
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.shared.infrastructure.controllers.GetUserIdFromToken;
-import com.bordify.userdetail.application.find.UserFinder;
+import com.bordify.userdetail.application.find.UserDetailFinder;
 import com.bordify.userdetail.domain.UserDetail;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,27 +21,27 @@ import java.util.UUID;
 @Tag(name = "UserDetail", description = "UserDetail management operations")
 @AllArgsConstructor
 @RestController
-public class UserGetController {
+public class UserDetailGetController {
 
-    private final UserFinder userServices;
+    private final UserDetailFinder userServices;
     private final GetUserIdFromToken getUserId;
 
 
     @Operation(summary = "Get information of the user", description = "Get a user", tags = {"UserDetail"})
     @GetMapping(value = "/v1/users/me/")
-    public ResponseEntity<UserResponse> getUser(HttpServletRequest request) {
+    public ResponseEntity<UserDetailResponse> getUser(HttpServletRequest request) {
 
         UUID userId = getUserId.getUserId();
         UserDetail user = userServices.findUserById(userId);
 
-        UserResponse userResponse = UserResponse.builder()
+        UserDetailResponse userDetailResponse = UserDetailResponse.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
 
-        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(userResponse);
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(userDetailResponse);
 
     }
 

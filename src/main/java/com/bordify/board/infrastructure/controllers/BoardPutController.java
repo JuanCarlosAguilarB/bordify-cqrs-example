@@ -3,7 +3,7 @@ package com.bordify.board.infrastructure.controllers;
 
 import com.bordify.board.application.create.BoardCreator;
 import com.bordify.board.domain.Board;
-import com.bordify.userdetail.application.find.UserFinder;
+import com.bordify.userdetail.application.find.UserDetailFinder;
 import com.bordify.userdetail.domain.UserDetail;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,11 +24,11 @@ import java.util.UUID;
 public class BoardPutController {
 
     private final BoardCreator boardCreator;
-    private final UserFinder userFinder;
+    private final UserDetailFinder userDetailFinder;
 
-    public BoardPutController(BoardCreator boardCreator, UserFinder userFinder) {
+    public BoardPutController(BoardCreator boardCreator, UserDetailFinder userDetailFinder) {
         this.boardCreator = boardCreator;
-        this.userFinder = userFinder;
+        this.userDetailFinder = userDetailFinder;
     }
 
 
@@ -54,7 +54,7 @@ public class BoardPutController {
         // TODO: i dont sure if i should search user here or in the service.
 
         String username = auth.getName();
-        UserDetail user = userFinder.findUserByUsername(username);
+        UserDetail user = userDetailFinder.findUserByUsername(username);
 
         Board board = Board.builder()
                 .id(id)

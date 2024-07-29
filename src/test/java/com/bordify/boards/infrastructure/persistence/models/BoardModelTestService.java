@@ -2,14 +2,13 @@ package com.bordify.boards.infrastructure.persistence.models;
 
 import com.bordify.board.domain.Board;
 import com.bordify.board.infrastructure.persistence.BoardEntity;
-import com.bordify.userdetail.domain.User;
-import com.bordify.userdetail.infrastructure.persistence.UserEntity;
+import com.bordify.userdetail.infrastructure.persistence.UserDetailEntity;
 
 import java.util.UUID;
 
 public class BoardModelTestService {
 
-    public static BoardEntity createValidBoard(UserEntity user) {
+    public static BoardEntity createValidBoard(UserDetailEntity user) {
 
 //        User user = UserModelTestService.createValidUser();
         UUID userId = user.getId();

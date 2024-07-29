@@ -1,8 +1,7 @@
 package com.bordify.userdetail.application.find;
 
-import com.bordify.userdetail.domain.User;
 import com.bordify.userdetail.domain.UserNotFoundException;
-import com.bordify.userdetail.domain.UserRepository;
+import com.bordify.userdetail.domain.UserDetailRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-public class UserFinderShould {
+public class UserDetailFinderShould {
 
-    private final UserRepository userRepositoryMock = Mockito.mock(UserRepository.class);
+    private final UserDetailRepository userDetailRepositoryMock = Mockito.mock(UserDetailRepository.class);
 
-    private final UserFinder userFinder = new UserFinder(
-            userRepositoryMock
+    private final UserDetailFinder userDetailFinder = new UserDetailFinder(
+            userDetailRepositoryMock
     );
 
 
@@ -33,11 +32,11 @@ public class UserFinderShould {
         userTest.setUsername(userName);
 
         // When
-        when(userRepositoryMock.findByUsername(userName)).thenReturn(Optional.of(userTest));
-        User user = userFinder.findUserByUsername(userName);
+        when(userDetailRepositoryMock.findByUsername(userName)).thenReturn(Optional.of(userTest));
+        User user = userDetailFinder.findUserByUsername(userName);
 
         // Then
-        Mockito.verify(userRepositoryMock, Mockito.times(1)).findByUsername(userName);
+        Mockito.verify(userDetailRepositoryMock, Mockito.times(1)).findByUsername(userName);
         assertEquals(userName, user.getUsername());
         assertEquals(userTest.getId(), user.getId());
     }
@@ -47,10 +46,10 @@ public class UserFinderShould {
     public void shouldThrowUserNotFoundExceptionWhenUserNotFound() {
 
         String userName = "XXXX";
-        when(userRepositoryMock.findByUsername(userName)).thenReturn(Optional.empty());
+        when(userDetailRepositoryMock.findByUsername(userName)).thenReturn(Optional.empty());
 
         UserNotFoundException exception = assertThrows(UserNotFoundException.class, () -> {
-            userFinder.findUserByUsername(userName);
+            userDetailFinder.findUserByUsername(userName);
         });
 
     }

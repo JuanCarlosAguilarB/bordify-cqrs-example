@@ -10,7 +10,7 @@ import java.util.UUID;
  * Repository interface for accessing and managing user entities in the database.
  */
 @Repository
-public interface UserJpaRepository extends JpaRepository<UserEntity, UUID> {
+public interface UserDetailJpaRepository extends JpaRepository<UserDetailEntity, UUID> {
 
     /**
      * Checks if a user exists with the given username.
@@ -26,5 +26,5 @@ public interface UserJpaRepository extends JpaRepository<UserEntity, UUID> {
      * @param username The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<UserEntity> findByUsername(String username);
+    public Optional<UserDetailEntity> findByUsername(String username);
 }
