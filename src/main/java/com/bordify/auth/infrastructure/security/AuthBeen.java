@@ -1,7 +1,7 @@
 package com.bordify.auth.infrastructure.security;
 
 import com.bordify.auth.application.find.UserAuthInformationFinder;
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.UserReadModel;
 import com.bordify.auth.domain.UserUserName;
 import com.bordify.user.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
@@ -58,7 +58,7 @@ public class AuthBeen {
             @Override
             public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
 
-                UserAuthInformation user = userFinder.findUserByUsername(new UserUserName(username));
+                UserReadModel user = userFinder.findUserByUsername(new UserUserName(username));
 
                 if (user == null) {
                     throw new UserNotFoundException("User not found with username: " + username);

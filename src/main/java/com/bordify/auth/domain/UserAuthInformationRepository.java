@@ -19,7 +19,7 @@ public interface UserAuthInformationRepository {
      *
      * @param user The user to be saved.
      */
-    public void save(UserAuthInformation user);
+    public void save(UserReadModel user);
 
     /**
      * Retrieves a user by their username.
@@ -27,7 +27,7 @@ public interface UserAuthInformationRepository {
      * @param username The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<UserAuthInformation> findByUsername(UserUserName username);
+    public Optional<UserReadModel> findByUsername(UserUserName username);
 
 
     /**
@@ -44,7 +44,7 @@ public interface UserAuthInformationRepository {
      * @param email The email address of the user.
      * @return The user with the specified email address, or null if not found.
      */
-    public Stream<UserAuthInformation> findByEmail(UserEmail email);
+    public Stream<UserReadModel> findByEmail(UserEmail email);
 
 
 }

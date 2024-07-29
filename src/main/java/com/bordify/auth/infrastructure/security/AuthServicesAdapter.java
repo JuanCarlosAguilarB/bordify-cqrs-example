@@ -26,7 +26,7 @@ public class AuthServicesAdapter implements AuthServices {
     private final SecurityService securityService;
 
     @Override
-    public AuthenticationToken createToken(UserAuthInformation user) {
+    public AuthenticationToken createToken(UserReadModel user) {
 
 
         //    @Value("${jwt.refreshTokenExpirationInDays:11}")
@@ -50,9 +50,9 @@ public class AuthServicesAdapter implements AuthServices {
     @Override
     public void ensureCredentialsAreValid(Auth auth) {
 
-        UserAuthInformation userAuthInformation = userFinder.findUserByUsername(new UserUserName(auth.getUserName()));
+        UserReadModel userReadModel = userFinder.findUserByUsername(new UserUserName(auth.getUserName()));
 
-        if (!securityService.matches(auth.getPassword(), userAuthInformation.password().value())) {
+        if (!securityService.matches(auth.getPassword(), userReadModel.password().value())) {
             throw new CreadentialsNotValidException("Invalid credentials");
         }
 
@@ -109,7 +109,7 @@ public class AuthServicesAdapter implements AuthServices {
     }
 
     @Override
-    public UserAuthInformation decode(AuthenticationToken token) {
+    public UserReadModel decode(AuthenticationToken token) {
         DecodedJWT decodedJWT = JWT.decode(token.getToken());
         return userFinder.findUserByUsername(new UserUserName(decodedJWT.getSubject()));
     }

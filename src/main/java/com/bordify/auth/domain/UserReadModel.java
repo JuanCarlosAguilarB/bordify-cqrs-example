@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserAuthInformation {
+public class UserReadModel {
 
     private final UserUserId userId;
     private final UserEmail email;

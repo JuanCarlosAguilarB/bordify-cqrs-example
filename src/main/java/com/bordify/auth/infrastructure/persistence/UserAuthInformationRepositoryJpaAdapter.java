@@ -1,6 +1,6 @@
 package com.bordify.auth.infrastructure.persistence;
 
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.UserReadModel;
 import com.bordify.auth.domain.UserAuthInformationRepository;
 import com.bordify.auth.domain.UserEmail;
 import com.bordify.auth.domain.UserUserName;
@@ -25,12 +25,12 @@ public class UserAuthInformationRepositoryJpaAdapter implements UserAuthInformat
     }
 
     @Override
-    public void save(UserAuthInformation user) {
+    public void save(UserReadModel user) {
         repository.save(toEntity(user));
     }
 
     @Override
-    public Optional<UserAuthInformation> findByUsername(UserUserName username)  {
+    public Optional<UserReadModel> findByUsername(UserUserName username)  {
         return repository.findByUserName(username.value())
                 .map(UserAuthInformationMapper::toDomain);
     }
@@ -41,7 +41,7 @@ public class UserAuthInformationRepositoryJpaAdapter implements UserAuthInformat
     }
 
     @Override
-    public Stream<UserAuthInformation> findByEmail(UserEmail email) {
+    public Stream<UserReadModel> findByEmail(UserEmail email) {
         return repository.findByEmail(email.value()).stream()
                 .map(UserAuthInformationMapper::toDomain);
     }

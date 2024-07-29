@@ -2,7 +2,7 @@ package com.bordify.auth.infrastructure.security;
 
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.auth.domain.UserAuthInformation;
+import com.bordify.auth.domain.UserReadModel;
 import com.bordify.shared.infrastructure.controllers.GetTokenFromRequest;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -56,10 +56,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         }
 
-        UserAuthInformation userAuthInformation = authServices.decode(AuthenticationToken.builder().token(token).build());
+        UserReadModel userReadModel = authServices.decode(AuthenticationToken.builder().token(token).build());
 
-        final String username = userAuthInformation.userName().value();
-        final UUID userId = userAuthInformation.id().value();
+        final String username = userReadModel.userName().value();
+        final UUID userId = userReadModel.id().value();
 
         if (username == null || userId == null) {
             ApiResponseHelper.sendErrorResponse(response, HttpStatus.BAD_REQUEST, "Bad Request", "El token is not valid");

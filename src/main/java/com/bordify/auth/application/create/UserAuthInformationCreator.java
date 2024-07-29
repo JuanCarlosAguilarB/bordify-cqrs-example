@@ -29,7 +29,7 @@ public class UserAuthInformationCreator {
         String rawPassword = password.value();
         UserPassword passwordEncoded = new UserPassword(securityService.encode(rawPassword));
 
-        UserAuthInformation user = new UserAuthInformation(
+        UserReadModel user = new UserReadModel(
                 id,
                 email,
                 userName,

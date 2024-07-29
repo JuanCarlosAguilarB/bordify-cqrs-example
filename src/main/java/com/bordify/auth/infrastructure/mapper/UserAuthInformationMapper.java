@@ -6,9 +6,9 @@ import com.bordify.shared.domain.UserUserId;
 
 public class UserAuthInformationMapper {
 
-    public static UserAuthInformation toDomain(UserAuthInformationEntity userEntity) throws UserEmailException {
+    public static UserReadModel toDomain(UserAuthInformationEntity userEntity) throws UserEmailException {
 
-        return new UserAuthInformation(
+        return new UserReadModel(
                 new UserUserId(userEntity.getUserId()),
                 new UserEmail(userEntity.getEmail()),
                 new UserUserName(userEntity.getUserName()),
@@ -19,7 +19,7 @@ public class UserAuthInformationMapper {
         );
     }
 
-    public static UserAuthInformationEntity toEntity(UserAuthInformation user) {
+    public static UserAuthInformationEntity toEntity(UserReadModel user) {
 
         return UserAuthInformationEntity.builder()
                 .userId(user.id().value())
