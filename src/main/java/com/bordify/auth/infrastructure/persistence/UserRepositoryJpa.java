@@ -1,11 +1,20 @@
 package com.bordify.auth.infrastructure.persistence;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepositoryJpa extends JpaRepository<UserEntity, UUID> {
+/**
+ * JPA repository for the User entity.
+ * if we want to use JPA with Redis, we need to use CrudRepository instead of JpaRepository
+ * CrudRepository is a specialization of JpaRepository that adds additional methods for CRUD operations.
+ *
+ * JpaRepository does not support Redis, so we need to use CrudRepository instead.
+ */
+
+//public interface UserRepositoryJpa extends JpaRepository<UserEntity, UUID> {
+public interface UserRepositoryJpa extends CrudRepository<UserEntity, UUID> {
 
     /**
      * Checks if a user exists with the given username.
