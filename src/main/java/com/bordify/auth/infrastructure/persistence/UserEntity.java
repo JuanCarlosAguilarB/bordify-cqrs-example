@@ -6,8 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
+ import org.springframework.data.redis.core.index.Indexed;
 
-import java.io.Serializable;
+ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -29,7 +30,9 @@ public class UserEntity implements Serializable {
 
     @Id
     private UUID userId;
+    @Indexed
     private String email;
+    @Indexed
     private String userName;
     private String password;
     private Boolean isVerified;
