@@ -85,15 +85,27 @@ cd bordify-monolith
 ```bash
 docker-compose up
 ```
-
 * **Access the application at `http://localhost:8080`.**
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Notes on redis:
 
+In this project, JPA (Java Persistence API) has been used for data management in the database. Although Redis is not a relational database, the integration with JPA allows easy management of cached data.
 
+For the connection to Redis, Lettuce was used as a client. Lettuce is a client library for Redis that integrates seamlessly with Spring Boot. The following explains why Lettuce was chosen instead of Jedis:
 
+### Lettuce vs Jedis
+- Connection Handling Efficiency: Lettuce uses an asynchronous, Netty-based model, which allows it to handle multiple connections efficiently and without blocking. This is ideal for applications with high concurrency.
 
+- Scalability: Lettuce is more scalable than Jedis due to its ability to handle multiple threads and parallel connections without blocking. This improves performance in applications that require high availability and speed.
 
+- Compatibility: Lettuce is the client recommended by Spring Data Redis to integrate with Spring Boot due to its support for asynchronous connections and its event-driven architecture.
 
+- Stateless: Lettuce does not require the client to maintain connection state, which simplifies resource management and improves application efficiency.
 
+## Implementing Redis
 
+To use **Redis** in a **Spring Boot application**, see the steps in the following documentation.
+
+-  [Implementing Redis](documentation/redis.md)
 
