@@ -1,4 +1,4 @@
-package com.bordify.shared.domain.bus.command.event;
+package com.bordify.shared.domain.bus.event;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
