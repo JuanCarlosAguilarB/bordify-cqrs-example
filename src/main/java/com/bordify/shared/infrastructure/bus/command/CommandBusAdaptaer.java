@@ -1,4 +1,4 @@
-package com.bordify.shared.infrastructure.bus;
+package com.bordify.shared.infrastructure.bus.command;
 
 import com.bordify.shared.domain.bus.command.Command;
 import com.bordify.shared.domain.bus.command.CommandBus;
