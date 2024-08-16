@@ -2,10 +2,12 @@ package com.bordify.auth.domain.event;
 
 import com.bordify.shared.domain.bus.event.DomainEvent;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Data
 @AllArgsConstructor
 public class UserCreatedEvent extends DomainEvent {
 
