@@ -3,7 +3,6 @@ package com.bordify.shared.infrastructure.bus.event;
 import com.bordify.shared.domain.bus.event.DomainEvent;
 import com.bordify.shared.domain.bus.event.DomainEventSubscriber;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.annotation.PostConstruct;
 import org.reflections.Reflections;
 import org.springframework.amqp.core.AmqpAdmin;

@@ -1,13 +1,13 @@
 package com.bordify.configuration.infrastructure;
 
 
+import com.bordify.auth.domain.DuplicateEmailException;
 import com.bordify.auth.domain.TokenException;
 import com.bordify.auth.domain.UserEmailException;
 import com.bordify.shared.domain.CreadentialsNotValidException;
 import com.bordify.shared.domain.EntityNotFound;
 import com.bordify.shared.domain.InvalidRequestArgumentException;
 import com.bordify.shared.domain.ResourceNotCreatedException;
-import com.bordify.auth.domain.DuplicateEmailException;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

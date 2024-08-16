@@ -1,7 +1,7 @@
 package com.bordify.userdetail.application.find;
 
-import com.bordify.userdetail.domain.UserNotFoundException;
 import com.bordify.userdetail.domain.UserDetailRepository;
+import com.bordify.userdetail.domain.UserNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import java.util.Optional;
 
 import static com.bordify.userdetail.domain.UserModelTestService.createValidUserDomain;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
