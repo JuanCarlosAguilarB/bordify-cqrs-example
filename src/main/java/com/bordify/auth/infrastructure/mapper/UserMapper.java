@@ -1,31 +1,31 @@
 package com.bordify.auth.infrastructure.mapper;
 
 import com.bordify.auth.domain.*;
-import com.bordify.auth.infrastructure.persistence.UserEntity;
+import com.bordify.auth.infrastructure.persistence.UserReadModelEntity;
 import com.bordify.shared.domain.UserUserId;
 
 public class UserMapper {
 
-    public static UserReadModel toDomain(UserEntity userEntity) throws UserEmailException {
+    public static UserReadModel toDomain(UserReadModelEntity userReadModelEntity) throws UserEmailException {
 
         return new UserReadModel(
-                new UserUserId(userEntity.getUserId()),
-                new UserEmail(userEntity.getEmail()),
-                new UserUserName(userEntity.getUserName()),
-                new UserPassword(userEntity.getPassword()),
-                new UserIsVerified(userEntity.getIsVerified()),
-                new UserDateCreated(userEntity.getCreated()),
-                new UserDateLastLogin(userEntity.getLastLogin())
+                new UserUserId(userReadModelEntity.getUserId()),
+                new UserEmail(userReadModelEntity.getEmail()),
+                new UserUserName(userReadModelEntity.getUserName()),
+//                new UserPassword(userReadModelEntity.getPassword()),
+                new UserIsVerified(userReadModelEntity.getIsVerified()),
+                new UserDateCreated(userReadModelEntity.getCreated()),
+                new UserDateLastLogin(userReadModelEntity.getLastLogin())
         );
     }
 
-    public static UserEntity toEntity(UserReadModel user) {
+    public static UserReadModelEntity toEntity(UserReadModel user) {
 
-        return UserEntity.builder()
+        return UserReadModelEntity.builder()
                 .userId(user.id().value())
                 .userName(user.userName().value())
                 .email(user.email().value())
-                .password(user.password().value())
+//                .password(user.password().value())
                 .isVerified(user.isVerified().value())
                 .lastLogin(user.lastLogin().value())
                 .created(user.created().value())

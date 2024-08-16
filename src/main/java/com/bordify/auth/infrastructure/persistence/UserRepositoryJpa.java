@@ -13,8 +13,8 @@ import java.util.UUID;
  * JpaRepository does not support Redis, so we need to use CrudRepository instead.
  */
 
-//public interface UserRepositoryJpa extends JpaRepository<UserEntity, UUID> {
-public interface UserRepositoryJpa extends CrudRepository<UserEntity, UUID> {
+//public interface UserRepositoryJpa extends JpaRepository<UserReadModelEntity, UUID> {
+public interface UserRepositoryJpa extends CrudRepository<UserReadModelEntity, UUID> {
 
     /**
      * Checks if a user exists with the given username.
@@ -31,7 +31,7 @@ public interface UserRepositoryJpa extends CrudRepository<UserEntity, UUID> {
      * @param userName The username of the user.
      * @return The user with the specified username, or null if not found.
      */
-    public Optional<UserEntity> findByUserName(String userName);
+    public Optional<UserReadModelEntity> findByUserName(String userName);
 
     /**
      * Checks if a user exists with the given email.
@@ -46,6 +46,6 @@ public interface UserRepositoryJpa extends CrudRepository<UserEntity, UUID> {
      * @param email The email address of the user.
      * @return The user with the specified email address, or null if not found.
      */
-    public Optional<UserEntity> findByEmail(String email);
+    public Optional<UserReadModelEntity> findByEmail(String email);
 
 }

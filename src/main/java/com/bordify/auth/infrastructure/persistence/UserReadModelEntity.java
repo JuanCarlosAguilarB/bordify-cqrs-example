@@ -19,7 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 //@Table(name = "\"user_auth_information\"")
 @RedisHash
-public class UserEntity implements Serializable {
+public class UserReadModelEntity implements Serializable {
 
     /**
      * Redis needs a primary key called as id, so we have to use userId as the primary key
@@ -34,7 +34,6 @@ public class UserEntity implements Serializable {
     private String email;
     @Indexed
     private String userName;
-    private String password;
     private Boolean isVerified;
     private LocalDateTime created;
     private LocalDateTime lastLogin;
