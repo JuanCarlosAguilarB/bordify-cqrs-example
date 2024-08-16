@@ -4,7 +4,7 @@ import com.bordify.auth.domain.*;
 import com.bordify.auth.infrastructure.persistence.UserReadModelEntity;
 import com.bordify.shared.domain.UserUserId;
 
-public class UserMapper {
+public class UserReadModelMapper {
 
     public static UserReadModel toDomain(UserReadModelEntity userReadModelEntity) throws UserEmailException {
 
