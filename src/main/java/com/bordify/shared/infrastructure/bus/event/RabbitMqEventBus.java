@@ -5,6 +5,7 @@ import com.bordify.shared.domain.bus.event.DomainEvent;
 import com.bordify.shared.domain.bus.event.EventBus;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePropertiesBuilder;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -25,6 +26,7 @@ public class RabbitMqEventBus implements EventBus {
 
     public RabbitMqEventBus(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
 
