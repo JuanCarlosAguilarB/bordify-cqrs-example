@@ -1,11 +1,14 @@
 package com.bordify.auth.application.create;
 
 import com.bordify.auth.domain.*;
+import com.bordify.auth.domain.event.UserCreatedEvent;
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.bus.event.EventBus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -13,6 +16,7 @@ public class UserCreator {
 
     private final UserWriteModelRepository repository;
     private final SecurityService securityService;
+    private final EventBus eventBus;
 
 
     /**
@@ -22,23 +26,30 @@ public class UserCreator {
      */
     public void createUser(UserUserId id, UserEmail email, UserUserName userName, UserPassword password) {
 
-        ensureEmailAndUserNameAreNotRegistered(email, userName);
+//        ensureEmailAndUserNameAreNotRegistered(email, userName);
 
         String rawPassword = password.value();
         UserPassword passwordEncoded = new UserPassword(securityService.encode(rawPassword));
 
+        LocalDateTime now = LocalDateTime.now();
         UserWriteModel user = new UserWriteModel(
                 id,
                 email,
                 userName,
                 passwordEncoded,
                 new UserIsVerified(false),
-                new UserDateCreated(LocalDateTime.now()),
-                new UserDateLastLogin(LocalDateTime.now())
+                new UserDateCreated(now),
+                new UserDateLastLogin(now)
                 );
 
         repository.save(user);
-
+        UserCreatedEvent userCreatedEvent = new UserCreatedEvent(
+                id.value(),
+                email.value(),
+                userName.value(),
+                now
+        );
+        eventBus.publish(List.of((userCreatedEvent)));
     }
 
     private void ensureEmailAndUserNameAreNotRegistered(UserEmail email, UserUserName userName) {
