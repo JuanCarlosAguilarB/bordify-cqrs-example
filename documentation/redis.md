@@ -37,7 +37,8 @@ We **should** use **CrudRepository** instead of JpaRepository if we want to use 
 
 Now you can use the repository to save, retrieve, and delete objects of type User.
 
-Now, in the **User** **entity**, we have to add the **@RedisHash** annotation to the class, and we need to add the **@Id** annotation to the userId field.
+Now, in the **User** **entity**, we have to add the **@RedisHash** annotation to the class, and we need to add the **@Id** annotation to the userId field. 
+> we need import @Id from org.springframework.data.annotation.Id not from jakarta.persistence.Id (this is for JPA entities not for Redis)
 
 ```java
 @RedisHash
