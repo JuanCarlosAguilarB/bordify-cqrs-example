@@ -7,7 +7,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.*;
 import com.bordify.shared.domain.CreadentialsNotValidException;
-import com.bordify.auth.domain.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class AuthServicesAdapter implements AuthServices {
     private final SecurityService securityService;
 
     @Override
-    public AuthenticationToken createToken(UserReadModel user) {
+    public AuthenticationToken createToken(UserWriteModel user) {
 
 
         //    @Value("${jwt.refreshTokenExpirationInDays:11}")
@@ -50,7 +49,7 @@ public class AuthServicesAdapter implements AuthServices {
     @Override
     public void ensureCredentialsAreValid(Auth auth) {
 
-        UserReadModel userReadModel = userFinder.findUserByUsername(new UserUserName(auth.getUserName()));
+        UserWriteModel userReadModel = userFinder.findUserByUsername(new UserUserName(auth.getUserName()));
 
         if (!securityService.matches(auth.getPassword(), userReadModel.password().value())) {
             throw new CreadentialsNotValidException("Invalid credentials");
@@ -109,7 +108,7 @@ public class AuthServicesAdapter implements AuthServices {
     }
 
     @Override
-    public UserReadModel decode(AuthenticationToken token) {
+    public UserWriteModel decode(AuthenticationToken token) {
         DecodedJWT decodedJWT = JWT.decode(token.getToken());
         return userFinder.findUserByUsername(new UserUserName(decodedJWT.getSubject()));
     }

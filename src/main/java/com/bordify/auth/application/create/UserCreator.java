@@ -2,8 +2,6 @@ package com.bordify.auth.application.create;
 
 import com.bordify.auth.domain.*;
 import com.bordify.shared.domain.UserUserId;
-import com.bordify.auth.domain.DuplicateEmailException;
-import com.bordify.auth.domain.SecurityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserCreator {
 
-    private final UserRepository userRepository;
+    private final UserWriteModelRepository repository;
     private final SecurityService securityService;
 
 
@@ -29,7 +27,7 @@ public class UserCreator {
         String rawPassword = password.value();
         UserPassword passwordEncoded = new UserPassword(securityService.encode(rawPassword));
 
-        UserReadModel user = new UserReadModel(
+        UserWriteModel user = new UserWriteModel(
                 id,
                 email,
                 userName,
@@ -39,14 +37,14 @@ public class UserCreator {
                 new UserDateLastLogin(LocalDateTime.now())
                 );
 
-        userRepository.save(user);
+        repository.save(user);
 
     }
 
     private void ensureEmailAndUserNameAreNotRegistered(UserEmail email, UserUserName userName) {
 
-        boolean isEmailRegistered = userRepository.existsByEmail(email);
-        boolean isUserNameRegistered = userRepository.existsByUsername(userName);
+        boolean isEmailRegistered = repository.existsByEmail(email);
+        boolean isUserNameRegistered = repository.existsByUsername(userName);
 
         if (isEmailRegistered && isUserNameRegistered) {
             throw new DuplicateEmailException("Both the email " + email.value() + " and username " + userName.value() + " are already registered. Please use different credentials.");

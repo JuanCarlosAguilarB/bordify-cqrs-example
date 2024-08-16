@@ -2,7 +2,7 @@ package com.bordify.auth.infrastructure.security;
 
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.AuthenticationToken;
-import com.bordify.auth.domain.UserReadModel;
+import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.shared.infrastructure.controllers.GetTokenFromRequest;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -56,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         }
 
-        UserReadModel userReadModel = authServices.decode(AuthenticationToken.builder().token(token).build());
+        UserWriteModel userReadModel = authServices.decode(AuthenticationToken.builder().token(token).build());
 
         final String username = userReadModel.userName().value();
         final UUID userId = userReadModel.id().value();

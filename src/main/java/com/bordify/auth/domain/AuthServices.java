@@ -4,9 +4,9 @@ import com.bordify.shared.domain.CreadentialsNotValidException;
 
 public interface AuthServices {
 
-    public AuthenticationToken createToken(UserReadModel user);
+    public AuthenticationToken createToken(UserWriteModel user);
 
-    public UserReadModel decode(AuthenticationToken token);
+    public UserWriteModel decode(AuthenticationToken token);
 
     public void ensureCredentialsAreValid(Auth auth) throws CreadentialsNotValidException;
 

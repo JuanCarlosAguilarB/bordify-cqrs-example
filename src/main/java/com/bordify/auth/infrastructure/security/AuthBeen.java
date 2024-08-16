@@ -1,8 +1,8 @@
 package com.bordify.auth.infrastructure.security;
 
 import com.bordify.auth.application.find.UserFinder;
-import com.bordify.auth.domain.UserReadModel;
 import com.bordify.auth.domain.UserUserName;
+import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -58,7 +58,7 @@ public class AuthBeen {
             @Override
             public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
 
-                UserReadModel user = userFinder.findUserByUsername(new UserUserName(username));
+                UserWriteModel user = userFinder.findUserByUsername(new UserUserName(username));
 
                 if (user == null) {
                     throw new UserNotFoundException("UserDetail not found with username: " + username);

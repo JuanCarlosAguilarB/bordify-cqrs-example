@@ -1,8 +1,8 @@
 package com.bordify.userdetail.application.create;
 
 import com.bordify.auth.domain.SecurityService;
-import com.bordify.userdetail.domain.UserModelTestService;
 import com.bordify.userdetail.domain.UserDetailRepository;
+import com.bordify.userdetail.domain.UserModelTestService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

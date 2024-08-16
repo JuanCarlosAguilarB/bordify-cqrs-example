@@ -4,8 +4,8 @@ package com.bordify.userdetail.application.find;
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.userdetail.domain.UserDetail;
-import com.bordify.userdetail.domain.UserNotFoundException;
 import com.bordify.userdetail.domain.UserDetailRepository;
+import com.bordify.userdetail.domain.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

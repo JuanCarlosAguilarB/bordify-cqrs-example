@@ -17,7 +17,7 @@ public class UserAuthenticator {
         authServices.ensureCredentialsAreValid(auth);
 
         String username = auth.getUserName();
-        UserReadModel user = userFinder.findUserByUsername(new UserUserName(username));
+        UserWriteModel user = userFinder.findUserByUsername(new UserUserName(username));
 
         return authServices.createToken(user);
 
