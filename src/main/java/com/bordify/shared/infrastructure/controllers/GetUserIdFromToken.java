@@ -24,7 +24,7 @@ public class GetUserIdFromToken {
 
         token = String.valueOf(authServices.decode(
                 AuthenticationToken.builder().token(token).build()
-        ).getUserId());
+        ).id());
 
         return UUID.fromString(token);
     }
