@@ -1,14 +1,14 @@
 package com.bordify.auth.infrastructure.persistence;
 
- import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
- import org.springframework.data.redis.core.index.Indexed;
+import org.springframework.data.redis.core.index.Indexed;
 
- import java.io.Serializable;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
