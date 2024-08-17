@@ -26,7 +26,7 @@ public class UserCreator {
      */
     public void createUser(UserUserId id, UserEmail email, UserUserName userName, UserPassword password) {
 
-//        ensureEmailAndUserNameAreNotRegistered(email, userName);
+        ensureEmailAndUserNameAreNotRegistered(email, userName);
 
         String rawPassword = password.value();
         UserPassword passwordEncoded = new UserPassword(securityService.encode(rawPassword));
