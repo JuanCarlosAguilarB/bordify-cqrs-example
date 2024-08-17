@@ -13,7 +13,7 @@ public class CreateUserCommand implements Command {
 
     private UUID userId;
     private String email;
-    private String username;
+    private String userName;
     private String password;
 
 }

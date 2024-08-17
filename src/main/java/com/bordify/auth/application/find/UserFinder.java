@@ -22,7 +22,7 @@ public class UserFinder {
      */
     public UserWriteModel findUserByUsername(UserUserName username) {
         return repository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("UserDetail not found with username: " + username));
+                .orElseThrow(() -> new UserNotFoundException("user not found with username: " + username));
     }
 
 }

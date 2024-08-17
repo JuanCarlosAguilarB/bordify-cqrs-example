@@ -21,7 +21,7 @@ public class CreateUserCommandHandler implements CommandHandler<CreateUserComman
         service.createUser(
                 new UserUserId(command.getUserId()),
                 new UserEmail(command.getEmail()),
-                new UserUserName(command.getUsername()),
+                new UserUserName(command.getUserName()),
                 new UserPassword(command.getPassword())
         );
 

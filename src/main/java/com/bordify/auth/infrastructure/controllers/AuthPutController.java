@@ -28,7 +28,7 @@ public class AuthPutController {
         CreateUserCommand user = CreateUserCommand.builder()
                 .userId(userId)
                 .email(userRequest.getEmail())
-                .username(userRequest.getUsername())
+                .userName(userRequest.getUserName())
                 .password(userRequest.getPassword())
                 .build();
 
@@ -44,6 +44,6 @@ public class AuthPutController {
 class UserRequest {
 
     private String email;
-    private String username;
+    private String userName;
     private String password;
 }
