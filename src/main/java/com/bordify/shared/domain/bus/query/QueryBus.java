@@ -1,4 +1,4 @@
-package com.bordify.shared.infrastructure.bus.query;
+package com.bordify.shared.domain.bus.query;
 
 public interface QueryBus {
 
