@@ -6,7 +6,6 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.*;
-import com.bordify.shared.domain.CreadentialsNotValidException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,7 @@ public class AuthServicesAdapter implements AuthServices {
     private final SecurityService securityService;
 
     @Override
-    public TokenUserResponse createToken(UserWriteModel user) {
+    public TokenUserResponse createToken(UserUserName userName) {
 
 
         //    @Value("${jwt.refreshTokenExpirationInDays:11}")
@@ -34,7 +33,7 @@ public class AuthServicesAdapter implements AuthServices {
         //    @Value("${jwt.accessTokenExpirationInDays:10}")
         int accessTokenExpirationInDays = 1000;
 
-        String username = user.userName().value();
+        String username = userName.value();
 
         String accessToken = generateToken(accessTokenExpirationInDays, username);
         String refreshToken = generateToken(refreshTokenExpirationInDays, username);
@@ -47,11 +46,12 @@ public class AuthServicesAdapter implements AuthServices {
     }
 
     @Override
-    public void ensureCredentialsAreValid(Auth auth) {
+    public void ensureCredentialsAreValid(UserUserName userName, UserPassword password) {
 
-        UserWriteModel userReadModel = userFinder.findUserByUsername(new UserUserName(auth.getUserName()));
+        UserWriteModel userReadModel = userFinder.findUserByUsername(userName);
 
-        if (!securityService.matches(auth.getPassword(), userReadModel.password().value())) {
+        if (!securityService.matches(password.value(), userReadModel.password().value())) {
+            // TODO: throw Event of invalid credentials
             throw new CreadentialsNotValidException("Invalid credentials");
         }
 
