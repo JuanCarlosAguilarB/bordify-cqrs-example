@@ -157,6 +157,17 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(CreadentialsNotValidException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public ApiExceptionResponse handleCredentialsException(CreadentialsNotValidException ex) {
+        return new ApiExceptionResponse.ApiExceptionResponseBuilder()
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .error(HttpStatus.UNAUTHORIZED.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
+
 
     /**
      * Handles ResourceNotCreatedException.
