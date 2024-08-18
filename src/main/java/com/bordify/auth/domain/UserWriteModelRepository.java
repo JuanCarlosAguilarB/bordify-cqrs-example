@@ -1,6 +1,8 @@
 package com.bordify.auth.domain;
 
 
+import com.bordify.shared.domain.UserUserId;
+
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -47,4 +49,5 @@ public interface UserWriteModelRepository {
     public Stream<UserWriteModel> findByEmail(UserEmail email);
 
 
+    Optional<UserWriteModel> findById(UserUserId userId);
 }
