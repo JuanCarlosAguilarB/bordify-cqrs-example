@@ -2,6 +2,7 @@ package com.bordify.shared.infrastructure.controllers;
 
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.AuthenticationToken;
+import com.bordify.auth.domain.UserWriteModel;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,11 @@ public class GetUserIdFromToken {
             return null;
         }
 
-        token = String.valueOf(authServices.decode(
+        UserWriteModel user = authServices.decode(
                 AuthenticationToken.builder().token(token).build()
-        ).id());
+        );
 
-        return UUID.fromString(token);
+        return user.id().value();
     }
 
 }
