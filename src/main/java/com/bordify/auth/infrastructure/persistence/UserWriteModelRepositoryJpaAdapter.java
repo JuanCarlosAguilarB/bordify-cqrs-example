@@ -5,6 +5,7 @@ import com.bordify.auth.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
 import com.bordify.auth.infrastructure.mapper.UserWriteModelMapper;
+import com.bordify.shared.domain.UserUserId;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -43,6 +44,12 @@ public class UserWriteModelRepositoryJpaAdapter implements UserWriteModelReposit
     @Override
     public Stream<UserWriteModel> findByEmail(UserEmail email) {
         return repository.findByEmail(email.value()).stream()
+                .map(UserWriteModelMapper::toDomain);
+    }
+
+    @Override
+    public Optional<UserWriteModel> findById(UserUserId userId) {
+        return repository.findById(userId.value())
                 .map(UserWriteModelMapper::toDomain);
     }
 
