@@ -1,10 +1,10 @@
 package com.bordify.configuration.infrastructure;
 
 
+import com.bordify.auth.domain.CreadentialsNotValidException;
 import com.bordify.auth.domain.DuplicateEmailException;
 import com.bordify.auth.domain.TokenException;
 import com.bordify.auth.domain.UserEmailException;
-import com.bordify.shared.domain.CreadentialsNotValidException;
 import com.bordify.shared.domain.EntityNotFound;
 import com.bordify.shared.domain.InvalidRequestArgumentException;
 import com.bordify.shared.domain.ResourceNotCreatedException;
@@ -150,17 +150,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     public ApiExceptionResponse handleJwtTokenException(TokenException ex) {
-        return new ApiExceptionResponse.ApiExceptionResponseBuilder()
-                .status(HttpStatus.UNAUTHORIZED.value())
-                .error(HttpStatus.UNAUTHORIZED.getReasonPhrase())
-                .message(ex.getMessage())
-                .build();
-    }
-
-    @ExceptionHandler(CreadentialsNotValidException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ResponseBody
-    public ApiExceptionResponse handleCredentialsException(CreadentialsNotValidException ex) {
         return new ApiExceptionResponse.ApiExceptionResponseBuilder()
                 .status(HttpStatus.UNAUTHORIZED.value())
                 .error(HttpStatus.UNAUTHORIZED.getReasonPhrase())
