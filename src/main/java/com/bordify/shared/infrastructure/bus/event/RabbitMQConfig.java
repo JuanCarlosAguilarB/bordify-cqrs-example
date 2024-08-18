@@ -13,12 +13,15 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static com.bordify.shared.infrastructure.bus.event.RabbitMqQueueNameFormatter.*;
@@ -35,19 +38,28 @@ public class RabbitMQConfig {
     private final AmqpAdmin amqpAdmin;
     private final ObjectMapper objectMapper;
     private final ConnectionFactory connectionFactory;
+    private final ApplicationContext applicationContext;
 
-    public RabbitMQConfig(AmqpAdmin amqpAdmin, ObjectMapper objectMapper, ConnectionFactory connectionFactory) {
+    public RabbitMQConfig(AmqpAdmin amqpAdmin, ObjectMapper objectMapper, ConnectionFactory connectionFactory, ApplicationContext applicationContext) {
         this.amqpAdmin = amqpAdmin;
         this.objectMapper = objectMapper;
         this.connectionFactory = connectionFactory;
+        this.applicationContext = applicationContext;
     }
 
 
     @PostConstruct
     public void setup() {
         declareExchange();
-        Reflections reflections = new Reflections("com");
-        Set<Class<?>> annotatedClasses = reflections.getTypesAnnotatedWith(DomainEventSubscriber.class);
+//        Reflections reflections = new Reflections("com");
+//        Set<Class<?>> annotatedClasses = reflections.getTypesAnnotatedWith(DomainEventSubscriber.class);
+
+        Map<String, Object> beansWithAnnotation = applicationContext.getBeansWithAnnotation(DomainEventSubscriber.class);
+        Set<Class<?>> annotatedClasses = new HashSet<>();
+
+        for (Object bean : beansWithAnnotation.values()) {
+            annotatedClasses.add(bean.getClass());
+        }
 
         for (Class<?> clazz : annotatedClasses) {
             for (Method method : clazz.getDeclaredMethods()) {
@@ -98,7 +110,7 @@ public class RabbitMQConfig {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
 
-        Object listenerInstance = createListenerBean(listenerClass);
+        Object listenerInstance = applicationContext.getBean(listenerClass);
 
         MessageListenerAdapter adapter = new MessageListenerAdapter(listenerInstance, methodName);
         adapter.setMessageConverter(new DomainEventMessageConverter(objectMapper, eventClass));
@@ -116,13 +128,7 @@ public class RabbitMQConfig {
         container.start();
     }
 
-    private Object createListenerBean(Class<?> listenerClass) {
-        try {
-            return listenerClass.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException("Error creating listener bean", e);
-        }
-    }
+
 
     private HashMap<String, Object> retryQueueArguments(String exchangeName, String routingKey) {
         return new HashMap<>() {{
