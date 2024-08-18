@@ -1,9 +1,8 @@
 package com.bordify.shared.infrastucture.controlles;
 
 
-import com.bordify.auth.domain.Auth;
-import com.bordify.auth.domain.TokenUserResponse;
 import com.bordify.auth.domain.SecurityService;
+import com.bordify.auth.domain.TokenUserResponse;
 import com.bordify.auth.infrastructure.controllers.AuthPostController;
 import com.bordify.userdetail.domain.UserDetailRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
