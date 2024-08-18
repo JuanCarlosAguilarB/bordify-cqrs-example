@@ -3,6 +3,7 @@ package com.bordify.auth.application.find;
 import com.bordify.auth.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
+import com.bordify.shared.domain.UserUserId;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class UserFinder {
     public UserWriteModel findUserByUsername(UserUserName username) {
         return repository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("user not found with username: " + username));
+    }
+
+    public UserWriteModel findById(UserUserId userId) {
+        return repository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("user not found with id: " + userId));
     }
 
 }
