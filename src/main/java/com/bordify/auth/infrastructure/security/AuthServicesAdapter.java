@@ -25,7 +25,7 @@ public class AuthServicesAdapter implements AuthServices {
     private final SecurityService securityService;
 
     @Override
-    public AuthenticationToken createToken(UserWriteModel user) {
+    public TokenUserResponse createToken(UserWriteModel user) {
 
 
         //    @Value("${jwt.refreshTokenExpirationInDays:11}")
@@ -39,7 +39,7 @@ public class AuthServicesAdapter implements AuthServices {
         String accessToken = generateToken(accessTokenExpirationInDays, username);
         String refreshToken = generateToken(refreshTokenExpirationInDays, username);
 
-        return AuthenticationToken.builder()
+        return TokenUserResponse.builder()
                 .token(accessToken)
                 .refreshToken(refreshToken)
                 .build();
@@ -108,7 +108,7 @@ public class AuthServicesAdapter implements AuthServices {
     }
 
     @Override
-    public UserWriteModel decode(AuthenticationToken token) {
+    public UserWriteModel decode(TokenUserResponse token) {
         DecodedJWT decodedJWT = JWT.decode(token.getToken());
         return userFinder.findUserByUsername(new UserUserName(decodedJWT.getSubject()));
     }

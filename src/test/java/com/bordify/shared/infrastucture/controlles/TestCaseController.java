@@ -2,7 +2,7 @@ package com.bordify.shared.infrastucture.controlles;
 
 
 import com.bordify.auth.domain.Auth;
-import com.bordify.auth.domain.AuthenticationToken;
+import com.bordify.auth.domain.TokenUserResponse;
 import com.bordify.auth.domain.SecurityService;
 import com.bordify.auth.infrastructure.controllers.AuthPostController;
 import com.bordify.userdetail.domain.UserDetailRepository;
@@ -76,7 +76,7 @@ abstract public class TestCaseController {
 
         ResponseEntity<?> authentication = authPostController.authenticateUser(authenticateBody);
 
-        AuthenticationToken authToken = (AuthenticationToken) authentication.getBody();
+        TokenUserResponse authToken = (TokenUserResponse) authentication.getBody();
 
         return authToken.getToken();
     }

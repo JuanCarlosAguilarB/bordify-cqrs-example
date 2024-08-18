@@ -1,7 +1,7 @@
 package com.bordify.shared.infrastructure.controllers;
 
 import com.bordify.auth.domain.AuthServices;
-import com.bordify.auth.domain.AuthenticationToken;
+import com.bordify.auth.domain.TokenUserResponse;
 import com.bordify.auth.domain.UserWriteModel;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class GetUserIdFromToken {
         }
 
         UserWriteModel user = authServices.decode(
-                AuthenticationToken.builder().token(token).build()
+                TokenUserResponse.builder().token(token).build()
         );
 
         return user.id().value();
