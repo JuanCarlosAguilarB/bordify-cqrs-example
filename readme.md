@@ -2,24 +2,30 @@
 
 ### Description
 
-Bordify is a monolithic Trello-style application designed to manage tasks and projects efficiently. It is built using
-Spring Boot and PostgreSQL, and offers Docker support, thus facilitating its deployment and scalability. This project
-serves as a basis for future refactoring and as an example of monolithic architecture in modern applications.
+Bordify is a Trello-style application designed to manage tasks and projects efficiently. Now,
+this project is an example of CQRS (Command Query Responsibility Segregation) architecture implementation in a
+Spring Boot based system. The objective is to separate read and write operations on the database to improve the scalability and efficiency of the system.
 
+### Architecture and Patterns
+
+#### CQRS Implementation
+In this project, CQRS is implemented by separating commands and queries
+
+- **Commands**: commands are responsible for write operations. They have been implemented in services such as BoardCreator, BoardUpdater, and BoardDeleter, which manage the creation, update, and deletion of entities.
+- **Queries**: Read operations are separated and would typically be handled in dedicated services, such as BoardFinder. This ensures that read and write operations can be scaled and optimized independently.
 ### Features
 
-- User authentication with JWT
-- Project and task management.
-- CRUDs
-- Projections and DTOs
-- Spring Boot
-- PostgreSQL database.
-- Redis
-- Swagger
-- Docker and Docker Compose support
-- Monolith built with Spring Boot.
-
-* Added CI/CD pipeline with GitHub Actions for automated testing and deployment. 👌
+- **CQRS Architecture**: Implementation of CQRS with separation of commands and queries to improve scalability and efficiency.
+- **CRUD Operations**: Management of entities such as Board and TaskItem with services to create, update, read and delete - data.
+- **Spring Boot Framework**: Backend development using Spring Boot.
+- **PostgreSQL Database**: Data persistence in a PostgreSQL database.
+- **Redis Database**: Use of Redis as a database for caching and accelerating data access.
+- **Custom Exception Handling**: Handling of specific exceptions such as EntityNotFound and ResourceNotCreatedException.
+- **Repository Pattern**: Use of repositories for data access abstraction and persistence.
+- **REST API**: REST controllers to manage CRUD operations and provide endpoints to clients.
+- **Swagger Documentation**: Automatic API documentation using Swagger.
+- **Docker Support**: Docker support for containerized project deployment and execution.
+- **Test Coverage**: Test coverage with unit and integration tests.
 
 ### Project Structure
 
@@ -47,9 +53,48 @@ serves as a basis for future refactoring and as an example of monolithic archite
                 └── BordifyApplicationTest.java
 ```
 
+- **New Architecture**:
+The project structure has evolved to support a CQRS implementation and possibly other architectural enhancements. For Example:
+
+```plaintext
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com.bordify/
+    │   │       ├── board/
+    │   │       │   ├── application/
+    │   │       │   │   ├── create/
+    │   │       │   │   ├── find/
+    │   │       │   │   ├── update/
+    │   │       │   │   └── delete/
+    │   │       │   ├── domain/
+    │   │       │   └── infrastructure/
+    │   │       │       ├── persistence/
+    │   │       │       └── controllers/
+    │   │       ├── task_item/
+    │   │       │   ├── application/
+    │   │       │   ├── domain/
+    │   │       │   └── infrastructure/
+    │   │       │       ├── persistence/
+    │   │       │       └── controllers/
+    │   │       ├── configuration/
+    │   │       │   └── infrastructure/
+    │   │       └── BordifyApplication.java
+    │   └── resources/
+    │       ├── static/
+    │       └── templates/
+    └── test/
+        └── java/
+            └── com.bordify/
+                ├── board/
+                ├── task_item/
+                └── BordifyApplicationTest.java
+
+```
+
 ### Database
 
-Diagram of tables.
+Initial database diagram:
 
 ![diagram database](/images/diagram_db.png)
 
@@ -60,13 +105,13 @@ Diagram of tables.
 1. Clone the repository:
 
 ```bash
-git clone git@github.com:JuanCarlosAguilarB/bordify-monolith.git
+git clone git@github.com:JuanCarlosAguilarB/bordify-cqrs-example.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd bordify-monolith
+cd bordify-cqrs-example
 ```
 
 3. Set the required environment variables for the database and any other necessary settings
