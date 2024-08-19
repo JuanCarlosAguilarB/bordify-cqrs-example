@@ -26,7 +26,7 @@ FROM azul/zulu-openjdk:17-latest
 COPY --from=build /home/gradle/src/build/libs/bordify-monolith-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponer el puerto 8081
-EXPOSE 8081
+EXPOSE 8080
 
 # Definir el punto de entrada para ejecutar la aplicación
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["./wait-for-it.sh", "rabbitmq:5672", "--", "java", "-jar", "/app.jar"]
