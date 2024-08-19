@@ -50,3 +50,4 @@ TODO:
               - create system otp for verify account
               - lack of integration with sonarQube
               - lack of integration and implementation of hateos
+              - The logic of retries and deadletters is yet to be created.
