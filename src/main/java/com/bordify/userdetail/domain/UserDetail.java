@@ -21,4 +21,23 @@ public class UserDetail {
     private UserDetailPhoneNumber phoneNumber;
     private UserUserId username;
 
+    public UserDetailId id() {
+        return id;
+    }
+
+    public UserDetailFirstName firstName() {
+        return firstName;
+    }
+
+    public UserDetailLastName lastName() {
+        return lastName;
+    }
+
+    public UserDetailPhoneNumber phoneNumber() {
+        return phoneNumber;
+    }
+
+    public UserUserId username() {
+        return username;
+    }
 }
