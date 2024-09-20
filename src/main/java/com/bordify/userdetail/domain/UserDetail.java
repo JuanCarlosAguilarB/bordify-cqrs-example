@@ -1,5 +1,6 @@
 package com.bordify.userdetail.domain;
 
+import com.bordify.shared.domain.UserUserId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,9 +15,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserDetail {
 
-    private UUID id;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String username;
+    private UserDetailId id;
+    private UserDetailFirstName firstName;
+    private UserDetailLastName lastName;
+    private UserDetailPhoneNumber phoneNumber;
+    private UserUserId username;
+
 }
