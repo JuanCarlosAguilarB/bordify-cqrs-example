@@ -22,7 +22,7 @@ public class BoardMapper {
         return BoardEntity.builder()
                 .id(board.getId())
                 .name(board.getName())
-                .userId(board.getUser().getId())
+                .userId(board.getUser().id().value())
                 .build();
     }
 
