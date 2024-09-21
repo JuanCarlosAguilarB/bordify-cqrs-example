@@ -2,10 +2,13 @@ package com.bordify.userdetail.infrastructure.controllers;
 
 
 import com.bordify.shared.domain.PageResult;
-import com.bordify.shared.domain.PaginationRequest;
+import com.bordify.shared.domain.bus.query.QueryBus;
 import com.bordify.shared.infrastructure.controllers.GetUserIdFromToken;
-import com.bordify.userdetail.application.find.UserDetailFinder;
+import com.bordify.userdetail.application.find.FindAllUserDetailsQuery;
+import com.bordify.userdetail.application.find.FindUserDetailByIdQuery;
+import com.bordify.userdetail.domain.AllUsersDetailResponse;
 import com.bordify.userdetail.domain.UserDetail;
+import com.bordify.userdetail.domain.UserDetailResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,32 +19,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @Tag(name = "UserDetail", description = "UserDetail management operations")
 @AllArgsConstructor
 @RestController
 public class UserDetailGetController {
 
-    private final UserDetailFinder userServices;
     private final GetUserIdFromToken getUserId;
-
+    private final QueryBus bus;
 
     @Operation(summary = "Get information of the user", description = "Get a user", tags = {"UserDetail"})
     @GetMapping(value = "/v1/users/me/")
     public ResponseEntity<UserDetailResponse> getUser(HttpServletRequest request) {
 
-        UUID userId = getUserId.getUserId();
-        UserDetail user = userServices.findUserById(userId);
+        FindUserDetailByIdQuery query = new FindUserDetailByIdQuery(getUserId.getUserId());
 
-        UserDetailResponse userDetailResponse = UserDetailResponse.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .phoneNumber(user.getPhoneNumber())
-                .build();
+        UserDetailResponse response = bus.ask(query);
 
-        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(userDetailResponse);
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(response);
 
     }
 
@@ -50,10 +44,10 @@ public class UserDetailGetController {
     public ResponseEntity<PageResult<UserDetail>> retriveUsers(@RequestParam(defaultValue = "1") int pageNumber,
                                                          @RequestParam(defaultValue = "10") int pageSize) {
 
-        PaginationRequest pagination = new PaginationRequest(pageNumber, pageSize);
-        PageResult<UserDetail> userList = userServices.getall(pagination);
-
-        return ResponseEntity.ok(userList);
+        FindAllUserDetailsQuery query = new FindAllUserDetailsQuery(pageNumber,pageSize);
+        AllUsersDetailResponse response = bus.ask(query);
+//        PageResult<UserDetail> userList = userServices.getall(pagination);
+        return ResponseEntity.ok(response);
 
     }
 
