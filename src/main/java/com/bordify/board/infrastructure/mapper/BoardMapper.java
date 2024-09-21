@@ -4,6 +4,7 @@ import com.bordify.board.domain.Board;
 import com.bordify.board.domain.BoardId;
 import com.bordify.board.domain.BoardName;
 import com.bordify.board.infrastructure.persistence.BoardEntity;
+import com.bordify.shared.domain.UserUserId;
 import com.bordify.userdetail.domain.UserDetail;
 import com.bordify.userdetail.infrastructure.mapper.UserDetailMapper;
 
@@ -11,11 +12,10 @@ public class BoardMapper {
 
     public Board toDomain(BoardEntity boardEntity) {
 
-        UserDetail user = UserDetailMapper.toDomain(boardEntity.getUser());
         return new Board(
                 new BoardId(boardEntity.getId()),
                 new BoardName(boardEntity.getName()),
-                user
+                new UserUserId(boardEntity.getUserId())
         );
     }
 
@@ -23,7 +23,7 @@ public class BoardMapper {
         return BoardEntity.builder()
                 .id(board.id().value())
                 .name(board.name().value())
-                .userId(board.user().id().value())
+                .userId(board.userId().value())
                 .build();
     }
 
