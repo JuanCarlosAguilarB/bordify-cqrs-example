@@ -51,7 +51,7 @@ public class BoardGetController {
 
         PaginationRequest paginationRequest = new PaginationRequest(pageable.getPageNumber(), pageable.getPageSize());
 
-        return ResponseEntity.ok(boardFinder.findAllBoards(paginationRequest, user.getId()));
+        return ResponseEntity.ok(boardFinder.findAllBoards(paginationRequest, user.id().value()));
 
     }
 
