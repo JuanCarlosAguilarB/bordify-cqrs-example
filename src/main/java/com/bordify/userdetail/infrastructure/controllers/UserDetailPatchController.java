@@ -1,6 +1,7 @@
 package com.bordify.userdetail.infrastructure.controllers;
 
-import com.bordify.userdetail.application.update.UserDetailUpdater;
+import com.bordify.shared.domain.bus.command.CommandBus;
+import com.bordify.userdetail.application.update.UpdateUserDetailCommand;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -18,16 +19,15 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserDetailPatchController {
 
-    private final UserDetailUpdater userServices;
+    private final CommandBus bus;
 
     @Operation(summary = "Modify information of the user", description = "Modify information of the user", tags = {"UserDetail"})
     @PatchMapping(value = "/v1/users/{id}")
     public ResponseEntity<?> getUser(@RequestBody Map<String, Object> userData, @PathVariable UUID id) {
 
-        userServices.update(id, userData);
-
-        Map<String, String> response = Map.of("message", "user updated");
-        return ResponseEntity.ok(response);
+        UpdateUserDetailCommand command = new UpdateUserDetailCommand(id, userData);
+        bus.send(command);
+        return ResponseEntity.ok(Map.of("message", "user updated"));
 
     }
 
