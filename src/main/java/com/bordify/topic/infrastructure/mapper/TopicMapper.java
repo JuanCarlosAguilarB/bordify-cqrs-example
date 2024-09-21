@@ -13,7 +13,7 @@ public class TopicMapper {
         return TopicEntity.builder()
                 .id(topic.getId())
                 .name(topic.getName())
-                .boardId(topic.getBoard().getId())
+                .boardId(topic.getBoard().id().value())
                 .colorId(topic.getColor().getId())
                 .build();
     }

@@ -2,18 +2,16 @@ package com.bordify.board.domain;
 
 import com.bordify.userdetail.domain.UserDetail;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 
-import java.util.UUID;
 
-@Data
 @AllArgsConstructor
-@Builder
 public class Board {
 
-    private UUID id;
-    private String name;
+    private BoardId id;
+    private BoardName name;
     private UserDetail user;
 
+    public BoardId id(){return this.id;}
+    public BoardName name(){return this.name;}
+    public UserDetail user(){return this.user;}
 }

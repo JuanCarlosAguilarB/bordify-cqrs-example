@@ -2,6 +2,7 @@ package com.bordify.board.domain;
 
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
+import com.bordify.shared.domain.UserUserId;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -14,17 +15,17 @@ public interface BoardRepository {
     /**
      * Deletes a board by its ID.
      *
-     * @param boardId The ID of the board to delete.
+     * @param id The ID of the board to delete.
      */
-    public void deleteById(UUID boardId);
+    public void deleteById(BoardId id);
 
     /**
      * Checks if a board exists by its ID.
      *
-     * @param boardId The ID of the board to check.
+     * @param id The ID of the board to check.
      * @return True if the board exists, false otherwise.
      */
-    public boolean existsById(UUID boardId);
+    public boolean existsById(BoardId id);
 
     /**
      * Retrieves a page of board DTOs.
@@ -41,15 +42,15 @@ public interface BoardRepository {
      * @param userId   The ID of the user.
      * @return A PageResult of board DTOs filtered by user ID.
      */
-    public PageResult<BoardListDTO> findByUserId(PaginationRequest pageable, UUID userId);
+    public PageResult<BoardListDTO> findByUserId(PaginationRequest pageable, UserUserId userId);
 
     /**
      * Finds a board DTO by its ID.
      *
-     * @param boardId The ID of the board.
+     * @param id The ID of the board.
      * @return The board DTO.
      */
-    public Board findDtoById(UUID boardId);
+    public Board findDtoById(BoardId id);
 
 
     /**
@@ -62,8 +63,8 @@ public interface BoardRepository {
     /**
      * Retrieves a board entity by its ID.
      *
-     * @param boardId The ID of the board.
+     * @param id The ID of the board.
      * @return The Optional<Board>.
      */
-    public Optional<Board> findById(UUID boardId);
+    public Optional<Board> findById(BoardId id);
 }
