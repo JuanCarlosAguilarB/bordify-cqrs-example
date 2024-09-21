@@ -2,12 +2,9 @@ package com.bordify.userdetail.domain;
 
 import com.bordify.shared.domain.UserUserName;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.ToString;
 
 
-@Data
-//@Builder
 @ToString
 @AllArgsConstructor
 public class UserDetail {
