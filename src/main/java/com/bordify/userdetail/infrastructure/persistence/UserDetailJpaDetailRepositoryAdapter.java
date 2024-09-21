@@ -2,7 +2,9 @@ package com.bordify.userdetail.infrastructure.persistence;
 
 import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
+import com.bordify.userdetail.domain.AllUsersDetailResponse;
 import com.bordify.userdetail.domain.UserDetail;
+import com.bordify.userdetail.domain.UserDetailId;
 import com.bordify.userdetail.domain.UserDetailRepository;
 import com.bordify.userdetail.infrastructure.mapper.UserDetailMapper;
 import org.springframework.data.domain.Page;
@@ -41,13 +43,13 @@ public class UserDetailJpaDetailRepositoryAdapter implements UserDetailRepositor
     }
 
     @Override
-    public Optional<UserDetail> findById(UUID userId) {
-        Optional<UserDetailEntity> userSearched = userDetailJpaRepository.findById(userId);
+    public Optional<UserDetail> findById(UserDetailId id) {
+        Optional<UserDetailEntity> userSearched = userDetailJpaRepository.findById(id.value());
         return userSearched.map(UserDetailMapper::toDomain);
     }
 
     @Override
-    public PageResult<UserDetail> findAll(PaginationRequest pageable) {
+    public AllUsersDetailResponse findAll(PaginationRequest pageable) {
 
         Pageable pageableResult = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()); // page 0, size 20
         Page<UserDetailEntity> page = userDetailJpaRepository.findAll(pageableResult);
@@ -56,7 +58,7 @@ public class UserDetailJpaDetailRepositoryAdapter implements UserDetailRepositor
                 page.getContent().stream().map(UserDetailMapper::toDomain).toList(),
                 page.getNumber(), page.getSize(), page.getTotalElements());
 
-        return pageResult;
+        return (AllUsersDetailResponse) pageResult;
     }
 
     @Override
