@@ -3,6 +3,7 @@ package com.bordify.auth.infrastructure.mapper;
 import com.bordify.auth.domain.*;
 import com.bordify.auth.infrastructure.persistence.UserWriteModelEntity;
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.UserUserName;
 
 public class UserWriteModelMapper {
 

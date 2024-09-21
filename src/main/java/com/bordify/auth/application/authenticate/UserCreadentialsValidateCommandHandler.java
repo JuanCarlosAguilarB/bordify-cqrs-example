@@ -2,7 +2,7 @@ package com.bordify.auth.application.authenticate;
 
 import com.bordify.auth.domain.AuthServices;
 import com.bordify.auth.domain.UserPassword;
-import com.bordify.auth.domain.UserUserName;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.shared.domain.bus.command.CommandHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,8 @@
 package com.bordify.auth.domain;
 
 
+import com.bordify.shared.domain.UserUserName;
+
 import java.util.Optional;
 
 public interface UserReadModelRepository {

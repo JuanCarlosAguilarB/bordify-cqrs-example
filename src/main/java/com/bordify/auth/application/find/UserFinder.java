@@ -1,6 +1,6 @@
 package com.bordify.auth.application.find;
 
-import com.bordify.auth.domain.UserUserName;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
 import com.bordify.shared.domain.UserUserId;

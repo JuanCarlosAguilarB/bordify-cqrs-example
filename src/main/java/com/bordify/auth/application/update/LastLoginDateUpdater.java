@@ -2,7 +2,7 @@ package com.bordify.auth.application.update;
 
 import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.UserDateLastLogin;
-import com.bordify.auth.domain.UserUserName;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
 import lombok.AllArgsConstructor;

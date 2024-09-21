@@ -3,6 +3,7 @@ package com.bordify.auth.application.create;
 import com.bordify.auth.domain.*;
 import com.bordify.auth.domain.event.UserCreatedEvent;
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.shared.domain.bus.event.DomainEventSubscriber;
 import org.springframework.stereotype.Service;
 

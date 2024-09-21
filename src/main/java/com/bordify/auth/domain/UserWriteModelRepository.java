@@ -2,6 +2,7 @@ package com.bordify.auth.domain;
 
 
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.UserUserName;
 
 import java.util.Optional;
 import java.util.stream.Stream;

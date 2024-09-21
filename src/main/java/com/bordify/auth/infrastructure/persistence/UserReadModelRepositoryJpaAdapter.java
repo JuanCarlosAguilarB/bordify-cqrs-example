@@ -2,7 +2,7 @@ package com.bordify.auth.infrastructure.persistence;
 
 import com.bordify.auth.domain.UserReadModel;
 import com.bordify.auth.domain.UserReadModelRepository;
-import com.bordify.auth.domain.UserUserName;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.infrastructure.mapper.UserReadModelMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

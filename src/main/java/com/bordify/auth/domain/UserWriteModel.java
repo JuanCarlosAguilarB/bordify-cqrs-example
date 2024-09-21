@@ -1,6 +1,7 @@
 package com.bordify.auth.domain;
 
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.UserUserName;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

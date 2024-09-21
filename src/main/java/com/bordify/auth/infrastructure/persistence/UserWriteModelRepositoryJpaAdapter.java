@@ -1,7 +1,7 @@
 package com.bordify.auth.infrastructure.persistence;
 
 import com.bordify.auth.domain.UserEmail;
-import com.bordify.auth.domain.UserUserName;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
 import com.bordify.auth.infrastructure.mapper.UserWriteModelMapper;

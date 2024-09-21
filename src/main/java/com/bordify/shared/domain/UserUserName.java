@@ -1,4 +1,4 @@
-package com.bordify.auth.domain;
+package com.bordify.shared.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

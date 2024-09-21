@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bordify.auth.application.find.UserFinder;
 import com.bordify.auth.domain.*;
+import com.bordify.shared.domain.UserUserName;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

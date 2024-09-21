@@ -1,5 +1,7 @@
 package com.bordify.auth.domain;
 
+import com.bordify.shared.domain.UserUserName;
+
 public interface AuthServices {
 
     public TokenUserResponse createToken(UserUserName userName);
