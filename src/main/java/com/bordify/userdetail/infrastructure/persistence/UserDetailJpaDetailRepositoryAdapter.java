@@ -62,8 +62,8 @@ public class UserDetailJpaDetailRepositoryAdapter implements UserDetailRepositor
     }
 
     @Override
-    public void delete(UUID id) {
-        userDetailJpaRepository.deleteById(id);
+    public void delete(UserDetailId id) {
+        userDetailJpaRepository.deleteById(id.value());
     }
 
 }

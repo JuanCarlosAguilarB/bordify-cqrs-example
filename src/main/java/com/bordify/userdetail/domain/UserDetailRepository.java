@@ -47,5 +47,5 @@ public interface UserDetailRepository {
 
     AllUsersDetailResponse findAll(PaginationRequest pagination);
 
-    void delete(UUID id);
+    void delete(UserDetailId id);
 }
