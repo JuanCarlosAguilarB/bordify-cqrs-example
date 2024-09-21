@@ -1,5 +1,6 @@
-package com.bordify.userdetail.infrastructure.controllers;
+package com.bordify.userdetail.domain;
 
+import com.bordify.shared.domain.bus.query.Response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,7 @@ import java.util.UUID;
 @Builder
 @ToString
 @AllArgsConstructor
-public class UserDetailResponse {
-
+public class UserDetailResponse implements Response {
 
     private UUID id;
     private String username;
