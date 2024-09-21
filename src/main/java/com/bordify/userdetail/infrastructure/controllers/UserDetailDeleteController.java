@@ -1,6 +1,7 @@
 package com.bordify.userdetail.infrastructure.controllers;
 
-import com.bordify.userdetail.application.delete.UserDetailDeleter;
+import com.bordify.shared.domain.bus.command.CommandBus;
+import com.bordify.userdetail.application.delete.DeleteUserDetailsCommand;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserDetailDeleteController {
 
-    private final UserDetailDeleter userServices;
+    private final CommandBus bus;
 
     /**
      * Deletes a user by your id.
@@ -27,7 +28,10 @@ public class UserDetailDeleteController {
     @Operation(summary = "Delete a user", description = "Deletes a user by your id", tags = {"UserDetail"})
     @DeleteMapping("/v1/users/{id}/")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        userServices.delete(id);
+
+        DeleteUserDetailsCommand command = new DeleteUserDetailsCommand(id);
+        bus.send(command);
+
         return ResponseEntity.ok().build();
     }
 
