@@ -40,12 +40,12 @@ public interface UserDetailRepository {
     /**
      * Retrive an user
      *
-     * @param userId
-     * @return
+     * @param id value object of id
+     * @return Optional<UserDetail>
      */
-    public Optional<UserDetail> findById(UUID userId);
+    public Optional<UserDetail> findById(UserDetailId id);
 
-    PageResult<UserDetail> findAll(PaginationRequest pagination);
+    AllUsersDetailResponse findAll(PaginationRequest pagination);
 
     void delete(UUID id);
 }
