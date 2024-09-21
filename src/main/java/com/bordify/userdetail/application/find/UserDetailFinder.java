@@ -1,14 +1,9 @@
 package com.bordify.userdetail.application.find;
 
-
-import com.bordify.shared.domain.PageResult;
 import com.bordify.shared.domain.PaginationRequest;
-import com.bordify.userdetail.domain.UserDetail;
-import com.bordify.userdetail.domain.UserDetailRepository;
-import com.bordify.userdetail.domain.UserNotFoundException;
+import com.bordify.userdetail.domain.*;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
 
 @Service
 public class UserDetailFinder {
@@ -32,15 +27,23 @@ public class UserDetailFinder {
                 .orElseThrow(() -> new UserNotFoundException("UserDetail not found with username: " + username));
     }
 
-    public PageResult<UserDetail> getall(PaginationRequest pagination) {
+    public AllUsersDetailResponse getall(PaginationRequest pagination) {
 
         return userDetailRepository.findAll(pagination);
 
     }
 
-    public UserDetail findUserById(UUID id) {
-        return userDetailRepository.findById(id)
+    public UserDetailResponse findUserById(UserDetailId id) {
+
+        UserDetail user = userDetailRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("UserDetail not found with id: " + id));
+
+        return UserDetailResponse.builder()
+                .id(user.id().value())
+                .firstName(user.firstName().value())
+                .lastName(user.lastName().value())
+                .phoneNumber(user.phoneNumber().value())
+                .build();
     }
 
 }
