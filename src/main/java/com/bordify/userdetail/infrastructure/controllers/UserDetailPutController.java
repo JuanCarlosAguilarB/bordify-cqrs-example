@@ -1,7 +1,8 @@
 package com.bordify.userdetail.infrastructure.controllers;
 
+import com.bordify.shared.domain.bus.command.CommandBus;
+import com.bordify.userdetail.application.create.CreateUserDetailCommand;
 import com.bordify.userdetail.application.create.UserDetailCreator;
-import com.bordify.userdetail.domain.UserDetail;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserDetailPutController {
 
-    private final UserDetailCreator userDetailCreatorServices;
+    private final CommandBus bus;
 
     @Operation(summary = "Create a new user", description = "Creates a new user", tags = {"UserDetail"})
     @PutMapping(value = "/v1/users/{id}/")
@@ -30,19 +31,18 @@ public class UserDetailPutController {
             @PathVariable UUID id
     ) {
 
-        UserDetail user = UserDetail.builder()
+        CreateUserDetailCommand command = CreateUserDetailCommand.builder()
                 .id(id)
-                .username(requestBody.getUsername())
+                .userName(requestBody.getUsername())
                 .firstName(requestBody.getFirstName())
                 .lastName(requestBody.getLastName())
                 .phoneNumber(requestBody.getPhoneNumber())
                 .build();
 
-        userDetailCreatorServices.createUser(user);
+        bus.send(command);
 
-        Map<String, String> response = Map.of("message", "UserDetail created");
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(response);
+                .body(Map.of("message", "UserDetail created"));
     }
 
 }
