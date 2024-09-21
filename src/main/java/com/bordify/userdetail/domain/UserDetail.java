@@ -1,17 +1,13 @@
 package com.bordify.userdetail.domain;
 
-import com.bordify.shared.domain.UserUserId;
 import com.bordify.shared.domain.UserUserName;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
-import java.util.UUID;
-
 
 @Data
-@Builder
+//@Builder
 @ToString
 @AllArgsConstructor
 public class UserDetail {
