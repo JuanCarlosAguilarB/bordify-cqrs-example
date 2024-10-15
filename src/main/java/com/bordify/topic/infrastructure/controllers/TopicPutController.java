@@ -1,7 +1,8 @@
 package com.bordify.topic.infrastructure.controllers;
 
 import com.bordify.board.application.find.BoardFinder;
-import com.bordify.board.domain.Board;
+import com.bordify.board.domain.BoardId;
+import com.bordify.board.domain.BoardResponse;
 import com.bordify.color.application.find.ColorFinder;
 import com.bordify.color.domain.Color;
 import com.bordify.topic.application.create.TopicCreator;
@@ -38,14 +39,15 @@ public class TopicPutController {
     @PutMapping("/v1/topics/{id}/")
     public ResponseEntity update(@PathVariable UUID id, @RequestBody TopicRequest topicRequest) {
 
-        Board board = boardFinder.findBoardById(topicRequest.getBoardId());
+        BoardId boardId = new BoardId(topicRequest.getBoardId());
+        BoardResponse board = boardFinder.findBoardById(boardId);
         Color color = colorFinder.findColorById(topicRequest.getColorId());
 
         Topic topic = Topic.builder()
                 .id(id)
                 .name(topicRequest.getName())
                 .color(color)
-                .board(board)
+//                .board(board)
                 .build();
 
         topicCreator.create(topic);

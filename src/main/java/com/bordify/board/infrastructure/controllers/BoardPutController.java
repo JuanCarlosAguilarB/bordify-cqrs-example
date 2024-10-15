@@ -1,15 +1,13 @@
 package com.bordify.board.infrastructure.controllers;
 
 
-import com.bordify.board.application.create.BoardCreator;
-import com.bordify.board.domain.Board;
-import com.bordify.userdetail.application.find.UserDetailFinder;
-import com.bordify.userdetail.domain.UserDetail;
+import com.bordify.board.application.create.CreateBoardCommand;
+import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.bus.command.CommandBus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +21,10 @@ import java.util.UUID;
 @Tag(name = "Board", description = "Board management operations")
 public class BoardPutController {
 
-    private final BoardCreator boardCreator;
-    private final UserDetailFinder userDetailFinder;
+    private final CommandBus bus;
 
-    public BoardPutController(BoardCreator boardCreator, UserDetailFinder userDetailFinder) {
-        this.boardCreator = boardCreator;
-        this.userDetailFinder = userDetailFinder;
+    public BoardPutController(CommandBus bus) {
+        this.bus = bus;
     }
 
 
@@ -36,7 +32,7 @@ public class BoardPutController {
      * Creates a new board for the authenticated user.
      *
      * @param boardRequest The request containing the name of the board to be created.
-     * @param auth         The authentication object containing information about the authenticated user.
+//     * @param auth         The authentication object containing information about the authenticated user.
      * @return A ResponseEntity with message the created board.
      */
 
@@ -44,31 +40,21 @@ public class BoardPutController {
     @PutMapping(value = "/v1/boards/{id}/")
     public ResponseEntity<?> create(
             @RequestBody BoardRequest boardRequest,
-            Authentication auth,
-            @PathVariable UUID id
+            @PathVariable UUID id,
+            UserUserId userId // injected by spring boot
 
     ) {
 
-        // Extract userId of token
-
-        // TODO: i dont sure if i should search user here or in the service.
-
-        String username = auth.getName();
-        UserDetail user = userDetailFinder.findUserByUsername(username);
-
-        Board board = Board.builder()
-                .id(id)
-                .name(boardRequest.getName())
-                .user(user)
-                .build();
-
-        boardCreator.createBoard(
-                board
+        CreateBoardCommand command = new CreateBoardCommand(
+                id,
+                boardRequest.getName(),
+                userId.value()
         );
 
-        Map<String, String> response = Map.of("message", "Board created");
+        bus.send(command);
+
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(response);
+                .body(Map.of("message", "Board created"));
     }
 
 }
