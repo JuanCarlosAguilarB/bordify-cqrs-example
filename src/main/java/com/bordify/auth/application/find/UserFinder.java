@@ -1,9 +1,9 @@
 package com.bordify.auth.application.find;
 
-import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

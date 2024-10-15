@@ -5,7 +5,6 @@ import com.bordify.shared.domain.PaginationRequest;
 import com.bordify.shared.domain.UserUserId;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Repository interface for accessing and managing board entities in the database.

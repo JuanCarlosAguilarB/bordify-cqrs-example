@@ -26,7 +26,7 @@ public class BoardCreatorShould {
 
         User user = createValidUserDomain();
         Board board = createValidBoardDomain(user);
-        boardCreator.createBoard(board);
+        boardCreator.create(board);
 
         Mockito.verify(boardRepository, Mockito.times(1)).save(board);
 

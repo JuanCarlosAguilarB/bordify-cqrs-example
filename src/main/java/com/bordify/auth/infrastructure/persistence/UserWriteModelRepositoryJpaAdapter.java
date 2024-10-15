@@ -1,11 +1,11 @@
 package com.bordify.auth.infrastructure.persistence;
 
 import com.bordify.auth.domain.UserEmail;
-import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
 import com.bordify.auth.domain.UserWriteModelRepository;
 import com.bordify.auth.infrastructure.mapper.UserWriteModelMapper;
 import com.bordify.shared.domain.UserUserId;
+import com.bordify.shared.domain.UserUserName;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 

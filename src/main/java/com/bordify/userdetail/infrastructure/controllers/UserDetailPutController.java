@@ -2,7 +2,6 @@ package com.bordify.userdetail.infrastructure.controllers;
 
 import com.bordify.shared.domain.bus.command.CommandBus;
 import com.bordify.userdetail.application.create.CreateUserDetailCommand;
-import com.bordify.userdetail.application.create.UserDetailCreator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;

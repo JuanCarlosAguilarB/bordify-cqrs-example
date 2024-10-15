@@ -1,8 +1,8 @@
 package com.bordify.auth.infrastructure.security;
 
 import com.bordify.auth.application.find.UserFinder;
-import com.bordify.shared.domain.UserUserName;
 import com.bordify.auth.domain.UserWriteModel;
+import com.bordify.shared.domain.UserUserName;
 import com.bordify.userdetail.domain.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

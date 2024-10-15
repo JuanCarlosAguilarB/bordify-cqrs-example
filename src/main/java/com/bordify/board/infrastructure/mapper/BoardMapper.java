@@ -5,8 +5,6 @@ import com.bordify.board.domain.BoardId;
 import com.bordify.board.domain.BoardName;
 import com.bordify.board.infrastructure.persistence.BoardEntity;
 import com.bordify.shared.domain.UserUserId;
-import com.bordify.userdetail.domain.UserDetail;
-import com.bordify.userdetail.infrastructure.mapper.UserDetailMapper;
 
 public class BoardMapper {
 
