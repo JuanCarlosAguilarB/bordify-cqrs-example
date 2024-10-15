@@ -1,6 +1,7 @@
 package com.bordify.board.infrastructure.controllers;
 
-import com.bordify.board.application.update.BoardUpdater;
+import com.bordify.board.application.update.UpdateBoardCommand;
+import com.bordify.shared.domain.bus.command.CommandBus;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BoardPatchController {
 
-    private final BoardUpdater boardUpdater;
+    private CommandBus bus;
 
     /**
      * Handle a partial update of a board.
@@ -29,8 +30,8 @@ public class BoardPatchController {
     @PatchMapping("/v1/boards/{id}/")
     public ResponseEntity<?> handler(@PathVariable UUID id, @RequestBody Map<String, Object> boardRequest) {
 
-        boardUpdater.update(id, boardRequest);
-
+        UpdateBoardCommand command = new UpdateBoardCommand(id, boardRequest);
+        bus.send(command);
         return ResponseEntity.ok().build();
     }
 

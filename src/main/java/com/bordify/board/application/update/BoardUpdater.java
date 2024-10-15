@@ -1,6 +1,7 @@
 package com.bordify.board.application.update;
 
 import com.bordify.board.domain.Board;
+import com.bordify.board.domain.BoardId;
 import com.bordify.board.domain.BoardRepository;
 import com.bordify.shared.domain.EntityNotFound;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,6 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -25,12 +25,12 @@ public class BoardUpdater {
      * @param board   The updated board entity.
      * @throws EntityNotFound if the board to update does not exist.
      */
-    public void update(UUID boardId, Map<String, Object> board) {
+    public void update(BoardId id, Map<String, Object> board) {
 
-        Optional<Board> existingBoard = boardRepository.findById(boardId);
+        Optional<Board> existingBoard = boardRepository.findById(id);
 
         if (existingBoard.isEmpty()) {
-            throw new EntityNotFound("Board with id " + boardId + " does not exist.");
+            throw new EntityNotFound("Board with id " + id.value() + " does not exist.");
         }
 
         board.forEach((key, value) -> {
